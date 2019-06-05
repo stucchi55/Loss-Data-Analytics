@@ -1,40 +1,40 @@
 <!DOCTYPE html>
-<html >
-
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
 <head>
 
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Loss Data Analytics</title>
-  <meta name="description" content="Loss Data Analytics is an interactive, online, freely available text. - The online version will contain many interactive objects (quizzes, computer demonstrations, interactive graphs, video, and the like) to promote deeper learning. - A subset of the book will be available in pdf format for low-cost printing. - The online text will be available in multiple languages to promote access to a worldwide audience.">
-  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 4 Model Selection and Estimation | Loss Data Analytics</title>
+  <meta name="description" content="Chapter 4 Model Selection and Estimation | Loss Data Analytics is an interactive, online, freely available text. - The online version will contain many interactive objects (quizzes, computer demonstrations, interactive graphs, video, and the like) to promote deeper learning. - A subset of the book will be available in pdf format for low-cost printing. - The online text will be available in multiple languages to promote access to a worldwide audience." />
+  <meta name="generator" content="bookdown 0.10 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Loss Data Analytics" />
+  <meta property="og:title" content="Chapter 4 Model Selection and Estimation | Loss Data Analytics" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="Loss Data Analytics is an interactive, online, freely available text. - The online version will contain many interactive objects (quizzes, computer demonstrations, interactive graphs, video, and the like) to promote deeper learning. - A subset of the book will be available in pdf format for low-cost printing. - The online text will be available in multiple languages to promote access to a worldwide audience." />
-  <meta name="github-repo" content="<a href="https://github.com/openacttexts/Loss-Data-Analytics" class="uri">https://github.com/openacttexts/Loss-Data-Analytics</a>" />
+  <meta property="og:description" content="Chapter 4 Model Selection and Estimation | Loss Data Analytics is an interactive, online, freely available text. - The online version will contain many interactive objects (quizzes, computer demonstrations, interactive graphs, video, and the like) to promote deeper learning. - A subset of the book will be available in pdf format for low-cost printing. - The online text will be available in multiple languages to promote access to a worldwide audience." />
+  <meta name="github-repo" content="https://github.com/openacttexts/Loss-Data-Analytics" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Loss Data Analytics" />
+  <meta name="twitter:title" content="Chapter 4 Model Selection and Estimation | Loss Data Analytics" />
   
-  <meta name="twitter:description" content="Loss Data Analytics is an interactive, online, freely available text. - The online version will contain many interactive objects (quizzes, computer demonstrations, interactive graphs, video, and the like) to promote deeper learning. - A subset of the book will be available in pdf format for low-cost printing. - The online text will be available in multiple languages to promote access to a worldwide audience." />
+  <meta name="twitter:description" content="Chapter 4 Model Selection and Estimation | Loss Data Analytics is an interactive, online, freely available text. - The online version will contain many interactive objects (quizzes, computer demonstrations, interactive graphs, video, and the like) to promote deeper learning. - A subset of the book will be available in pdf format for low-cost printing. - The online text will be available in multiple languages to promote access to a worldwide audience." />
   
 
-<meta name="author" content="An open text authored by the Actuarial Community">
+<meta name="author" content="An open text authored by the Actuarial Community" />
 
 
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
 <link rel="prev" href="C-Severity.html">
 <link rel="next" href="C-AggLossModels.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
@@ -46,44 +46,158 @@
 
 
 
+
+
+<!-- Mathjax -->
+<script type='text/x-mathjax-config'>
+		MathJax.Hub.Config({
+			extensions: ['tex2jax.js'],
+			jax: ['input/TeX', 'output/HTML-CSS'],
+			tex2jax: {
+				inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+				displayMath: [ ['$$','$$'], ['\\[','\\]'] ],
+				processEscapes: true
+			},
+			'HTML-CSS': { availableFonts: ['TeX'] }
+		});
+</script>
+
+<!-- The following code is for the quizzes -->
+<script src="https://surveyjs.azureedge.net/1.0.50/survey.jquery.js"></script>
+<link href="https://surveyjs.azureedge.net/1.0.50/survey.css" type="text/css" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.6.4/showdown.min.js"></script>  
+
+<script>
+function markdownConverterEWF() {  
+//Create showdown markdown converter
+var converter = new showdown.Converter();
+converter.setOption('ghCompatibleHeaderId', true);
+survey
+    .onTextMarkdown
+    .add(function (survey, options) {
+        //convert the mardown text to html
+        var str = converter.makeHtml(options.text);
+        //remove root paragraphs <p></p>
+        str = str.substring(3);
+        str = str.substring(0, str.length - 4);
+        //set html
+        options.html = str;
+         MathJax.Hub.Queue(['Typeset',MathJax.Hub, 'options']);
+    });  
+};
+// Quiz Header info
+const jsonHeader = { 
+    showProgressBar: "bottom",
+    showTimerPanel: "none",
+    maxTimeToFinishPage: 10000,
+    maxTimeToFinish: 25000,
+    firstPageIsStarted: true,
+    startSurveyText: "Start Quiz" //,
+//    title: "Does This Make Sense?"
+}
+
+// Three, four, and five question quizzes
+function jsonSummary3EWF(json) {  
+let jsonEnd3 = { 
+completedHtml: 
+json["pages"][1]["questions"][0]["name"]+ "<br>"+
+"<i>Question: </i>"+json["pages"][1]["questions"][0]["title"]+"<br>"+
+"<i>Answer: </i>"+json["pages"][1]["questions"][0]["correctAnswer"]
++"<br>"+
+json["pages"][2]["questions"][0]["name"]+ "<br>"+
+"<i>Question: </i>"+json["pages"][2]["questions"][0]["title"]+"<br>"+
+"<i>Answer: </i>"+json["pages"][2]["questions"][0]["correctAnswer"]
++"<br>"+
+json["pages"][3]["questions"][0]["name"]+ "<br>"+
+"<i>Question: </i>"+json["pages"][3]["questions"][0]["title"]+"<br>"+
+"<i>Answer: </i>"+json["pages"][3]["questions"][0]["correctAnswer"]
+};  
+return jsonEnd3;
+};
+
+function jsonSummary4EWF(json) {  
+jsonEnd4 = jsonSummary3EWF(json);
+jsonEnd4.completedHtml = jsonEnd4.completedHtml +  
+"<br>"+
+json["pages"][4]["questions"][0]["name"]+ "<br>"+
+"<i>Question: </i>"+json["pages"][4]["questions"][0]["title"]+"<br>"+
+"<i>Answer: </i>"+json["pages"][4]["questions"][0]["correctAnswer"]
+;  
+return jsonEnd4;
+};
+
+function jsonSummary5EWF(json) {  
+jsonEnd5 = jsonSummary4EWF(json);
+jsonEnd5.completedHtml = jsonEnd5.completedHtml +  
+"<br>"+
+json["pages"][5]["questions"][0]["name"]+ "<br>"+
+"<i>Question: </i>"+json["pages"][5]["questions"][0]["title"]+"<br>"+
+"<i>Answer: </i>"+json["pages"][5]["questions"][0]["correctAnswer"]
+;  
+return jsonEnd5;
+};
+</script>  
+<!-- This completes the code for the quizzes -->
+
+
+<!-- Various toggle functions used throughout --> 
 <script language="javascript">
 function toggle(id1,id2) {
 	var ele = document.getElementById(id1); var text = document.getElementById(id2);
 	if (ele.style.display == "block") {ele.style.display = "none"; text.innerHTML = "Show Solution";}
 		else {ele.style.display = "block"; text.innerHTML = "Hide Solution";}}
-</script>
-
-<script language="javascript">
 function togglecode(id1,id2) {
    var ele = document.getElementById(id1); var text = document.getElementById(id2);
    if (ele.style.display == "block") {ele.style.display = "none"; text.innerHTML = "Show R Code";}
       else {ele.style.display = "block"; text.innerHTML = "Hide R Code";}}
-</script>
-<script language="javascript">
 function toggleEX(id1,id2) {
    var ele = document.getElementById(id1); var text = document.getElementById(id2);
    if (ele.style.display == "block") {ele.style.display = "none"; text.innerHTML = "Show Example";}
       else {ele.style.display = "block"; text.innerHTML = "Hide Example";}}
-</script>
-<script language="javascript">
 function toggleTheory(id1,id2) {
    var ele = document.getElementById(id1); var text = document.getElementById(id2);
    if (ele.style.display == "block") {ele.style.display = "none"; text.innerHTML = "Show Theory";}
       else {ele.style.display = "block"; text.innerHTML = "Hide Theory";}}
+function toggleQuiz(id1,id2) {
+   var ele = document.getElementById(id1); var text = document.getElementById(id2);
+   if (ele.style.display == "block") {ele.style.display = "none"; text.innerHTML = "Show Quiz Solution";}
+      else {ele.style.display = "block"; text.innerHTML = "Hide Quiz Solution";}}      
 </script>
 
+<!-- A few functions for revealing definitions -->
 <script language="javascript">
+<!--   $( function() {
+    $("#tabs").tabs();
+  } ); -->
+
 $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip();
 });
-</script>
 
-
-<script>
 $(document).ready(function(){
     $('[data-toggle="popover"]').popover(); 
 });
 </script>
+
+<script language="javascript">
+function openTab(evt, tabName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(tabName).style.display = "block";
+    evt.currentTarget.className += " active";
+}
+
+// Get the element with id="defaultOpen" and click on it
+document.getElementById("defaultOpen").click();
+</script>
+
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-125587869-1"></script>
@@ -157,9 +271,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#for-our-readers"><i class="fa fa-check"></i>For our Readers</a></li>
 </ul></li>
 <li class="chapter" data-level="1" data-path="C-Intro.html"><a href="C-Intro.html"><i class="fa fa-check"></i><b>1</b> Introduction to Loss Data Analytics</a><ul>
-<li class="chapter" data-level="1.1" data-path="C-Intro.html"><a href="C-Intro.html#S:Intro"><i class="fa fa-check"></i><b>1.1</b> Relevance of Analytics</a><ul>
-<li class="chapter" data-level="1.1.1" data-path="C-Intro.html"><a href="C-Intro.html#what-is-analytics"><i class="fa fa-check"></i><b>1.1.1</b> What is Analytics?</a></li>
-<li class="chapter" data-level="1.1.2" data-path="C-Intro.html"><a href="C-Intro.html#short-and-long-term-insurance"><i class="fa fa-check"></i><b>1.1.2</b> Short and Long-term Insurance</a></li>
+<li class="chapter" data-level="1.1" data-path="C-Intro.html"><a href="C-Intro.html#S:Intro"><i class="fa fa-check"></i><b>1.1</b> Relevance of Analytics to Insurance Activities</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="C-Intro.html"><a href="C-Intro.html#nature-and-relevance-of-insurance"><i class="fa fa-check"></i><b>1.1.1</b> Nature and Relevance of Insurance</a></li>
+<li class="chapter" data-level="1.1.2" data-path="C-Intro.html"><a href="C-Intro.html#what-is-analytics"><i class="fa fa-check"></i><b>1.1.2</b> What is Analytics?</a></li>
 <li class="chapter" data-level="1.1.3" data-path="C-Intro.html"><a href="C-Intro.html#S:InsProcesses"><i class="fa fa-check"></i><b>1.1.3</b> Insurance Processes</a></li>
 </ul></li>
 <li class="chapter" data-level="1.2" data-path="C-Intro.html"><a href="C-Intro.html#S:PredModApps"><i class="fa fa-check"></i><b>1.2</b> Insurance Company Operations</a><ul>
@@ -186,7 +300,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="2.3" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#S:the-a-b-0-class"><i class="fa fa-check"></i><b>2.3</b> The (a, b, 0) Class</a></li>
 <li class="chapter" data-level="2.4" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#S:estimating-frequency-distributions"><i class="fa fa-check"></i><b>2.4</b> Estimating Frequency Distributions</a><ul>
-<li class="chapter" data-level="2.4.1" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#S:parameter-estimation"><i class="fa fa-check"></i><b>2.4.1</b> Parameter estimation</a></li>
+<li class="chapter" data-level="2.4.1" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#S:parameter-estimation"><i class="fa fa-check"></i><b>2.4.1</b> Parameter Estimation</a></li>
 <li class="chapter" data-level="2.4.2" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#S:frequency-distributions-mle"><i class="fa fa-check"></i><b>2.4.2</b> Frequency Distributions MLE</a></li>
 </ul></li>
 <li class="chapter" data-level="2.5" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#S:other-frequency-distributions"><i class="fa fa-check"></i><b>2.5</b> Other Frequency Distributions</a><ul>
@@ -195,20 +309,20 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="2.6" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#S:mixture-distributions"><i class="fa fa-check"></i><b>2.6</b> Mixture Distributions</a></li>
 <li class="chapter" data-level="2.7" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#S:goodness-of-fit"><i class="fa fa-check"></i><b>2.7</b> Goodness of Fit</a></li>
 <li class="chapter" data-level="2.8" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#S:exercises"><i class="fa fa-check"></i><b>2.8</b> Exercises</a></li>
-<li class="chapter" data-level="2.9" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#r-code-for-plots-in-this-chapter"><i class="fa fa-check"></i><b>2.9</b> R Code for Plots in this Chapter</a></li>
-<li class="chapter" data-level="2.10" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#Freq-further-reading-and-resources"><i class="fa fa-check"></i><b>2.10</b> Further Resources and Contributors</a></li>
+<li class="chapter" data-level="2.9" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#Freq-further-reading-and-resources"><i class="fa fa-check"></i><b>2.9</b> Further Resources and Contributors</a><ul>
+<li class="chapter" data-level="2.9.1" data-path="C-Frequency-Modeling.html"><a href="C-Frequency-Modeling.html#S:rcode"><i class="fa fa-check"></i><b>2.9.1</b> TS 2.A. R Code for Plots</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="C-Severity.html"><a href="C-Severity.html"><i class="fa fa-check"></i><b>3</b> Modeling Loss Severity</a><ul>
 <li class="chapter" data-level="3.1" data-path="C-Severity.html"><a href="C-Severity.html#S:BasicQuantities"><i class="fa fa-check"></i><b>3.1</b> Basic Distributional Quantities</a><ul>
 <li class="chapter" data-level="3.1.1" data-path="C-Severity.html"><a href="C-Severity.html#S:Chap3Moments"><i class="fa fa-check"></i><b>3.1.1</b> Moments</a></li>
 <li class="chapter" data-level="3.1.2" data-path="C-Severity.html"><a href="C-Severity.html#quantiles"><i class="fa fa-check"></i><b>3.1.2</b> Quantiles</a></li>
 <li class="chapter" data-level="3.1.3" data-path="C-Severity.html"><a href="C-Severity.html#moment-generating-function"><i class="fa fa-check"></i><b>3.1.3</b> Moment Generating Function</a></li>
-<li class="chapter" data-level="3.1.4" data-path="C-Severity.html"><a href="C-Severity.html#probability-generating-function"><i class="fa fa-check"></i><b>3.1.4</b> Probability Generating Function</a></li>
 </ul></li>
 <li class="chapter" data-level="3.2" data-path="C-Severity.html"><a href="C-Severity.html#S:ContinuousDistn"><i class="fa fa-check"></i><b>3.2</b> Continuous Distributions for Modeling Loss Severity</a><ul>
-<li class="chapter" data-level="3.2.1" data-path="C-Severity.html"><a href="C-Severity.html#gamma-distribution"><i class="fa fa-check"></i><b>3.2.1</b> Gamma Distribution</a></li>
+<li class="chapter" data-level="3.2.1" data-path="C-Severity.html"><a href="C-Severity.html#S:Loss:Gamma"><i class="fa fa-check"></i><b>3.2.1</b> Gamma Distribution</a></li>
 <li class="chapter" data-level="3.2.2" data-path="C-Severity.html"><a href="C-Severity.html#pareto-distribution"><i class="fa fa-check"></i><b>3.2.2</b> Pareto Distribution</a></li>
-<li class="chapter" data-level="3.2.3" data-path="C-Severity.html"><a href="C-Severity.html#weibull-distribution"><i class="fa fa-check"></i><b>3.2.3</b> Weibull Distribution</a></li>
+<li class="chapter" data-level="3.2.3" data-path="C-Severity.html"><a href="C-Severity.html#S:LS:Weibull"><i class="fa fa-check"></i><b>3.2.3</b> Weibull Distribution</a></li>
 <li class="chapter" data-level="3.2.4" data-path="C-Severity.html"><a href="C-Severity.html#the-generalized-beta-distribution-of-the-second-kind"><i class="fa fa-check"></i><b>3.2.4</b> The Generalized Beta Distribution of the Second Kind</a></li>
 </ul></li>
 <li class="chapter" data-level="3.3" data-path="C-Severity.html"><a href="C-Severity.html#MethodsCreation"><i class="fa fa-check"></i><b>3.3</b> Methods of Creating New Distributions</a><ul>
@@ -222,14 +336,12 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="3.4" data-path="C-Severity.html"><a href="C-Severity.html#S:CoverageModifications"><i class="fa fa-check"></i><b>3.4</b> Coverage Modifications</a><ul>
 <li class="chapter" data-level="3.4.1" data-path="C-Severity.html"><a href="C-Severity.html#S:PolicyDeduct"><i class="fa fa-check"></i><b>3.4.1</b> Policy Deductibles</a></li>
 <li class="chapter" data-level="3.4.2" data-path="C-Severity.html"><a href="C-Severity.html#S:PolicyLimits"><i class="fa fa-check"></i><b>3.4.2</b> Policy Limits</a></li>
-<li class="chapter" data-level="3.4.3" data-path="C-Severity.html"><a href="C-Severity.html#coinsurance"><i class="fa fa-check"></i><b>3.4.3</b> Coinsurance</a></li>
+<li class="chapter" data-level="3.4.3" data-path="C-Severity.html"><a href="C-Severity.html#coinsurance-and-inflation"><i class="fa fa-check"></i><b>3.4.3</b> Coinsurance and Inflation</a></li>
 <li class="chapter" data-level="3.4.4" data-path="C-Severity.html"><a href="C-Severity.html#S:Chap3Reinsurance"><i class="fa fa-check"></i><b>3.4.4</b> Reinsurance</a></li>
 </ul></li>
 <li class="chapter" data-level="3.5" data-path="C-Severity.html"><a href="C-Severity.html#S:MaxLikeEstimation"><i class="fa fa-check"></i><b>3.5</b> Maximum Likelihood Estimation</a><ul>
 <li class="chapter" data-level="3.5.1" data-path="C-Severity.html"><a href="C-Severity.html#maximum-likelihood-estimators-for-complete-data"><i class="fa fa-check"></i><b>3.5.1</b> Maximum Likelihood Estimators for Complete Data</a></li>
-<li class="chapter" data-level="3.5.2" data-path="C-Severity.html"><a href="C-Severity.html#MLEGrouped"><i class="fa fa-check"></i><b>3.5.2</b> Maximum Likelihood Estimators for Grouped Data</a></li>
-<li class="chapter" data-level="3.5.3" data-path="C-Severity.html"><a href="C-Severity.html#maximum-likelihood-estimators-for-censored-data"><i class="fa fa-check"></i><b>3.5.3</b> Maximum Likelihood Estimators for Censored Data</a></li>
-<li class="chapter" data-level="3.5.4" data-path="C-Severity.html"><a href="C-Severity.html#maximum-likelihood-estimators-for-truncated-data"><i class="fa fa-check"></i><b>3.5.4</b> Maximum Likelihood Estimators for Truncated Data</a></li>
+<li class="chapter" data-level="3.5.2" data-path="C-Severity.html"><a href="C-Severity.html#S:Loss:MLEModified"><i class="fa fa-check"></i><b>3.5.2</b> Maximum Likelihood Estimators using Modified Data</a></li>
 </ul></li>
 <li class="chapter" data-level="3.6" data-path="C-Severity.html"><a href="C-Severity.html#LM-further-reading-and-resources"><i class="fa fa-check"></i><b>3.6</b> Further Resources and Contributors</a></li>
 </ul></li>
@@ -256,11 +368,6 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="4.4.4" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html#S:ConjugateDistributions"><i class="fa fa-check"></i><b>4.4.4</b> Conjugate Distributions</a></li>
 </ul></li>
 <li class="chapter" data-level="4.5" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html#MS:further-reading-and-resources"><i class="fa fa-check"></i><b>4.5</b> Further Resources and Contributors</a></li>
-<li class="chapter" data-level="" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html#technical-supplement-a.-gini-statistic"><i class="fa fa-check"></i>Technical Supplement A. Gini Statistic</a><ul>
-<li class="chapter" data-level="" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html#ts-a.1.-the-classic-lorenz-curve"><i class="fa fa-check"></i>TS A.1. The Classic Lorenz Curve</a></li>
-<li class="chapter" data-level="" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html#ts-a.2.-ordered-lorenz-curve-and-the-gini-index"><i class="fa fa-check"></i>TS A.2. Ordered Lorenz Curve and the Gini Index</a></li>
-<li class="chapter" data-level="" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html#ts-a.3.-out-of-sample-validation"><i class="fa fa-check"></i>TS A.3. Out-of-Sample Validation</a></li>
-</ul></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html"><i class="fa fa-check"></i><b>5</b> Aggregate Loss Models</a><ul>
 <li class="chapter" data-level="5.1" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#introduction"><i class="fa fa-check"></i><b>5.1</b> Introduction</a></li>
@@ -280,26 +387,73 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="5.5.2" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#S:MS:DedImpactClmFreq"><i class="fa fa-check"></i><b>5.5.2</b> Impact of Deductibles on Claim Frequency</a></li>
 <li class="chapter" data-level="5.5.3" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#impact-of-policy-modifications-on-aggregate-claims"><i class="fa fa-check"></i><b>5.5.3</b> Impact of Policy Modifications on Aggregate Claims</a></li>
 </ul></li>
-<li class="chapter" data-level="5.6" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#AL-further-reading-and-resources"><i class="fa fa-check"></i><b>5.6</b> Further Resources and Contributors</a></li>
-<li class="chapter" data-level="" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#technical-supplement-b.-aggregate-loss-models"><i class="fa fa-check"></i>Technical Supplement B. Aggregate Loss Models</a><ul>
-<li class="chapter" data-level="" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#ts-b.1.-individual-risk-model-properties"><i class="fa fa-check"></i>TS B.1. Individual Risk Model Properties</a></li>
-<li><a href="C-AggLossModels.html#ts-b.2.-relationship-between-probability-generating-functions-of-x_i-and-x_it">TS B.2. Relationship Between Probability Generating Functions of <span class="math inline">\(X_i\)</span> and <span class="math inline">\(X_i^T\)</span></a></li>
-<li><a href="C-AggLossModels.html#ts-b.3.-example-5.3.8-moment-generating-function-of-aggregate-loss-s_n">TS B.3. Example 5.3.8 Moment Generating Function of Aggregate Loss <span class="math inline">\(S_N\)</span></a></li>
+<li class="chapter" data-level="5.6" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#AL-further-reading-and-resources"><i class="fa fa-check"></i><b>5.6</b> Further Resources and Contributors</a><ul>
+<li class="chapter" data-level="" data-path="C-AggLossModels.html"><a href="C-AggLossModels.html#ts-5.a.1.-individual-risk-model-properties"><i class="fa fa-check"></i>TS 5.A.1. Individual Risk Model Properties</a></li>
+<li><a href="C-AggLossModels.html#ts-5.a.2.-relationship-between-probability-generating-functions-of-x_i-and-x_it">TS 5.A.2. Relationship Between Probability Generating Functions of <span class="math inline">\(X_i\)</span> and <span class="math inline">\(X_i^T\)</span></a></li>
+<li><a href="C-AggLossModels.html#ts-5.a.3.-example-5.3.8-moment-generating-function-of-aggregate-loss-s_n">TS 5.A.3. Example 5.3.8 Moment Generating Function of Aggregate Loss <span class="math inline">\(S_N\)</span></a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="C-Simulation.html"><a href="C-Simulation.html"><i class="fa fa-check"></i><b>6</b> Simulation</a><ul>
-<li class="chapter" data-level="6.1" data-path="C-Simulation.html"><a href="C-Simulation.html#generating-independent-uniform-observations"><i class="fa fa-check"></i><b>6.1</b> Generating Independent Uniform Observations</a></li>
-<li class="chapter" data-level="6.2" data-path="C-Simulation.html"><a href="C-Simulation.html#inverse-transform"><i class="fa fa-check"></i><b>6.2</b> Inverse Transform</a></li>
-<li class="chapter" data-level="6.3" data-path="C-Simulation.html"><a href="C-Simulation.html#how-many-simulated-values"><i class="fa fa-check"></i><b>6.3</b> How Many Simulated Values?</a></li>
+<li class="chapter" data-level="6" data-path="C-Simulation.html"><a href="C-Simulation.html"><i class="fa fa-check"></i><b>6</b> Simulation and Resampling</a><ul>
+<li class="chapter" data-level="6.1" data-path="C-Simulation.html"><a href="C-Simulation.html#S:SimulationFundamentals"><i class="fa fa-check"></i><b>6.1</b> Simulation Fundamentals</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="C-Simulation.html"><a href="C-Simulation.html#generating-independent-uniform-observations"><i class="fa fa-check"></i><b>6.1.1</b> Generating Independent Uniform Observations</a></li>
+<li class="chapter" data-level="6.1.2" data-path="C-Simulation.html"><a href="C-Simulation.html#inverse-transform-method"><i class="fa fa-check"></i><b>6.1.2</b> Inverse Transform Method</a></li>
+<li class="chapter" data-level="6.1.3" data-path="C-Simulation.html"><a href="C-Simulation.html#simulation-precision"><i class="fa fa-check"></i><b>6.1.3</b> Simulation Precision</a></li>
+<li class="chapter" data-level="6.1.4" data-path="C-Simulation.html"><a href="C-Simulation.html#S:SimulationStatInference"><i class="fa fa-check"></i><b>6.1.4</b> Simulation and Statistical Inference</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="C-PremCalc.html"><a href="C-PremCalc.html"><i class="fa fa-check"></i><b>7</b> Premium Calculation Fundamentals</a></li>
+<li class="chapter" data-level="6.2" data-path="C-Simulation.html"><a href="C-Simulation.html#S:Bootstrap"><i class="fa fa-check"></i><b>6.2</b> Bootstrapping and Resampling</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="C-Simulation.html"><a href="C-Simulation.html#bootstrap-foundations"><i class="fa fa-check"></i><b>6.2.1</b> Bootstrap Foundations</a></li>
+<li class="chapter" data-level="6.2.2" data-path="C-Simulation.html"><a href="C-Simulation.html#bootstrap-precision-bias-standard-deviation-and-mse"><i class="fa fa-check"></i><b>6.2.2</b> Bootstrap Precision: Bias, Standard Deviation, and MSE</a></li>
+<li class="chapter" data-level="6.2.3" data-path="C-Simulation.html"><a href="C-Simulation.html#confidence-intervals"><i class="fa fa-check"></i><b>6.2.3</b> Confidence Intervals</a></li>
+<li class="chapter" data-level="6.2.4" data-path="C-Simulation.html"><a href="C-Simulation.html#S:ParametricBootStrap"><i class="fa fa-check"></i><b>6.2.4</b> Parametric Bootstrap</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="C-Simulation.html"><a href="C-Simulation.html#S:CrossValidation"><i class="fa fa-check"></i><b>6.3</b> Cross-Validation</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="C-Simulation.html"><a href="C-Simulation.html#k-fold-cross-validation"><i class="fa fa-check"></i><b>6.3.1</b> <span class="math inline">\(k\)</span>-Fold Cross-Validation</a></li>
+<li class="chapter" data-level="6.3.2" data-path="C-Simulation.html"><a href="C-Simulation.html#leave-one-out-cross-validation"><i class="fa fa-check"></i><b>6.3.2</b> Leave-One-Out Cross-Validation</a></li>
+<li class="chapter" data-level="6.3.3" data-path="C-Simulation.html"><a href="C-Simulation.html#cross-validation-and-bootstrap"><i class="fa fa-check"></i><b>6.3.3</b> Cross-Validation and Bootstrap</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="C-Simulation.html"><a href="C-Simulation.html#S:ImportanceSampling"><i class="fa fa-check"></i><b>6.4</b> Importance Sampling</a></li>
+<li class="chapter" data-level="6.5" data-path="C-Simulation.html"><a href="C-Simulation.html#S:MCMC"><i class="fa fa-check"></i><b>6.5</b> Monte Carlo Markov Chain (MCMC)</a><ul>
+<li class="chapter" data-level="6.5.1" data-path="C-Simulation.html"><a href="C-Simulation.html#hastings-metropolis"><i class="fa fa-check"></i><b>6.5.1</b> Hastings Metropolis</a></li>
+<li class="chapter" data-level="6.5.2" data-path="C-Simulation.html"><a href="C-Simulation.html#gibbs-sampler"><i class="fa fa-check"></i><b>6.5.2</b> Gibbs sampler</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="C-Simulation.html"><a href="C-Simulation.html#Simulation:further-reading-and-resources"><i class="fa fa-check"></i><b>6.6</b> Further Resources and Contributors</a></li>
+<li class="chapter" data-level="6.7" data-path="C-Simulation.html"><a href="C-Simulation.html#ts-6.a.-applications-of-bootstrap-in-predictive-modeling"><i class="fa fa-check"></i><b>6.7</b> TS 6.A. Applications of Bootstrap in Predictive Modeling</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html"><i class="fa fa-check"></i><b>7</b> Premium Foundations</a><ul>
+<li class="chapter" data-level="7.1" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#S:IntroductionRatemaking"><i class="fa fa-check"></i><b>7.1</b> Introduction to Ratemaking</a></li>
+<li class="chapter" data-level="7.2" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#S:AggRateMaking"><i class="fa fa-check"></i><b>7.2</b> Aggregate Ratemaking Methods</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#S:PurePremium"><i class="fa fa-check"></i><b>7.2.1</b> Pure Premium Method</a></li>
+<li class="chapter" data-level="7.2.2" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#S:LossRatio"><i class="fa fa-check"></i><b>7.2.2</b> Loss Ratio Method</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#S:PricingPrinciples"><i class="fa fa-check"></i><b>7.3</b> Pricing Principles</a></li>
+<li class="chapter" data-level="7.4" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#S:HeterogeneousRisks"><i class="fa fa-check"></i><b>7.4</b> Heterogeneous Risks</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#S:ExposureToRisk"><i class="fa fa-check"></i><b>7.4.1</b> Exposure to Risk</a></li>
+<li class="chapter" data-level="7.4.2" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#S:RatingFactors"><i class="fa fa-check"></i><b>7.4.2</b> Rating Factors</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#S:TrendDevelopment"><i class="fa fa-check"></i><b>7.5</b> Development and Trending</a><ul>
+<li class="chapter" data-level="7.5.1" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#exposures-and-premiums"><i class="fa fa-check"></i><b>7.5.1</b> Exposures and Premiums</a></li>
+<li class="chapter" data-level="7.5.2" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#losses-claims-and-payments"><i class="fa fa-check"></i><b>7.5.2</b> Losses, Claims, and Payments</a></li>
+<li class="chapter" data-level="7.5.3" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#S:CompareMethods"><i class="fa fa-check"></i><b>7.5.3</b> Comparing Pure Premium and Loss Ratio Methods</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#S:GiniStatistic"><i class="fa fa-check"></i><b>7.6</b> Selecting a Premium</a><ul>
+<li class="chapter" data-level="7.6.1" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#classic-lorenz-curve"><i class="fa fa-check"></i><b>7.6.1</b> Classic Lorenz Curve</a></li>
+<li class="chapter" data-level="7.6.2" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#concentration-curve-and-a-gini-statistic"><i class="fa fa-check"></i><b>7.6.2</b> Concentration Curve and a Gini Statistic</a></li>
+<li class="chapter" data-level="7.6.3" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#out-of-sample-validation"><i class="fa fa-check"></i><b>7.6.3</b> Out-of-Sample Validation</a></li>
+</ul></li>
+<li class="chapter" data-level="7.7" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#S:Other"><i class="fa fa-check"></i><b>7.7</b> Other Topics?</a></li>
+<li class="chapter" data-level="7.8" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#further-resources-and-contributors"><i class="fa fa-check"></i><b>7.8</b> Further Resources and Contributors</a><ul>
+<li class="chapter" data-level="7.8.1" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#S:RateRegulation"><i class="fa fa-check"></i><b>7.8.1</b> TS 7.A. Rate Regulation</a></li>
+<li class="chapter" data-level="7.8.2" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#S:SelectingRateFactors"><i class="fa fa-check"></i><b>7.8.2</b> TS 7.B. Selecting Rating Factors</a></li>
+<li class="chapter" data-level="7.8.3" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#S:AdverseSelection"><i class="fa fa-check"></i><b>7.8.3</b> TS 7.C. Adverse Selection</a></li>
+</ul></li>
+</ul></li>
 <li class="chapter" data-level="8" data-path="C-RiskClass.html"><a href="C-RiskClass.html"><i class="fa fa-check"></i><b>8</b> Risk Classification</a><ul>
 <li class="chapter" data-level="8.1" data-path="C-RiskClass.html"><a href="C-RiskClass.html#S:RC:Introduction"><i class="fa fa-check"></i><b>8.1</b> Introduction</a></li>
 <li class="chapter" data-level="8.2" data-path="C-RiskClass.html"><a href="C-RiskClass.html#S:RC:PoissonRegression"><i class="fa fa-check"></i><b>8.2</b> Poisson Regression Model</a><ul>
 <li class="chapter" data-level="8.2.1" data-path="C-RiskClass.html"><a href="C-RiskClass.html#S:RC:Need.Poi.reg"><i class="fa fa-check"></i><b>8.2.1</b> Need for Poisson Regression</a></li>
 <li class="chapter" data-level="8.2.2" data-path="C-RiskClass.html"><a href="C-RiskClass.html#poisson-regression"><i class="fa fa-check"></i><b>8.2.2</b> Poisson Regression</a></li>
 <li class="chapter" data-level="8.2.3" data-path="C-RiskClass.html"><a href="C-RiskClass.html#incorporating-exposure"><i class="fa fa-check"></i><b>8.2.3</b> Incorporating Exposure</a></li>
-<li class="chapter" data-level="8.2.4" data-path="C-RiskClass.html"><a href="C-RiskClass.html#exercises-4"><i class="fa fa-check"></i><b>8.2.4</b> Exercises</a></li>
+<li class="chapter" data-level="8.2.4" data-path="C-RiskClass.html"><a href="C-RiskClass.html#exercises-3"><i class="fa fa-check"></i><b>8.2.4</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="8.3" data-path="C-RiskClass.html"><a href="C-RiskClass.html#S:CatVarMultiTarriff"><i class="fa fa-check"></i><b>8.3</b> Categorical Variables and Multiplicative Tariff</a><ul>
 <li class="chapter" data-level="8.3.1" data-path="C-RiskClass.html"><a href="C-RiskClass.html#rating-factors-and-tariff"><i class="fa fa-check"></i><b>8.3.1</b> Rating Factors and Tariff</a></li>
@@ -307,8 +461,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="8.3.3" data-path="C-RiskClass.html"><a href="C-RiskClass.html#poisson-regression-for-multiplicative-tariff"><i class="fa fa-check"></i><b>8.3.3</b> Poisson Regression for Multiplicative Tariff</a></li>
 <li class="chapter" data-level="8.3.4" data-path="C-RiskClass.html"><a href="C-RiskClass.html#numerical-examples"><i class="fa fa-check"></i><b>8.3.4</b> Numerical Examples</a></li>
 </ul></li>
-<li class="chapter" data-level="8.4" data-path="C-RiskClass.html"><a href="C-RiskClass.html#RC:further-reading-and-resources"><i class="fa fa-check"></i><b>8.4</b> Contributors and Further Resources</a></li>
-<li class="chapter" data-level="8.5" data-path="C-RiskClass.html"><a href="C-RiskClass.html#S:RC:mle-Pois-reg"><i class="fa fa-check"></i><b>8.5</b> Technical Supplement – Estimating Poisson Regression Models</a></li>
+<li class="chapter" data-level="8.4" data-path="C-RiskClass.html"><a href="C-RiskClass.html#RC:further-reading-and-resources"><i class="fa fa-check"></i><b>8.4</b> Further Resources and Contributors</a><ul>
+<li class="chapter" data-level="" data-path="C-RiskClass.html"><a href="C-RiskClass.html#ts-8.a-estimating-poisson-regression-models"><i class="fa fa-check"></i>TS 8.A – Estimating Poisson Regression Models</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="C-Credibility.html"><a href="C-Credibility.html"><i class="fa fa-check"></i><b>9</b> Experience Rating Using Credibility Theory</a><ul>
 <li class="chapter" data-level="9.1" data-path="C-Credibility.html"><a href="C-Credibility.html#introduction-to-applications-of-credibility-theory"><i class="fa fa-check"></i><b>9.1</b> Introduction to Applications of Credibility Theory</a></li>
@@ -322,9 +477,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="9.3.1" data-path="C-Credibility.html"><a href="C-Credibility.html#S:EPV-VHM-Z"><i class="fa fa-check"></i><b>9.3.1</b> Credibility Z, <em>EPV</em>, and <em>VHM</em></a></li>
 </ul></li>
 <li class="chapter" data-level="9.4" data-path="C-Credibility.html"><a href="C-Credibility.html#buhlmann-straub-credibility"><i class="fa fa-check"></i><b>9.4</b> Bühlmann-Straub Credibility</a></li>
-<li class="chapter" data-level="9.5" data-path="C-Credibility.html"><a href="C-Credibility.html#bayesian-inference-and-buhlmann"><i class="fa fa-check"></i><b>9.5</b> Bayesian Inference and Bühlmann</a><ul>
-<li class="chapter" data-level="9.5.1" data-path="C-Credibility.html"><a href="C-Credibility.html#S:Gamma-Poisson"><i class="fa fa-check"></i><b>9.5.1</b> Gamma-Poisson Model</a></li>
-<li class="chapter" data-level="9.5.2" data-path="C-Credibility.html"><a href="C-Credibility.html#exact-credibility"><i class="fa fa-check"></i><b>9.5.2</b> Exact Credibility</a></li>
+<li class="chapter" data-level="9.5" data-path="C-Credibility.html"><a href="C-Credibility.html#bayesian-inference-and-buhlmann-credibility"><i class="fa fa-check"></i><b>9.5</b> Bayesian Inference and Bühlmann Credibility</a><ul>
+<li class="chapter" data-level="9.5.1" data-path="C-Credibility.html"><a href="C-Credibility.html#gamma-poisson-model"><i class="fa fa-check"></i><b>9.5.1</b> Gamma-Poisson Model</a></li>
+<li class="chapter" data-level="9.5.2" data-path="C-Credibility.html"><a href="C-Credibility.html#beta-binomial-model"><i class="fa fa-check"></i><b>9.5.2</b> Beta-Binomial Model</a></li>
+<li class="chapter" data-level="9.5.3" data-path="C-Credibility.html"><a href="C-Credibility.html#exact-credibility"><i class="fa fa-check"></i><b>9.5.3</b> Exact Credibility</a></li>
 </ul></li>
 <li class="chapter" data-level="9.6" data-path="C-Credibility.html"><a href="C-Credibility.html#estimating-credibility-parameters"><i class="fa fa-check"></i><b>9.6</b> Estimating Credibility Parameters</a><ul>
 <li class="chapter" data-level="9.6.1" data-path="C-Credibility.html"><a href="C-Credibility.html#full-credibility-standard-for-limited-fluctuation-credibility"><i class="fa fa-check"></i><b>9.6.1</b> Full Credibility Standard for Limited Fluctuation Credibility</a></li>
@@ -335,32 +491,33 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="9.7" data-path="C-Credibility.html"><a href="C-Credibility.html#Cred-further-reading-and-resources"><i class="fa fa-check"></i><b>9.7</b> Further Resources and Contributors</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="C-PortMgt.html"><a href="C-PortMgt.html"><i class="fa fa-check"></i><b>10</b> Insurance Portfolio Management including Reinsurance</a><ul>
-<li class="chapter" data-level="" data-path="C-PortMgt.html"><a href="C-PortMgt.html#overview"><i class="fa fa-check"></i>Overview</a></li>
-<li class="chapter" data-level="10.1" data-path="C-PortMgt.html"><a href="C-PortMgt.html#S:Tails"><i class="fa fa-check"></i><b>10.1</b> Tails of Distributions</a><ul>
-<li class="chapter" data-level="10.1.1" data-path="C-PortMgt.html"><a href="C-PortMgt.html#classification-based-on-moments"><i class="fa fa-check"></i><b>10.1.1</b> Classification Based on Moments</a></li>
-<li class="chapter" data-level="10.1.2" data-path="C-PortMgt.html"><a href="C-PortMgt.html#comparison-based-on-limiting-tail-behavior"><i class="fa fa-check"></i><b>10.1.2</b> Comparison Based on Limiting Tail Behavior</a></li>
+<li class="chapter" data-level="10.1" data-path="C-PortMgt.html"><a href="C-PortMgt.html#introduction-to-insurance-portfolios"><i class="fa fa-check"></i><b>10.1</b> Introduction to Insurance Portfolios</a></li>
+<li class="chapter" data-level="10.2" data-path="C-PortMgt.html"><a href="C-PortMgt.html#S:Tails"><i class="fa fa-check"></i><b>10.2</b> Tails of Distributions</a><ul>
+<li class="chapter" data-level="10.2.1" data-path="C-PortMgt.html"><a href="C-PortMgt.html#classification-based-on-moments"><i class="fa fa-check"></i><b>10.2.1</b> Classification Based on Moments</a></li>
+<li class="chapter" data-level="10.2.2" data-path="C-PortMgt.html"><a href="C-PortMgt.html#comparison-based-on-limiting-tail-behavior"><i class="fa fa-check"></i><b>10.2.2</b> Comparison Based on Limiting Tail Behavior</a></li>
 </ul></li>
-<li class="chapter" data-level="10.2" data-path="C-PortMgt.html"><a href="C-PortMgt.html#S:RiskMeasure"><i class="fa fa-check"></i><b>10.2</b> Risk Measures</a><ul>
-<li class="chapter" data-level="10.2.1" data-path="C-PortMgt.html"><a href="C-PortMgt.html#coherent-risk-measures"><i class="fa fa-check"></i><b>10.2.1</b> Coherent Risk Measures</a></li>
-<li class="chapter" data-level="10.2.2" data-path="C-PortMgt.html"><a href="C-PortMgt.html#value-at-risk"><i class="fa fa-check"></i><b>10.2.2</b> Value-at-Risk</a></li>
-<li class="chapter" data-level="10.2.3" data-path="C-PortMgt.html"><a href="C-PortMgt.html#tail-value-at-risk"><i class="fa fa-check"></i><b>10.2.3</b> Tail Value-at-Risk</a></li>
+<li class="chapter" data-level="10.3" data-path="C-PortMgt.html"><a href="C-PortMgt.html#S:RiskMeasure"><i class="fa fa-check"></i><b>10.3</b> Risk Measures</a><ul>
+<li class="chapter" data-level="10.3.1" data-path="C-PortMgt.html"><a href="C-PortMgt.html#coherent-risk-measures"><i class="fa fa-check"></i><b>10.3.1</b> Coherent Risk Measures</a></li>
+<li class="chapter" data-level="10.3.2" data-path="C-PortMgt.html"><a href="C-PortMgt.html#value-at-risk"><i class="fa fa-check"></i><b>10.3.2</b> Value-at-Risk</a></li>
+<li class="chapter" data-level="10.3.3" data-path="C-PortMgt.html"><a href="C-PortMgt.html#tail-value-at-risk"><i class="fa fa-check"></i><b>10.3.3</b> Tail Value-at-Risk</a></li>
 </ul></li>
-<li class="chapter" data-level="10.3" data-path="C-PortMgt.html"><a href="C-PortMgt.html#S:Reinsurance"><i class="fa fa-check"></i><b>10.3</b> Reinsurance</a><ul>
-<li class="chapter" data-level="10.3.1" data-path="C-PortMgt.html"><a href="C-PortMgt.html#S:ProportionalRe"><i class="fa fa-check"></i><b>10.3.1</b> Proportional Reinsurance</a></li>
-<li class="chapter" data-level="10.3.2" data-path="C-PortMgt.html"><a href="C-PortMgt.html#S:NonProportionalRe"><i class="fa fa-check"></i><b>10.3.2</b> Non-Proportional Reinsurance</a></li>
-<li class="chapter" data-level="10.3.3" data-path="C-PortMgt.html"><a href="C-PortMgt.html#S:AdditionalRe"><i class="fa fa-check"></i><b>10.3.3</b> Additional Reinsurance Treaties</a></li>
+<li class="chapter" data-level="10.4" data-path="C-PortMgt.html"><a href="C-PortMgt.html#S:Reinsurance"><i class="fa fa-check"></i><b>10.4</b> Reinsurance</a><ul>
+<li class="chapter" data-level="10.4.1" data-path="C-PortMgt.html"><a href="C-PortMgt.html#S:ProportionalRe"><i class="fa fa-check"></i><b>10.4.1</b> Proportional Reinsurance</a></li>
+<li class="chapter" data-level="10.4.2" data-path="C-PortMgt.html"><a href="C-PortMgt.html#S:NonProportionalRe"><i class="fa fa-check"></i><b>10.4.2</b> Non-Proportional Reinsurance</a></li>
+<li class="chapter" data-level="10.4.3" data-path="C-PortMgt.html"><a href="C-PortMgt.html#S:AdditionalRe"><i class="fa fa-check"></i><b>10.4.3</b> Additional Reinsurance Treaties</a></li>
 </ul></li>
+<li class="chapter" data-level="10.5" data-path="C-PortMgt.html"><a href="C-PortMgt.html#further-resources-and-contributors-1"><i class="fa fa-check"></i><b>10.5</b> Further Resources and Contributors</a></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="C-LossReserves.html"><a href="C-LossReserves.html"><i class="fa fa-check"></i><b>11</b> Loss Reserving</a></li>
 <li class="chapter" data-level="12" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html"><i class="fa fa-check"></i><b>12</b> Experience Rating using Bonus-Malus</a></li>
-<li class="chapter" data-level="13" data-path="C-DataSystems.html"><a href="C-DataSystems.html"><i class="fa fa-check"></i><b>13</b> Data Systems</a><ul>
+<li class="chapter" data-level="13" data-path="C-DataSystems.html"><a href="C-DataSystems.html"><i class="fa fa-check"></i><b>13</b> Data and Systems</a><ul>
 <li class="chapter" data-level="13.1" data-path="C-DataSystems.html"><a href="C-DataSystems.html#data"><i class="fa fa-check"></i><b>13.1</b> Data</a><ul>
 <li class="chapter" data-level="13.1.1" data-path="C-DataSystems.html"><a href="C-DataSystems.html#data-types-and-sources"><i class="fa fa-check"></i><b>13.1.1</b> Data Types and Sources</a></li>
 <li class="chapter" data-level="13.1.2" data-path="C-DataSystems.html"><a href="C-DataSystems.html#data-structures-and-storage"><i class="fa fa-check"></i><b>13.1.2</b> Data Structures and Storage</a></li>
 <li class="chapter" data-level="13.1.3" data-path="C-DataSystems.html"><a href="C-DataSystems.html#data-quality"><i class="fa fa-check"></i><b>13.1.3</b> Data Quality</a></li>
 <li class="chapter" data-level="13.1.4" data-path="C-DataSystems.html"><a href="C-DataSystems.html#data-cleaning"><i class="fa fa-check"></i><b>13.1.4</b> Data Cleaning</a></li>
 </ul></li>
-<li class="chapter" data-level="13.2" data-path="C-DataSystems.html"><a href="C-DataSystems.html#data-analysis-preliminary"><i class="fa fa-check"></i><b>13.2</b> Data Analysis Preliminary</a><ul>
+<li class="chapter" data-level="13.2" data-path="C-DataSystems.html"><a href="C-DataSystems.html#data-analysis-preliminaries"><i class="fa fa-check"></i><b>13.2</b> Data Analysis Preliminaries</a><ul>
 <li class="chapter" data-level="13.2.1" data-path="C-DataSystems.html"><a href="C-DataSystems.html#S:process"><i class="fa fa-check"></i><b>13.2.1</b> Data Analysis Process</a></li>
 <li class="chapter" data-level="13.2.2" data-path="C-DataSystems.html"><a href="C-DataSystems.html#exploratory-versus-confirmatory"><i class="fa fa-check"></i><b>13.2.2</b> Exploratory versus Confirmatory</a></li>
 <li class="chapter" data-level="13.2.3" data-path="C-DataSystems.html"><a href="C-DataSystems.html#supervised-versus-unsupervised"><i class="fa fa-check"></i><b>13.2.3</b> Supervised versus Unsupervised</a></li>
@@ -373,9 +530,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="13.3" data-path="C-DataSystems.html"><a href="C-DataSystems.html#data-analysis-techniques"><i class="fa fa-check"></i><b>13.3</b> Data Analysis Techniques</a><ul>
 <li class="chapter" data-level="13.3.1" data-path="C-DataSystems.html"><a href="C-DataSystems.html#exploratory-techniques"><i class="fa fa-check"></i><b>13.3.1</b> Exploratory Techniques</a></li>
-<li class="chapter" data-level="13.3.2" data-path="C-DataSystems.html"><a href="C-DataSystems.html#descriptive-statistics"><i class="fa fa-check"></i><b>13.3.2</b> Descriptive Statistics</a></li>
-<li class="chapter" data-level="13.3.3" data-path="C-DataSystems.html"><a href="C-DataSystems.html#cluster-analysis"><i class="fa fa-check"></i><b>13.3.3</b> Cluster Analysis</a></li>
-<li class="chapter" data-level="13.3.4" data-path="C-DataSystems.html"><a href="C-DataSystems.html#confirmatory-techniques"><i class="fa fa-check"></i><b>13.3.4</b> Confirmatory Techniques</a></li>
+<li class="chapter" data-level="13.3.2" data-path="C-DataSystems.html"><a href="C-DataSystems.html#confirmatory-techniques"><i class="fa fa-check"></i><b>13.3.2</b> Confirmatory Techniques</a></li>
 </ul></li>
 <li class="chapter" data-level="13.4" data-path="C-DataSystems.html"><a href="C-DataSystems.html#some-r-functions"><i class="fa fa-check"></i><b>13.4</b> Some R Functions</a></li>
 <li class="chapter" data-level="13.5" data-path="C-DataSystems.html"><a href="C-DataSystems.html#summary"><i class="fa fa-check"></i><b>13.5</b> Summary</a></li>
@@ -405,10 +560,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="14.5.3" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#properties-of-copulas"><i class="fa fa-check"></i><b>14.5.3</b> Properties of Copulas</a></li>
 </ul></li>
 <li class="chapter" data-level="14.6" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#S:CopImp"><i class="fa fa-check"></i><b>14.6</b> Why is Dependence Modeling Important?</a></li>
-<li class="chapter" data-level="14.7" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#Dep:further-reading-and-resources"><i class="fa fa-check"></i><b>14.7</b> Further Resources and Contributors</a></li>
-<li class="chapter" data-level="" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#technical-supplement-a.-other-classic-measures-of-scalar-associations"><i class="fa fa-check"></i>Technical Supplement A. Other Classic Measures of Scalar Associations</a><ul>
-<li class="chapter" data-level="" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#a.1.-blomqvists-beta"><i class="fa fa-check"></i>A.1. Blomqvist’s Beta</a></li>
-<li class="chapter" data-level="" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#a.2.-nonparametric-approach-using-spearman-correlation-with-tied-ranks"><i class="fa fa-check"></i>A.2. Nonparametric Approach Using Spearman Correlation with Tied Ranks</a></li>
+<li class="chapter" data-level="14.7" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#Dep:further-reading-and-resources"><i class="fa fa-check"></i><b>14.7</b> Further Resources and Contributors</a><ul>
+<li class="chapter" data-level="" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#ts-14.a.-other-classic-measures-of-scalar-associations"><i class="fa fa-check"></i>TS 14.A. Other Classic Measures of Scalar Associations</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="15" data-path="C-AppA.html"><a href="C-AppA.html"><i class="fa fa-check"></i><b>15</b> Appendix A: Review of Statistical Inference</a><ul>
@@ -443,7 +596,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="16.2.2" data-path="C-AppB.html"><a href="C-AppB.html#law-of-total-variance"><i class="fa fa-check"></i><b>16.2.2</b> Law of Total Variance</a></li>
 <li class="chapter" data-level="16.2.3" data-path="C-AppB.html"><a href="C-AppB.html#application"><i class="fa fa-check"></i><b>16.2.3</b> Application</a></li>
 </ul></li>
-<li class="chapter" data-level="16.3" data-path="C-ModelSelection.html"><a href="C-ModelSelection.html#S:ConjugateDistributions"><i class="fa fa-check"></i><b>16.3</b> Conjugate Distributions</a><ul>
+<li class="chapter" data-level="16.3" data-path="C-AppB.html"><a href="C-AppB.html#S:AppConjugateDistributions"><i class="fa fa-check"></i><b>16.3</b> Conjugate Distributions</a><ul>
 <li class="chapter" data-level="16.3.1" data-path="C-AppB.html"><a href="C-AppB.html#linear-exponential-family"><i class="fa fa-check"></i><b>16.3.1</b> Linear Exponential Family</a></li>
 <li class="chapter" data-level="16.3.2" data-path="C-AppB.html"><a href="C-AppB.html#conjugate-distributions"><i class="fa fa-check"></i><b>16.3.2</b> Conjugate Distributions</a></li>
 </ul></li>
@@ -462,6 +615,21 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="17.3.1" data-path="C-AppC.html"><a href="C-AppC.html#hypothesis-testing"><i class="fa fa-check"></i><b>17.3.1</b> Hypothesis Testing</a></li>
 <li class="chapter" data-level="17.3.2" data-path="C-AppC.html"><a href="C-AppC.html#S:AppC:MLEModelVal"><i class="fa fa-check"></i><b>17.3.2</b> MLE and Model Validation</a></li>
 </ul></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="C-SummaryDistributions.html"><a href="C-SummaryDistributions.html"><i class="fa fa-check"></i><b>18</b> Appendix D: Summary of Distributions</a><ul>
+<li class="chapter" data-level="18.1" data-path="C-SummaryDistributions.html"><a href="C-SummaryDistributions.html#discrete-distributions"><i class="fa fa-check"></i><b>18.1</b> Discrete Distributions</a><ul>
+<li class="chapter" data-level="18.1.1" data-path="C-SummaryDistributions.html"><a href="C-SummaryDistributions.html#the-ab0-class"><i class="fa fa-check"></i><b>18.1.1</b> The (a,b,0) Class</a></li>
+<li class="chapter" data-level="18.1.2" data-path="C-SummaryDistributions.html"><a href="C-SummaryDistributions.html#the-ab1-class"><i class="fa fa-check"></i><b>18.1.2</b> The (a,b,1) Class</a></li>
+</ul></li>
+<li class="chapter" data-level="18.2" data-path="C-SummaryDistributions.html"><a href="C-SummaryDistributions.html#continuous-distributions"><i class="fa fa-check"></i><b>18.2</b> Continuous Distributions</a><ul>
+<li class="chapter" data-level="18.2.1" data-path="C-SummaryDistributions.html"><a href="C-SummaryDistributions.html#one-parameter-distributions"><i class="fa fa-check"></i><b>18.2.1</b> One Parameter Distributions</a></li>
+<li class="chapter" data-level="18.2.2" data-path="C-SummaryDistributions.html"><a href="C-SummaryDistributions.html#two-parameter-distributions"><i class="fa fa-check"></i><b>18.2.2</b> Two Parameter Distributions</a></li>
+<li class="chapter" data-level="18.2.3" data-path="C-SummaryDistributions.html"><a href="C-SummaryDistributions.html#three-parameter-distributions"><i class="fa fa-check"></i><b>18.2.3</b> Three Parameter Distributions</a></li>
+<li class="chapter" data-level="18.2.4" data-path="C-SummaryDistributions.html"><a href="C-SummaryDistributions.html#four-parameter-distribution"><i class="fa fa-check"></i><b>18.2.4</b> Four Parameter Distribution</a></li>
+<li class="chapter" data-level="18.2.5" data-path="C-SummaryDistributions.html"><a href="C-SummaryDistributions.html#other-distributions"><i class="fa fa-check"></i><b>18.2.5</b> Other Distributions</a></li>
+<li class="chapter" data-level="18.2.6" data-path="C-SummaryDistributions.html"><a href="C-SummaryDistributions.html#distributions-with-finite-support"><i class="fa fa-check"></i><b>18.2.6</b> Distributions with Finite Support</a></li>
+</ul></li>
+<li class="chapter" data-level="18.3" data-path="C-SummaryDistributions.html"><a href="C-SummaryDistributions.html#limited-expected-values"><i class="fa fa-check"></i><b>18.3</b> Limited Expected Values</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="bibliography.html"><a href="bibliography.html"><i class="fa fa-check"></i>Bibliography</a></li>
 <li class="divider"></li>
@@ -524,8 +692,9 @@ s^2 = \frac{1}{n-1} \sum_{i=1}^n \left(X_i - \bar{X}\right)^2.
 </div>
 <div id="empirical-distribution-function" class="section level4">
 <h4><span class="header-section-number">4.1.1.2</span> Empirical Distribution Function</h4>
-<p>We have seen how to compute nonparametric estimators of the <em>k</em>th moment <span class="math inline">\(\mathrm{E~} X^k\)</span>. In the same way, for any known function <span class="math inline">\(\mathrm{g}(\cdot)\)</span>, we can estimate <span class="math inline">\(\mathrm{E~} \mathrm{g}(X)\)</span> using <span class="math inline">\(n^{-1}\sum_{i=1}^n \mathrm{g}(X_i)\)</span>. This is sometimes known as the <em>analog principle</em>.</p>
-<p>Now suppose that we fix a value of <em>x</em> and consider the function <span class="math inline">\(\mathrm{g}(X) = I(X \le x)\)</span>. Here, the notation <span class="math inline">\(I(\cdot)\)</span> is the indicator function; it returns 1 if the event <span class="math inline">\((\cdot)\)</span> is true and 0 otherwise. For this choice of <span class="math inline">\(\mathrm{g}(\cdot)\)</span>, the expected value is <span class="math inline">\(\mathrm{E~} I(X \le x) = \Pr(X \le x) = F(x)\)</span>, the distribution function evaluated at a fixed point <em>x</em>. Using the analog principle, we define the nonparametric estimator of the distribution function <span class="math display">\[
+<p>We have seen how to compute nonparametric estimators of the <em>k</em>th moment <span class="math inline">\(\mathrm{E~} X^k\)</span>. In the same way, for any known function <span class="math inline">\(\mathrm{g}(\cdot)\)</span>, we can estimate <span class="math inline">\(\mathrm{E~} \mathrm{g}(X)\)</span> using <span class="math inline">\(n^{-1}\sum_{i=1}^n \mathrm{g}(X_i)\)</span>.</p>
+<p>Now suppose that we fix a value of <em>x</em> and consider the function <span class="math inline">\(\mathrm{g}(X) = I(X \le x)\)</span>. Here, the notation <span class="math inline">\(I(\cdot)\)</span> is the indicator function; it returns 1 if the event <span class="math inline">\((\cdot)\)</span> is true and 0 otherwise. For this choice of <span class="math inline">\(\mathrm{g}(\cdot)\)</span>, the expected value is <span class="math inline">\(\mathrm{E~} I(X \le x) = \Pr(X \le x) = F(x)\)</span>, the distribution function evaluated at a fixed point <em>x</em>. Using the analog principle, we define the nonparametric estimator of the distribution function</p>
+<p><span class="math display">\[
 \begin{aligned}
 F_n(x)
 &amp;=  \frac{1}{n} \sum_{i=1}^n I\left(X_i \le x\right) \\
@@ -548,7 +717,8 @@ X_i&amp; 10 &amp;15 &amp;15 &amp;15 &amp;20 &amp;23 &amp;23 &amp;23 &amp;23 &amp
 </h5>
 <div id="toggleExampleSelect.1.1" style="display: none">
 <p>You should check that the sample mean is <span class="math inline">\(\bar{X} = 19.7\)</span> and that the sample variance is <span class="math inline">\(s^2 =34.45556\)</span>. The corresponding empirical distribution function is</p>
-<p><span class="math display">\[\begin{aligned}
+<p><span class="math display">\[
+\begin{aligned}
 F_n(x) &amp;=
 \left\{
 \begin{array}{ll}
@@ -559,7 +729,8 @@ F_n(x) &amp;=
 0.9 &amp; \text{ for }\ 23 \leq x&lt;30 \\
 1 &amp; \text{ for }\ x \geq 30,
 \end{array}
-\right.\end{aligned}\]</span></p>
+\right.\end{aligned}
+\]</span></p>
 <p>which is shown in the following graph in Figure <a href="C-ModelSelection.html#fig:EDFToy">4.1</a>.</p>
 <div class="figure" style="text-align: center"><span id="fig:EDFToy"></span>
 <img src="LossDataAnalytics_files/figure-html/EDFToy-1.png" alt="Empirical Distribution Function of a Toy Example" width="60%" />
@@ -583,7 +754,7 @@ plot(PercentilesxExample, main=&quot;&quot;,xlab=&quot;x&quot;)</code></pre>
 <p>We have already seen the <em>median</em>, which is the number such that approximately half of a data set is below (or above) it. The <strong>first quartile</strong> is the number such that approximately 25% of the data is below it and the <em>third quartile</em> is the number such that approximately 75% of the data is below it. A <span class="math inline">\(100p\)</span> <strong>percentile</strong> is the number such that <span class="math inline">\(100 \times p\)</span> percent of the data is below it.</p>
 <p>To generalize this concept, consider a distribution function <span class="math inline">\(F(\cdot)\)</span>, which may or may not be continuous, and let <span class="math inline">\(q\)</span> be a fraction so that <span class="math inline">\(0&lt;q&lt;1\)</span>. We want to define a quantile, say <span class="math inline">\(q_F\)</span>, to be a number such that <span class="math inline">\(F(q_F) \approx q\)</span>. Notice that when <span class="math inline">\(q = 0.5\)</span>, <span class="math inline">\(q_F\)</span> is the median; when <span class="math inline">\(q = 0.25\)</span>, <span class="math inline">\(q_F\)</span> is the first quartile, and so on. So, a quantile generalizes the concepts of median, quartiles, and percentiles.</p>
 <p>To be precise, for a given <span class="math inline">\(0&lt;q&lt;1\)</span>, define the <span class="math inline">\(q\)</span><strong>th quantile</strong> <span class="math inline">\(q_F\)</span> to be <em>any</em> number that satisfies</p>
-<span class="math display" id="eq:Quantile">\[\begin{equation} 
+<span class="math display" id="eq:Quantile">\[\begin{equation}
   F(q_F-) \le q \le F(q_F)
   \tag{4.1}
 \end{equation}\]</span>
@@ -628,10 +799,11 @@ Figure 4.3: Three Quantile Cases
 </div>
 <div id="density-estimators" class="section level4">
 <h4><span class="header-section-number">4.1.1.4</span> Density Estimators</h4>
-<p><strong>Discrete Variable.</strong> When the random variable is discrete, estimating the probability mass function <span class="math inline">\(f(x) = \Pr(X=x)\)</span> is straightforward. We simply use the sample average, defined to be <span class="math display">\[f_n(x) = \frac{1}{n} \sum_{i=1}^n I(X_i = x).\]</span></p>
+<p><strong>Discrete Variable.</strong> When the random variable is discrete, estimating the probability mass function <span class="math inline">\(f(x) = \Pr(X=x)\)</span> is straightforward. We simply use the sample average, defined to be</p>
+<p><span class="math display">\[f_n(x) = \frac{1}{n} \sum_{i=1}^n I(X_i = x).\]</span></p>
 <p><strong>Continuous Variable within a Group.</strong> For a continuous random variable, consider a discretized formulation in which the domain of <span class="math inline">\(F(\cdot)\)</span> is partitioned by constants <span class="math inline">\(\{c_0 &lt; c_1 &lt; \cdots &lt; c_k\}\)</span> into intervals of the form <span class="math inline">\([c_{j-1}, c_j)\)</span>, for <span class="math inline">\(j=1, \ldots, k\)</span>. The data observations are thus “grouped” by the intervals into which they fall. Then, we might use the basic definition of the empirical mass function, or a variation such as <span class="math display">\[f_n(x) = \frac{n_j}{n \times (c_j - c_{j-1})}  \ \ \ \ \ \ c_{j-1} \le x &lt; c_j,\]</span> where <span class="math inline">\(n_j\)</span> is the number of observations (<span class="math inline">\(X_i\)</span>) that fall into the interval <span class="math inline">\([c_{j-1}, c_j)\)</span>.</p>
 <p><strong>Continuous Variable (not grouped).</strong> Extending this notion to instances where we observe individual data, note that we can always create arbitrary groupings and use this formula. More formally, let <span class="math inline">\(b&gt;0\)</span> be a small positive constant, known as a <strong>bandwidth</strong>, and define a density estimator to be</p>
-<span class="math display" id="eq:KDF">\[\begin{equation} 
+<span class="math display" id="eq:KDF">\[\begin{equation}
   f_n(x) = \frac{1}{2nb} \sum_{i=1}^n I(x-b &lt; X_i \le x + b)
   \tag{4.2}
 \end{equation}\]</span>
@@ -641,12 +813,14 @@ Figure 4.3: Three Quantile Cases
 <div id="Theorykerneldensity" style="display: none">
 <hr />
 <p>The idea is that the estimator <span class="math inline">\(f_n(x)\)</span> in equation <a href="C-ModelSelection.html#eq:KDF">(4.2)</a> is the average over <span class="math inline">\(n\)</span> <a href="#" class="tooltip" style="color:green"><em>iid</em><span style="font-size:8pt"> identically and independently distributed</span></a> realizations of a random variable with mean</p>
-<p><span class="math display">\[\begin{aligned}
+<p><span class="math display">\[
+\begin{aligned}
 \mathrm{E~ } \frac{1}{2b} I(x-b &lt; X \le x + b) &amp;=  \frac{1}{2b}\left(F(x+b)-F(x-b)\right) \\
 &amp;=  \frac{1}{2b} \left( \left\{ F(x) + b F^{\prime}(x) + b^2 C_1\right\}
 \left\{ F(x) - b F^{\prime}(x) + b^2 C_2\right\} \right) \\
 &amp;=  F^{\prime}(x) + b \frac{C_1-C_2}{2} \rightarrow  F^{\prime}(x) = f(x),
-\end{aligned}\]</span></p>
+\end{aligned}
+\]</span></p>
 <p>as <span class="math inline">\(b\rightarrow 0\)</span>. That is, <span class="math inline">\(f_n(x)\)</span> is an asymptotically unbiased estimator of <span class="math inline">\(f(x)\)</span> (its expectation approaches the true value as sample size increases to infinity). This development assumes some smoothness of <span class="math inline">\(F(\cdot)\)</span>, in particular, twice differentiability at <span class="math inline">\(x\)</span>, but makes no assumptions on the form of the distribution function <span class="math inline">\(F\)</span>. Because of this, the density estimator <span class="math inline">\(f_n\)</span> is said to be <em>nonparametric</em>.</p>
 <hr />
 </div>
@@ -664,7 +838,7 @@ Figure 4.3: Three Quantile Cases
 \begin{array}{l|cc}
 \hline
 \text{Kernel} &amp;  w(x) \\
-\hline 
+\hline
 \text{Uniform } &amp;  \frac{1}{2}I(-1 &lt; x \le 1) \\
 \text{Triangle} &amp;  (1-|x|)\times I(|x| \le 1) \\
 \text{Epanechnikov} &amp; \frac{3}{4}(1-x^2) \times I(|x| \le 1) \\
@@ -695,9 +869,13 @@ legend(&quot;topright&quot;, c(&quot;b=0.3255 (default)&quot;, &quot;b=0.1&quot;
             lwd=c(2.5,1,1), col=c(&quot;blue&quot;, &quot;red&quot;, &quot;green&quot;), cex=1)</code></pre>
 </div>
 <hr />
-<p>Nonparametric density estimators, such as the kernel estimator, are regularly used in practice. The concept can also be extended to give smooth versions of an empirical distribution function. Given the definition of the kernel density estimator, the <em>kernel estimator of the distribution function</em> can be found as <span class="math display">\[\begin{aligned}
-\hat{F}_n(x) = \frac{1}{n} \sum_{i=1}^n W\left(\frac{x-X_i}{b}\right).\end{aligned}\]</span></p>
-<p>where <span class="math inline">\(W\)</span> is the distribution function associated with the kernel density <span class="math inline">\(w\)</span>. To illustrate, for the uniform kernel, we have <span class="math inline">\(w(y) = \frac{1}{2}I(-1 &lt; y \le 1)\)</span>, so <span class="math display">\[
+<p>Nonparametric density estimators, such as the kernel estimator, are regularly used in practice. The concept can also be extended to give smooth versions of an empirical distribution function. Given the definition of the kernel density estimator, the <em>kernel estimator of the distribution function</em> can be found as</p>
+<p><span class="math display">\[
+\begin{aligned}
+\hat{F}_n(x) = \frac{1}{n} \sum_{i=1}^n W\left(\frac{x-X_i}{b}\right).\end{aligned}
+\]</span></p>
+<p>where <span class="math inline">\(W\)</span> is the distribution function associated with the kernel density <span class="math inline">\(w\)</span>. To illustrate, for the uniform kernel, we have <span class="math inline">\(w(y) = \frac{1}{2}I(-1 &lt; y \le 1)\)</span>, so</p>
+<p><span class="math display">\[
 \begin{aligned}
 W(y) =
 \begin{cases}
@@ -707,20 +885,24 @@ W(y) =
 \end{cases}\end{aligned} .
 \]</span></p>
 <hr />
-<p><strong>Example 4.1.5. Actuarial Exam Question.</strong> You study five lives to estimate the time from the onset of a disease to death. The times to death are:</p>
-<p><span class="math display">\[\begin{array}{ccccc}
+<p><strong>Example 4.1.5. Actuarial Exam Question.</strong></p>
+<p>You study five lives to estimate the time from the onset of a disease to death. The times to death are:</p>
+<p><span class="math display">\[
+\begin{array}{ccccc}
 2 &amp; 3 &amp; 3 &amp; 3 &amp; 7  \\
-\end{array}\]</span></p>
+\end{array}
+\]</span></p>
 <p>Using a triangular kernel with bandwith <span class="math inline">\(2\)</span>, calculate the density function estimate at 2.5.</p>
 <h5 style="text-align: center;">
 <a id="displayTextExampleSelect.1.5" href="javascript:toggleEX('toggleExampleSelect.1.5','displayTextExampleSelect.1.5');"><i><strong>Show Example Solution</strong></i></a>
 </h5>
 <div id="toggleExampleSelect.1.5" style="display: none">
 <p><strong>Solution.</strong> For the kernel density estimate, we have <span class="math display">\[f_n(x) = \frac{1}{nb} \sum_{i=1}^n w\left(\frac{x-X_i}{b}\right),\]</span> where <span class="math inline">\(n=5\)</span>, <span class="math inline">\(b=2\)</span>, and <span class="math inline">\(x=2.5\)</span>. For the triangular kernel, <span class="math inline">\(w(x) = (1-|x|)\times I(|x| \le 1)\)</span>. Thus,</p>
-<p><span class="math display">\[\begin{array}{c|c|c}
+<p><span class="math display">\[
+\begin{array}{c|c|c}
 \hline
 X_i &amp; \frac{x-X_i}{b} &amp; w\left(\frac{x-X_i}{b} \right) \\
-\hline 
+\hline
 2 &amp; \frac{2.5-2}{2}=\frac{1}{4} &amp;  (1-\frac{1}{4})(1) = \frac{3}{4} \\
 \hline
 3 &amp; &amp; \\
@@ -729,10 +911,38 @@ X_i &amp; \frac{x-X_i}{b} &amp; w\left(\frac{x-X_i}{b} \right) \\
 \hline
 7 &amp; \frac{2.5-7}{2}=-2.25 &amp; (1-|-2.25|)(0) = 0\\
 \hline
-\end{array}\]</span></p>
+\end{array}
+\]</span></p>
 <p>Then the kernel density estimate is <span class="math display">\[f_n(x) = \frac{1}{5(2)}\left( \frac{3}{4} + (3) \frac{3}{4} + 0 \right) = \frac{3}{10}\]</span></p>
 </div>
 <hr />
+</div>
+<div id="plug-in-principle" class="section level4">
+<h4><span class="header-section-number">4.1.1.5</span> Plug-in Principle</h4>
+<p>One way to create a nonparametric estimator is to use the <em>analog</em> or <em>plug-in principle</em> where one replaces the unknown <em>cdf</em> <span class="math inline">\(F\)</span> with a known estimate such as the empirical <em>cdf</em> <span class="math inline">\(F_n\)</span>. So, if we are trying to estimate <span class="math inline">\(\mathrm{E}~\mathrm{g}(X)=\mathrm{E}_F~\mathrm{g}(X)\)</span> for a generic function <em>g</em>, then we define a nonparametric estimator to be <span class="math inline">\(\mathrm{E}_{F_n}~\mathrm{g}(X)=n^{-1}\sum_{i=1}^n \mathrm{g}(X_i)\)</span>.</p>
+<p>To see how this works, as a special case of <em>g</em> we consider the <em>loss elimination ratio</em> introduced in Section 3.4.1, <span class="math display">\[
+LER(d) = \frac{\mathrm{E~}(\min(X,d) )}{\mathrm{E~}(X)}
+\]</span> for a fixed deductible <span class="math inline">\(d\)</span>.</p>
+<p><strong>Example. 4.1.11. Bodily Injury Claims and Loss Elimination Ratios</strong></p>
+<p>We use a sample of 432 closed auto claims from Boston from <span class="citation">Derrig, Ostaszewski, and Rempala (<a href="#ref-derrig2001applications">2001</a>)</span>. Losses are recorded for payments due to bodily injuries in auto accidents. Losses are not subject to deductibles but are subject to various policy limits also available in the data. It turns out that only 17 out of 432 (<span class="math inline">\(\approx\)</span> 4%) were subject to policy limit and so we ignore these data for this illustration.</p>
+<p>The average loss paid is 6906. Figure <a href="C-ModelSelection.html#fig:BIClaims">4.5</a> shows other aspects of the distribution. Specifically, the left-hand panel shows the empirical distribution function, the right-hand panel gives a nonparametric density plot.</p>
+<div class="figure" style="text-align: center"><span id="fig:BIClaims"></span>
+<img src="LossDataAnalytics_files/figure-html/BIClaims-1.png" alt="Bodily Injury Claims. The left-hand panel gives the empirical distribution function. The right-hand panel presents a nonparametric density plot." width="672" />
+<p class="caption">
+Figure 4.5: Bodily Injury Claims. The left-hand panel gives the empirical distribution function. The right-hand panel presents a nonparametric density plot.
+</p>
+</div>
+<p>The impact of bodily injury losses can be mitigated by the imposition of limits or purchasing reinsurance policies (see Section 10.3). To quantify the impact of these risk mitigation tools, it is common to compute the <em>loss elimination ratio (LER)</em> as introduced in Section 3.4.1. The distribution function is not available and so much be estimated in some way. Using the plug-in principle, a nonparametric estimator can be defined as</p>
+<p><span class="math display">\[
+LER_n(d) = \frac{n^{-1} \sum_{i=1}^n \min(X_i,d)}{n^{-1} \sum_{i=1}^n X_i} = \frac{\sum_{i=1}^n \min(X_i,d)}{\sum_{i=1}^n X_i} .
+\]</span></p>
+<p>Figure <a href="C-ModelSelection.html#fig:BIClaims">4.5</a> shows the estimator <span class="math inline">\(LER_n(d)\)</span> for various choices of <em>d</em>. For example, if <span class="math inline">\(d=14,000\)</span>, then it turns out that <span class="math inline">\(LER_n(14000) \approx\)</span> 0.9768. Imposing a limit of 14,000 means that we expect to retain 97.68 percent of claims.</p>
+<div class="figure" style="text-align: center"><span id="fig:LER"></span>
+<img src="LossDataAnalytics_files/figure-html/LER-1.png" alt="LER for Bodily Injury Claims. The figure presents the loss elimination ratio (LER) as a function of deductible d." width="672" />
+<p class="caption">
+Figure 4.6: LER for Bodily Injury Claims. The figure presents the loss elimination ratio (LER) as a function of deductible d.
+</p>
+</div>
 </div>
 </div>
 <div id="S:MS:ToolsModelSelection" class="section level3">
@@ -741,31 +951,31 @@ X_i &amp; \frac{x-X_i}{b} &amp; w\left(\frac{x-X_i}{b} \right) \\
 <p>Nonparametric tools can be used to corroborate the selection of parametric models. Essentially, the approach is to compute selected summary measures under a fitted parametric model and to compare it to the corresponding quantity under the nonparametric model. As the nonparametric does not assume a specific distribution and is merely a function of the data, it is used as a benchmark to assess how well the parametric distribution/model represents the data. This comparison may alert the analyst to deficiencies in the parametric model and sometimes point ways to improving the parametric specification. Procedures geared towards assessing the validity of a model are known as <strong>model diagnostics</strong>.</p>
 <div id="S:MS:GraphComparison" class="section level4">
 <h4><span class="header-section-number">4.1.2.1</span> Graphical Comparison of Distributions</h4>
-<p>We have already seen the technique of overlaying graphs for comparison purposes. To reinforce the application of this technique, Figure <a href="C-ModelSelection.html#fig:ComparisonCDFPDF">4.5</a> compares the empirical distribution to two parametric fitted distributions. The left panel shows the distribution functions of claims distributions. The dots forming an “S-shaped” curve represent the empirical distribution function at each observation. The thick blue curve gives corresponding values for the fitted gamma distribution and the light purple is for the fitted Pareto distribution. Because the Pareto is much closer to the empirical distribution function than the gamma, this provides evidence that the Pareto is the better model for this data set. The right panel gives similar information for the density function and provides a consistent message. Based (only) on these figures, the Pareto distribution is the clear choice for the analyst.</p>
+<p>We have already seen the technique of overlaying graphs for comparison purposes. To reinforce the application of this technique, Figure <a href="C-ModelSelection.html#fig:ComparisonCDFPDF">4.7</a> compares the empirical distribution to two parametric fitted distributions. The left panel shows the distribution functions of claims distributions. The dots forming an “S-shaped” curve represent the empirical distribution function at each observation. The thick blue curve gives corresponding values for the fitted gamma distribution and the light purple is for the fitted Pareto distribution. Because the Pareto is much closer to the empirical distribution function than the gamma, this provides evidence that the Pareto is the better model for this data set. The right panel gives similar information for the density function and provides a consistent message. Based (only) on these figures, the Pareto distribution is the clear choice for the analyst.</p>
 <div class="figure" style="text-align: center"><span id="fig:ComparisonCDFPDF"></span>
 <img src="LossDataAnalytics_files/figure-html/ComparisonCDFPDF-1.png" alt="Nonparametric Versus Fitted Parametric Distribution and Density Functions. The left-hand panel compares distribution functions, with the dots corresponding to the empirical distribution, the thick blue curve corresponding to the fitted gamma and the light purple curve corresponding to the fitted Pareto. The right hand panel compares these three distributions summarized using probability density functions." width="80%" />
 <p class="caption">
-Figure 4.5: Nonparametric Versus Fitted Parametric Distribution and Density Functions. The left-hand panel compares distribution functions, with the dots corresponding to the empirical distribution, the thick blue curve corresponding to the fitted gamma and the light purple curve corresponding to the fitted Pareto. The right hand panel compares these three distributions summarized using probability density functions.
+Figure 4.7: Nonparametric Versus Fitted Parametric Distribution and Density Functions. The left-hand panel compares distribution functions, with the dots corresponding to the empirical distribution, the thick blue curve corresponding to the fitted gamma and the light purple curve corresponding to the fitted Pareto. The right hand panel compares these three distributions summarized using probability density functions.
 </p>
 </div>
-<p>For another way to compare the appropriateness of two fitted models, consider the <strong>probability-probability (<span class="math inline">\(pp\)</span>) plot</strong>. A <span class="math inline">\(pp\)</span> plot compares cumulative probabilities under two models. For our purposes, these two models are the nonparametric empirical distribution function and the parametric fitted model. Figure <a href="C-ModelSelection.html#fig:PPPlot">4.6</a> shows <span class="math inline">\(pp\)</span> plots for the Property Fund data. The fitted gamma is on the left and the fitted Pareto is on the right, compared to the same empirical distribution function of the data. The straight line represents equality between the two distributions being compared, so points close to the line are desirable. As seen in earlier demonstrations, the Pareto is much closer to the empirical distribution than the gamma, providing additional evidence that the Pareto is the better model.</p>
+<p>For another way to compare the appropriateness of two fitted models, consider the <strong>probability-probability (<span class="math inline">\(pp\)</span>) plot</strong>. A <span class="math inline">\(pp\)</span> plot compares cumulative probabilities under two models. For our purposes, these two models are the nonparametric empirical distribution function and the parametric fitted model. Figure <a href="C-ModelSelection.html#fig:PPPlot">4.8</a> shows <span class="math inline">\(pp\)</span> plots for the Property Fund data. The fitted gamma is on the left and the fitted Pareto is on the right, compared to the same empirical distribution function of the data. The straight line represents equality between the two distributions being compared, so points close to the line are desirable. As seen in earlier demonstrations, the Pareto is much closer to the empirical distribution than the gamma, providing additional evidence that the Pareto is the better model.</p>
 <div class="figure" style="text-align: center"><span id="fig:PPPlot"></span>
 <img src="LossDataAnalytics_files/figure-html/PPPlot-1.png" alt="Probability-Probability ($pp$) Plots. The horizontal axes gives the empirical distribution function at each observation. In the left-hand panel, the corresponding distribution function for the gamma is shown in the vertical axis. The right-hand panel shows the fitted Pareto distribution. Lines of $y=x$ are superimposed." width="80%" />
 <p class="caption">
-Figure 4.6: Probability-Probability (<span class="math inline">\(pp\)</span>) Plots. The horizontal axes gives the empirical distribution function at each observation. In the left-hand panel, the corresponding distribution function for the gamma is shown in the vertical axis. The right-hand panel shows the fitted Pareto distribution. Lines of <span class="math inline">\(y=x\)</span> are superimposed.
+Figure 4.8: Probability-Probability (<span class="math inline">\(pp\)</span>) Plots. The horizontal axes gives the empirical distribution function at each observation. In the left-hand panel, the corresponding distribution function for the gamma is shown in the vertical axis. The right-hand panel shows the fitted Pareto distribution. Lines of <span class="math inline">\(y=x\)</span> are superimposed.
 </p>
 </div>
-<p>A <span class="math inline">\(pp\)</span> plot is useful in part because no artificial scaling is required, such as with the overlaying of densities in Figure <a href="C-ModelSelection.html#fig:ComparisonCDFPDF">4.5</a>, in which we switched to the log scale to better visualize the data. The Chapter 4 <em>Technical Supplement A.1</em> introduces a variation of the <span class="math inline">\(pp\)</span> plot known as a <em>Lorenz curve</em>; this is an important tool for assessing income inequality. Furthermore, <span class="math inline">\(pp\)</span> plots are available in multivariate settings where more than one outcome variable is available. However, a limitation of the <span class="math inline">\(pp\)</span> plot is that, because it is a plot <em>cumulative</em> distribution functions, it can sometimes be difficult to detect <em>where</em> a fitted parametric distribution is deficient. As an alternative, it is common to use a <strong>quantile-quantile (<span class="math inline">\(qq\)</span>) plot</strong>, as demonstrated in Figure <a href="C-ModelSelection.html#fig:QQPlot">4.7</a>.</p>
-<p>The <span class="math inline">\(qq\)</span> plot compares two fitted models through their quantiles. As with <span class="math inline">\(pp\)</span> plots, we compare the nonparametric to a parametric fitted model. Quantiles may be evaluated at each point of the data set, or on a grid (e.g., at <span class="math inline">\(0, 0.001, 0.002, \ldots, 0.999, 1.000\)</span>), depending on the application. In Figure <a href="C-ModelSelection.html#fig:QQPlot">4.7</a>, for each point on the aforementioned grid, the horizontal axis displays the empirical quantile and the vertical axis displays the corresponding fitted parametric quantile (gamma for the upper two panels, Pareto for the lower two). Quantiles are plotted on the original scale in the left panels and on the log scale in the right panels to allow us to see where a fitted distribution is deficient. The straight line represents equality between the empirical distribution and fitted distribution. From these plots, we again see that the Pareto is an overall better fit than the gamma. Furthermore, the lower-right panel suggests that the Pareto distribution does a good job with large observations, but provides a poorer fit for small observations.</p>
+<p>A <span class="math inline">\(pp\)</span> plot is useful in part because no artificial scaling is required, such as with the overlaying of densities in Figure <a href="C-ModelSelection.html#fig:ComparisonCDFPDF">4.7</a>, in which we switched to the log scale to better visualize the data. The Chapter 4 <em>Technical Supplement A.1</em> introduces a variation of the <span class="math inline">\(pp\)</span> plot known as a <em>Lorenz curve</em>; this is an important tool for assessing income inequality. Furthermore, <span class="math inline">\(pp\)</span> plots are available in multivariate settings where more than one outcome variable is available. However, a limitation of the <span class="math inline">\(pp\)</span> plot is that, because it is a plot <em>cumulative</em> distribution functions, it can sometimes be difficult to detect <em>where</em> a fitted parametric distribution is deficient. As an alternative, it is common to use a <strong>quantile-quantile (<span class="math inline">\(qq\)</span>) plot</strong>, as demonstrated in Figure <a href="C-ModelSelection.html#fig:QQPlot">4.9</a>.</p>
+<p>The <span class="math inline">\(qq\)</span> plot compares two fitted models through their quantiles. As with <span class="math inline">\(pp\)</span> plots, we compare the nonparametric to a parametric fitted model. Quantiles may be evaluated at each point of the data set, or on a grid (e.g., at <span class="math inline">\(0, 0.001, 0.002, \ldots, 0.999, 1.000\)</span>), depending on the application. In Figure <a href="C-ModelSelection.html#fig:QQPlot">4.9</a>, for each point on the aforementioned grid, the horizontal axis displays the empirical quantile and the vertical axis displays the corresponding fitted parametric quantile (gamma for the upper two panels, Pareto for the lower two). Quantiles are plotted on the original scale in the left panels and on the log scale in the right panels to allow us to see where a fitted distribution is deficient. The straight line represents equality between the empirical distribution and fitted distribution. From these plots, we again see that the Pareto is an overall better fit than the gamma. Furthermore, the lower-right panel suggests that the Pareto distribution does a good job with large observations, but provides a poorer fit for small observations.</p>
 <div class="figure" style="text-align: center"><span id="fig:QQPlot"></span>
 <img src="LossDataAnalytics_files/figure-html/QQPlot-1.png" alt="Quantile-Quantile ($qq$) Plots. The horizontal axes gives the empirical quantiles at each observation. The right-hand panels they are graphed on a logarithmic basis. The vertical axis gives the quantiles from the fitted distributions; gamma quantiles are in the upper panels, Pareto quantiles are in the lower panels." width="80%" />
 <p class="caption">
-Figure 4.7: Quantile-Quantile (<span class="math inline">\(qq\)</span>) Plots. The horizontal axes gives the empirical quantiles at each observation. The right-hand panels they are graphed on a logarithmic basis. The vertical axis gives the quantiles from the fitted distributions; gamma quantiles are in the upper panels, Pareto quantiles are in the lower panels.
+Figure 4.9: Quantile-Quantile (<span class="math inline">\(qq\)</span>) Plots. The horizontal axes gives the empirical quantiles at each observation. The right-hand panels they are graphed on a logarithmic basis. The vertical axis gives the quantiles from the fitted distributions; gamma quantiles are in the upper panels, Pareto quantiles are in the lower panels.
 </p>
 </div>
 <hr />
 <p><strong>Example 4.1.6. Actuarial Exam Question.</strong> The graph below shows a <span class="math inline">\(pp\)</span> plot of a fitted distribution compared to a sample.</p>
-<p><img src="LossDataAnalytics_files/figure-html/unnamed-chunk-2-1.png" width="40%" style="display: block; margin: auto;" /></p>
+<p><img src="LossDataAnalytics_files/figure-html/unnamed-chunk-11-1.png" width="40%" style="display: block; margin: auto;" /></p>
 <p>Comment on the two distributions with respect to left tail, right tail, and median probabilities.</p>
 <h5 style="text-align: center;">
 <a id="displayTextExampleSelect.1.6" href="javascript:toggleEX('toggleExampleSelect.1.6','displayTextExampleSelect.1.6');"><i><strong>Show Example Solution</strong></i></a>
@@ -786,7 +996,7 @@ Figure 4.7: Quantile-Quantile (<span class="math inline">\(qq\)</span>) Plots. T
 \begin{array}{l|cc}
 \hline
 \text{Statistic} &amp; \text{Definition} &amp; \text{Computational Expression} \\
-\hline 
+\hline
 \text{Kolmogorov-} &amp; \max_x |F_n(x) - F(x)| &amp; \max(D^+, D^-) \text{ where } \\
 ~~~\text{Smirnov} &amp;&amp; D^+ = \max_{i=1, \ldots, n} \left|\frac{i}{n} - F_i\right| \\
 &amp;&amp; D^- = \max_{i=1, \ldots, n} \left| F_i - \frac{i-1}{n} \right| \\
@@ -800,26 +1010,30 @@ Figure 4.7: Quantile-Quantile (<span class="math inline">\(qq\)</span>) Plots. T
 <p>The <em>Kolmogorov-Smirnov statistic</em> is the maximum absolute difference between the fitted distribution function and the empirical distribution function. Instead of comparing differences between single points, the <em>Cramer-von Mises statistic</em> integrates the difference between the empirical and fitted distribution functions over the entire range of values. The <em>Anderson-Darling statistic</em> also integrates this difference over the range of values, although weighted by the inverse of the variance. It therefore places greater emphasis on the tails of the distribution (i.e when <span class="math inline">\(F(x)\)</span> or <span class="math inline">\(1-F(x)=S(x)\)</span> is small).</p>
 <hr />
 <p><strong>Exaxmple 4.1.7. Actuarial Exam Question (modified).</strong> A sample of claim payments is:</p>
-<p><span class="math display">\[\begin{array}{ccccc}
+<p><span class="math display">\[
+\begin{array}{ccccc}
 29 &amp; 64 &amp; 90 &amp; 135 &amp; 182  \\
-\end{array}\]</span></p>
+\end{array}
+\]</span></p>
 <p>Compare the empirical claims distribution to an exponential distribution with mean <span class="math inline">\(100\)</span> by calculating the value of the Kolmogorov-Smirnov test statistic.</p>
 <h5 style="text-align: center;">
 <a id="displayTextExampleSelect.1.7" href="javascript:toggleEX('toggleExampleSelect.1.7','displayTextExampleSelect.1.7');"><i><strong>Show Example Solution</strong></i></a>
 </h5>
 <div id="toggleExampleSelect.1.7" style="display: none">
 <p><strong>Solution.</strong> For an exponential distribution with mean <span class="math inline">\(100\)</span>, the cumulative distribution function is <span class="math inline">\(F(x)=1-e^{-x/100}\)</span>. Thus,</p>
-<p><span class="math display">\[\begin{array}{ccccc}
+<p><span class="math display">\[
+\begin{array}{ccccc}
 \hline
 x &amp; F(x) &amp; F_n(x) &amp; F_n(x-) &amp; \max(|F(x)-F_n(x)|,|F(x)-F_n(x-)|) \\
-\hline 
+\hline
 29  &amp; 0.2517 &amp; 0.2 &amp; 0   &amp; \max(0.0517, 0.2517) = 0.2517 \\
 64  &amp; 0.4727 &amp; 0.4 &amp; 0.2 &amp; \max(0.0727, 0.2727) = 0.2727 \\
 90  &amp; 0.5934 &amp; 0.6 &amp; 0.4 &amp; \max(0.0066, 0.1934) = 0.1934 \\
 135 &amp; 0.7408 &amp; 0.8 &amp; 0.6 &amp; \max(0.0592, 0.1408) = 0.1408 \\
 182 &amp; 0.8380 &amp; 1   &amp; 0.8 &amp; \max(0.1620, 0.0380) = 0.1620 \\
 \hline
-\end{array}\]</span></p>
+\end{array}
+\]</span></p>
 <p>The Kolmogorov-Smirnov test statistic is therefore <span class="math inline">\(KS = \max(0.2517, 0.2727, 0.1934, 0.1408, 0.1620) = 0.2727\)</span>.</p>
 </div>
 <hr />
@@ -843,20 +1057,24 @@ x &amp; F(x) &amp; F_n(x) &amp; F_n(x-) &amp; \max(|F(x)-F_n(x)|,|F(x)-F_n(x-)|)
 <p><strong>Solution.</strong> To fit a gamma distribution, we have <span class="math inline">\(\mu_1 = \alpha \theta\)</span> and <span class="math inline">\(\mu_2^{\prime} = \alpha(\alpha+1) \theta^2\)</span>. Equating the two yields the method of moments estimators, easy algebra shows that</p>
 <p><span class="math display">\[\alpha = \frac{\mu_1^2}{\mu_2^{\prime}-\mu_1^2}  \ \ \ \text{and} \ \ \  \theta = \frac{\mu_2^{\prime}-\mu_1^2}{\mu_1}.\]</span></p>
 <p>Thus, the method of moment estimators are</p>
-<p><span class="math display">\[\begin{aligned}
+<p><span class="math display">\[
+\begin{aligned}
 \hat{\alpha} &amp;=  \frac{26.62259^2}{136154.6-26.62259^2} = 0.005232809 \\
 \hat{\theta} &amp;=  \frac{136154.6-26.62259^2}{26.62259} = 5,087.629.
-\end{aligned}\]</span></p>
+\end{aligned}
+\]</span></p>
 <p>For comparison, the maximum likelihood values turn out to be <span class="math inline">\(\hat{\alpha}_{MLE} = 0.2905959\)</span> and <span class="math inline">\(\hat{\theta}_{MLE} = 91.61378\)</span>, so there are big discrepancies between the two estimation procedures. This is one indication, as we have seen before, that the gamma model fits poorly.</p>
 <p>In contrast, now assume a Pareto distribution so that <span class="math inline">\(\mu_1 = \theta/(\alpha -1)\)</span> and <span class="math inline">\(\mu_2^{\prime} = 2\theta^2/((\alpha-1)(\alpha-2) )\)</span>. Easy algebra shows</p>
 <p><span class="math display">\[\alpha = 1+ \frac{\mu_2^{\prime}}{\mu_2^{\prime}-\mu_1^2} \ \ \ \
 \text{and} \ \ \ \ \
  \theta = (\alpha-1)\mu_1.\]</span></p>
 <p>Thus, the method of moment estimators are</p>
-<p><span class="math display">\[\begin{aligned}
+<p><span class="math display">\[
+\begin{aligned}
 \hat{\alpha} &amp;=  1+ \frac{136154.6}{136154.6-26,62259^2} = 2.005233 \\
 \hat{\theta} &amp;=  (2.005233-1) \cdot 26.62259 = 26.7619
-\end{aligned}\]</span></p>
+\end{aligned}
+\]</span></p>
 <p>The maximum likelihood values turn out to be <span class="math inline">\(\hat{\alpha}_{MLE} = 0.9990936\)</span> and <span class="math inline">\(\hat{\theta}_{MLE} = 2.2821147\)</span>. It is interesting that <span class="math inline">\(\hat{\alpha}_{MLE}&lt;1\)</span>; for the Pareto distribution, recall that <span class="math inline">\(\alpha &lt;1\)</span> means that the mean is infinite. This is another indication that the property claims data set is a long tail distribution.</p>
 </div>
 <hr />
@@ -866,7 +1084,8 @@ x &amp; F(x) &amp; F_n(x) &amp; F_n(x-) &amp; \max(|F(x)-F_n(x)|,|F(x)-F_n(x-)|)
 <h4><span class="header-section-number">4.1.3.2</span> Percentile Matching</h4>
 <p>Under <strong>percentile matching</strong>, we approximate the quantiles or percentiles of the parametric distribution using the empirical (nonparametric) quantiles or percentiles described in Section <a href="C-ModelSelection.html#S:MS:QuantileEstimator">4.1.1.3</a>.</p>
 <hr />
-<p><strong>Example 4.1.9. Property Fund.</strong> For the 2010 property fund, we illustrate matching on quantiles. In particular, the Pareto distribution is intuitively pleasing because of the closed-form solution for the quantiles. Recall that the distribution function for the Pareto distribution is <span class="math display">\[F(x) = 1 - \left(\frac{\theta}{x+\theta}\right)^{\alpha}.\]</span> Easy algebra shows that we can express the quantile as <span class="math display">\[F^{-1}(q) = \theta \left( (1-q)^{-1/\alpha} -1 \right).\]</span> for a fraction <span class="math inline">\(q\)</span>, <span class="math inline">\(0&lt;q&lt;1\)</span>.</p>
+<p><strong>Example 4.1.9. Property Fund.</strong> For the 2010 property fund, we illustrate matching on quantiles. In particular, the Pareto distribution is intuitively pleasing because of the closed-form solution for the quantiles. Recall that the distribution function for the Pareto distribution is <span class="math display">\[F(x) = 1 - \left(\frac{\theta}{x+\theta}\right)^{\alpha}.\]</span> Easy algebra shows that we can express the quantile as</p>
+<p><span class="math display">\[F^{-1}(q) = \theta \left( (1-q)^{-1/\alpha} -1 \right).\]</span> for a fraction <span class="math inline">\(q\)</span>, <span class="math inline">\(0&lt;q&lt;1\)</span>.</p>
 <p>Determine estimates of the Pareto distribution parameters using the 25th and 95th empirical quantiles.</p>
 <h5 style="text-align: center;">
 <a id="displayTextExampleSelect.1.9" href="javascript:toggleEX('toggleExampleSelect.1.9','displayTextExampleSelect.1.9');"><i><strong>Show Example Solution</strong></i></a>
@@ -882,9 +1101,11 @@ x &amp; F(x) &amp; F_n(x) &amp; F_n(x-) &amp; \max(|F(x)-F_n(x)|,|F(x)-F_n(x-)|)
 <li>Losses follow a loglogistic distribution with cumulative distribution function: <span class="math display">\[F(x) = \frac{\left(x/\theta\right)^{\gamma}}{1+\left(x/\theta\right)^{\gamma}}\]</span></li>
 <li>The sample of losses is:</li>
 </ol>
-<p><span class="math display">\[\begin{array}{ccccccccccc}
+<p><span class="math display">\[
+\begin{array}{ccccccccccc}
 10 &amp;35 &amp;80 &amp;86 &amp;90 &amp;120 &amp;158 &amp;180 &amp;200 &amp;210 &amp;1500 \\
-\end{array}\]</span></p>
+\end{array}
+\]</span></p>
 <p>Calculate the estimate of <span class="math inline">\(\theta\)</span> by percentile matching, using the 40th and 80th empirically smoothed percentile estimates.</p>
 <h5 style="text-align: center;">
 <a id="displayTextExampleSelect.1.10" href="javascript:toggleEX('toggleExampleSelect.1.10','displayTextExampleSelect.1.10');"><i><strong>Show Example Solution</strong></i></a>
@@ -918,11 +1139,11 @@ x &amp; F(x) &amp; F_n(x) &amp; F_n(x-) &amp; \max(|F(x)-F_n(x)|,|F(x)-F_n(x-)|)
 </ul>
 <div id="iterative-model-selection" class="section level3">
 <h3><span class="header-section-number">4.2.1</span> Iterative Model Selection</h3>
-<p>In our development, we examine the data graphically, hypothesize a model structure, and compare the data to a candidate model in order to formulate an improved model. <span class="citation">Box (<a href="#ref-box1980sampling">1980</a>)</span> describes this as an <em>iterative process</em> which is shown in Figure <a href="C-ModelSelection.html#fig:Iterative">4.8</a>.</p>
+<p>In our development, we examine the data graphically, hypothesize a model structure, and compare the data to a candidate model in order to formulate an improved model. <span class="citation">Box (<a href="#ref-box1980sampling">1980</a>)</span> describes this as an <em>iterative process</em> which is shown in Figure <a href="C-ModelSelection.html#fig:Iterative">4.10</a>.</p>
 <div class="figure" style="text-align: center"><span id="fig:Iterative"></span>
 <img src="Figures/F5Iterative.png" alt="The iterative model specification process." width="80%" />
 <p class="caption">
-Figure 4.8: The iterative model specification process.
+Figure 4.10: The iterative model specification process.
 </p>
 </div>
 <p>This iterative process provides a useful recipe for structuring the task of specifying a model to represent a set of data.</p>
@@ -948,11 +1169,11 @@ Figure 4.8: The iterative model specification process.
 <p><strong>Model validation</strong> is the process of confirming that the proposed model is appropriate, especially in light of the purposes of the investigation. An important limitation of the model selection process based only on insample data is that it can be susceptible to <em>data-snooping</em>, that is, fitting a great number of models to a single set of data. By looking at a large number of models, we may overfit the data and understate the natural variation in our representation.</p>
 <p>Selecting a model based only on insample data also does not support the goal of <strong>predictive inference</strong>. Particularly in actuarial applications, our goal is to make statements about <em>new</em> experience rather than a dataset at hand. For example, we use claims experience from one year to develop a model that can be used to price insurance contracts for the following year. As an analogy, we can think about the training data set as experience from one year that is used to predict the behavior of the next year’s test data set.</p>
 <p>We can respond to these criticisms by using a technique sometimes known as <strong>out-of-sample validation</strong>. The ideal situation is to have available two sets of data, one for training, or model development, and one for testing, or model validation. We initially develop one or several models on the first data set that we call our <em>candidate</em> models. Then, the relative performance of the candidate models can be measured on the second set of data. In this way, the data used to validate the model is unaffected by the procedures used to formulate the model.</p>
-<p><strong>Random Split of the Data.</strong> Unfortunately, rarely will two sets of data be available to the investigator. However, we can implement the validation process by splitting the data set into <strong>training</strong> and <strong>test</strong> subsamples, respectively. Figure <a href="C-ModelSelection.html#fig:ModelValidation">4.9</a> illustrates this splitting of the data.</p>
+<p><strong>Random Split of the Data.</strong> Unfortunately, rarely will two sets of data be available to the investigator. However, we can implement the validation process by splitting the data set into <strong>training</strong> and <strong>test</strong> subsamples, respectively. Figure <a href="C-ModelSelection.html#fig:ModelValidation">4.11</a> illustrates this splitting of the data.</p>
 <div class="figure" style="text-align: center"><span id="fig:ModelValidation"></span>
 <img src="LossDataAnalytics_files/figure-html/ModelValidation-1.png" alt="Model Validation. A data set is randomly split into two subsamples." width="60%" />
 <p class="caption">
-Figure 4.9: Model Validation. A data set is randomly split into two subsamples.
+Figure 4.11: Model Validation. A data set is randomly split into two subsamples.
 </p>
 </div>
 <p>Various researchers recommend different proportions for the allocation. <span class="citation">Snee (<a href="#ref-snee1977validation">1977</a>)</span> suggests that data-splitting not be done unless the sample size is moderately large. The guidelines of <span class="citation">Picard and Berk (<a href="#ref-picard1990data">1990</a>)</span> show that the greater the number of parameters to be estimated, the greater the proportion of observations needed for the model development subsample.</p>
@@ -961,7 +1182,7 @@ Figure 4.9: Model Validation. A data set is randomly split into two subsamples.
 \sum_i \mathrm{d}(y_i,\hat{\mathrm{g}}\left(x_{i1}, \ldots, x_{ik}\right) ) .
 \tag{4.4}
 \end{equation}\]</span>
-<p>Here, the sum <em>i</em> is over the test data. In many regression applications, it is common to use squared Euclidean distance of the form <span class="math inline">\(\mathrm{d}(y_i,\mathrm{g}) = (y_i-\mathrm{g})^2\)</span>. In actuarial applications, Euclidean distance <span class="math inline">\(\mathrm{d}(y_i,\mathrm{g}) = |y_i-\mathrm{g}|\)</span> is often preferred because of the skewed nature of the data (large outlying values of <span class="math inline">\(y\)</span> can have a large effect on the measure). The Chapter 4 <em>Technical Supplement A</em> describes another measure, the <em>Gini index</em>, that is useful in actuarial applications particularly when there is a large proportion of zeros in claims data (corresponding to no claims).</p>
+<p>Here, the sum <em>i</em> is over the test data. In many regression applications, it is common to use squared Euclidean distance of the form <span class="math inline">\(\mathrm{d}(y_i,\mathrm{g}) = (y_i-\mathrm{g})^2\)</span>. In actuarial applications, Euclidean distance <span class="math inline">\(\mathrm{d}(y_i,\mathrm{g}) = |y_i-\mathrm{g}|\)</span> is often preferred because of the skewed nature of the data (large outlying values of <span class="math inline">\(y\)</span> can have a large effect on the measure). Chapter <a href="C-PremiumFoundations.html#C:PremiumFoundations">7</a> describes another measure, the <em>Gini index</em>, that is useful in actuarial applications particularly when there is a large proportion of zeros in claims data (corresponding to no claims).</p>
 <p><strong>Selecting a Distribution.</strong> Still, our focus so far has been to select a distribution for a data set that can be used for actuarial modeling without additional inputs <span class="math inline">\(x_1, \ldots, x_k\)</span>. Even in this more fundamental problem, the model validation approach is valuable. If we base all inference on only in-sample data, then there is a tendency to select more complicated models then needed. For example, we might select a four parameter GB2, generalized beta of the second kind, distribution when only a two parameter Pareto is needed. Information criteria such as <a href="#" class="tooltip" style="color:green"><em>AIC</em><span style="font-size:8pt"> Akaike’s information criterion</span></a> and <a href="#" class="tooltip" style="color:green"><em>BIC</em><span style="font-size:8pt"> Bayesian information criterion</span></a> included penalties for model complexity and so provide some protection but using a test sample is the best guarantee to achieve parsimonious models. From a quote often attributed to Albert Einstein, we want to “use the simplest model as possible but no simpler.”</p>
 </div>
 <div id="model-selection-based-on-cross-validation" class="section level3">
@@ -995,7 +1216,9 @@ Figure 4.9: Model Validation. A data set is randomly split into two subsamples.
 <p>Consider a sample of size <span class="math inline">\(n\)</span> observed from the distribution <span class="math inline">\(F(\cdot)\)</span>, but in groups so that we only know the group into which each observation fell, not the exact value. This is referred to as <strong>grouped</strong> or <strong>interval-censored</strong> data. For example, we may be looking at two successive years of annual employee records. People employed in the first year but not the second have left sometime during the year. With an exact departure date (individual data), we could compute the amount of time that they were with the firm. Without the departure date (grouped data), we only know that they departed sometime during a year-long interval.</p>
 <p>Formalizing this idea, suppose there are <span class="math inline">\(k\)</span> groups or intervals delimited by boundaries <span class="math inline">\(c_0 &lt; c_1&lt; \cdots &lt; c_k\)</span>. For each observation, we only observe the interval into which it fell (e.g. <span class="math inline">\((c_{j-1}, c_j)\)</span>), not the exact value. Thus, we only know the number of observations in each interval. The constants <span class="math inline">\(\{c_0 &lt; c_1 &lt; \cdots &lt; c_k\}\)</span> form some partition of the domain of <span class="math inline">\(F(\cdot)\)</span>. Then the probability of an observation <span class="math inline">\(X_i\)</span> falling in the <span class="math inline">\(j\)</span>th interval is <span class="math display">\[\Pr\left(X
 _i \in (c_{j-1}, c_j]\right) = F(c_j) - F(c_{j-1}).\]</span></p>
-<p>The corresponding probability mass function for an observation is <span class="math display">\[\begin{aligned}
+<p>The corresponding probability mass function for an observation is</p>
+<p><span class="math display">\[
+\begin{aligned}
 f(x) &amp;=
 \begin{cases}
 F(c_1) - F(c_{0}) &amp;   \text{if }\ x \in (c_{0}, c_1]\\
@@ -1003,15 +1226,21 @@ F(c_1) - F(c_{0}) &amp;   \text{if }\ x \in (c_{0}, c_1]\\
 F(c_k) - F(c_{k-1}) &amp;   \text{if }\ x \in (c_{k-1}, c_k]\\
 \end{cases} \\
 &amp;= \prod_{j=1}^k \left\{F(c_j) - F(c_{j-1})\right\}^{I(x \in (c_{j-1}, c_j])}
-\end{aligned}\]</span></p>
-<p>Now, define <span class="math inline">\(n_j\)</span> to be the number of observations that fall in the <span class="math inline">\(j\)</span>th interval, <span class="math inline">\((c_{j-1}, c_j]\)</span>. Thus, the likelihood function (with respect to the parameter(s) <span class="math inline">\(\theta\)</span>) is <span class="math display">\[\begin{aligned}
+\end{aligned}
+\]</span></p>
+<p>Now, define <span class="math inline">\(n_j\)</span> to be the number of observations that fall in the <span class="math inline">\(j\)</span>th interval, <span class="math inline">\((c_{j-1}, c_j]\)</span>. Thus, the likelihood function (with respect to the parameter(s) <span class="math inline">\(\theta\)</span>) is <span class="math display">\[
+\begin{aligned}
 \mathcal{L}(\theta) = \prod_{j=1}^n f(x_i) = \prod_{j=1}^k \left\{F(c_j) - F(c_{j-1})\right\}^{n_j}
-\end{aligned}\]</span></p>
-<p>And the log-likelihood function is <span class="math display">\[\begin{aligned}
+\end{aligned}
+\]</span></p>
+<p>And the log-likelihood function is <span class="math display">\[
+\begin{aligned}
 L(\theta) = \ln \mathcal{L}(\theta) = \ln \prod_{j=1}^n f(x_i) = \sum_{j=1}^k n_j \ln \left\{F(c_j) - F(c_{j-1})\right\}
-\end{aligned}\]</span></p>
+\end{aligned}
+\]</span></p>
 <p>Maximizing the likelihood function (or equivalently, maximizing the log-likelihood function) would then produce the maximum likelihood estimates for grouped data.</p>
-<p><strong>Example 4.3.1. Actuarial Exam Question.</strong> You are given:</p>
+<p><strong>Example 4.3.1. Actuarial Exam Question.</strong></p>
+<p>You are given:</p>
 <ol style="list-style-type: lower-roman">
 <li>Losses follow an exponential distribution with mean <span class="math inline">\(\theta\)</span>.</li>
 <li>A random sample of 20 losses is distributed as follows:</li>
@@ -1021,7 +1250,7 @@ L(\theta) = \ln \mathcal{L}(\theta) = \ln \prod_{j=1}^n f(x_i) = \sum_{j=1}^k n_
 \begin{array}{l|c}
 \hline
 \text{Loss Range} &amp; \text{Frequency} \\
-\hline 
+\hline
 [0,1000] &amp; 7 \\
 (1000,2000] &amp; 6 \\
 (2000,\infty) &amp; 7 \\
@@ -1034,12 +1263,14 @@ L(\theta) = \ln \mathcal{L}(\theta) = \ln \prod_{j=1}^n f(x_i) = \sum_{j=1}^k n_
 <a id="displayTextExampleSelect.3.1" href="javascript:toggleEX('toggleExampleSelect.3.1','displayTextExampleSelect.3.1');"><i><strong>Show Example Solution</strong></i></a>
 </h5>
 <div id="toggleExampleSelect.3.1" style="display: none">
-<p><strong>Solution.</strong> <span class="math display">\[\begin{aligned}
+<p><strong>Solution.</strong> <span class="math display">\[
+\begin{aligned}
 \mathcal{L}(\theta) &amp;= F(1000)^7[F(2000)-F(1000)]^6[1-F(2000)]^7 \\
 &amp;= (1-e^{-1000/\theta})^7(e^{-1000/\theta} - e^{-2000/\theta})^6(e^{-2000/\theta})^7 \\
 &amp;= (1-p)^7(p-p^2)^6(p^2)^7 \\
 &amp;= p^{20}(1-p)^{13}
-\end{aligned}\]</span></p>
+\end{aligned}
+\]</span></p>
 <p>where <span class="math inline">\(p=e^{-1000/\theta}\)</span>. Maximizing this expression with respect to <span class="math inline">\(p\)</span> is equivalent to maximizing the likelihood with respect to <span class="math inline">\(\theta\)</span>. The maximum occurs at <span class="math inline">\(p=\frac{20}{33}\)</span> and so <span class="math inline">\(\hat{\theta}=\frac{-1000}{\ln(20/33)}= 1996.90\)</span>.</p>
 </div>
 <hr />
@@ -1082,11 +1313,11 @@ X &amp; X \leq C_U \\
 \right.\end{aligned}
 \]</span></p>
 <p>Classic examples of truncation from the right include <span class="math inline">\(X\)</span> as a measure of distance to a star. When the distance exceeds a certain level <span class="math inline">\(C_U\)</span>, the star is no longer observable.</p>
-<p>Figure <a href="C-ModelSelection.html#fig:CensorTrunc">4.10</a> compares truncated and censored observations. Values of <span class="math inline">\(X\)</span> that are greater than the “upper” censoring limit <span class="math inline">\(C_U\)</span> are not observed at all (right-censored), while values of <span class="math inline">\(X\)</span> that are smaller than the “lower” truncation limit <span class="math inline">\(C_L\)</span> are observed, but observed as <span class="math inline">\(C_L\)</span> rather than the actual value of <span class="math inline">\(X\)</span> (left-truncated).</p>
+<p>Figure <a href="C-ModelSelection.html#fig:CensorTrunc">4.12</a> compares truncated and censored observations. Values of <span class="math inline">\(X\)</span> that are greater than the “upper” censoring limit <span class="math inline">\(C_U\)</span> are not observed at all (right-censored), while values of <span class="math inline">\(X\)</span> that are smaller than the “lower” truncation limit <span class="math inline">\(C_L\)</span> are observed, but observed as <span class="math inline">\(C_L\)</span> rather than the actual value of <span class="math inline">\(X\)</span> (left-truncated).</p>
 <div class="figure" style="text-align: center"><span id="fig:CensorTrunc"></span>
 <img src="LossDataAnalytics_files/figure-html/CensorTrunc-1.png" alt="Censoring and Truncation" width="60%" />
 <p class="caption">
-Figure 4.10: Censoring and Truncation
+Figure 4.12: Censoring and Truncation
 </p>
 </div>
 <hr />
@@ -1094,11 +1325,11 @@ Figure 4.10: Censoring and Truncation
 <a id="displayTextExampleMort.4f" href="javascript:toggleEX('toggleExampleMort','displayTextExampleMort.4f');"><i><strong>Show Mortality Study Example </strong></i></a>
 </h5>
 <div id="toggleExampleMort" style="display: none">
-<p><strong>Example – Mortality Study.</strong> Suppose that you are conducting a two-year study of mortality of high-risk subjects, beginning January 1, 2010 and finishing January 1, 2012. Figure <a href="C-ModelSelection.html#fig:Mortality">4.11</a> graphically portrays the six types of subjects recruited. For each subject, the beginning of the arrow represents that the the subject was recruited and the arrow end represents the event time. Thus, the arrow represents exposure time.</p>
+<p><strong>Example – Mortality Study.</strong> Suppose that you are conducting a two-year study of mortality of high-risk subjects, beginning January 1, 2010 and finishing January 1, 2012. Figure <a href="C-ModelSelection.html#fig:Mortality">4.13</a> graphically portrays the six types of subjects recruited. For each subject, the beginning of the arrow represents that the the subject was recruited and the arrow end represents the event time. Thus, the arrow represents exposure time.</p>
 <div class="figure" style="text-align: center"><span id="fig:Mortality"></span>
 <img src="LossDataAnalytics_files/figure-html/Mortality-1.png" alt="Timeline for Several Subjects on Test in a Mortality Study" width="60%" />
 <p class="caption">
-Figure 4.11: Timeline for Several Subjects on Test in a Mortality Study
+Figure 4.13: Timeline for Several Subjects on Test in a Mortality Study
 </p>
 </div>
 <ul>
@@ -1174,7 +1405,7 @@ f(x) &amp; \text{if } \delta = 1
 \begin{array}{lc}
 \hline
 \text{Outcome} &amp; \text{Likelihood Contribution} \\
-\hline 
+\hline
 \text{exact value} &amp; f(x) \\
 \text{right-censoring} &amp; 1-F(C_U) \\
 \text{left-censoring} &amp; F(C_L) \\
@@ -1202,7 +1433,7 @@ L(\theta) &amp;= \sum_{E} \left\{ \ln f(x_i) - \ln (1-F(C_{Li})) \right\} + \sum
 \end{aligned}
 \]</span></p>
 <p>To simplify the notation, define <span class="math inline">\(\delta_i = I(X_i \geq C_{Ui})\)</span> to be a binary variable that indicates right-censoring. Let <span class="math inline">\(X_i^{\ast \ast} = \min(X_i, C_{Ui}) - C_{Li}\)</span> be the amount that the observed variable exceeds the lower truncation limit. With this, the log-likelihood is</p>
-<span class="math display" id="eq:EXPloglik">\[\begin{equation} 
+<span class="math display" id="eq:EXPloglik">\[\begin{equation}
   L(\theta) =  - \sum_{i=1}^n ((1-\delta_i) \ln \theta + \frac{x_i^{\ast \ast}}{\theta})
   \tag{4.5}
 \end{equation}\]</span>
@@ -1267,7 +1498,8 @@ F_n(c_j) = \frac{\text{number of observations } \le c_j}{n}.
 <p>For other values of <span class="math inline">\(x \in (c_{j-1}, c_j)\)</span>, we can estimate the distribution function with the <em>ogive</em> estimator, which linearly interpolates between <span class="math inline">\(F_n(c_{j-1})\)</span> and <span class="math inline">\(F_n(c_j)\)</span>, i.e. the values of the boundaries <span class="math inline">\(F_n(c_{j-1})\)</span> and <span class="math inline">\(F_n(c_j)\)</span> are connected with a straight line. This can formally be expressed as <span class="math display">\[F_n(x) = \frac{c_j-x}{c_j-c_{j-1}} F_n(c_{j-1}) + \frac{x-c_{j-1}}{c_j-c_{j-1}} F_n(c_j) \ \ \ \text{for } c_{j-1} \le x &lt; c_j\]</span></p>
 <p>The corresponding density is <span class="math display">\[f_n(x) = F^{\prime}_n(x) = \frac{F_n(c_j)-F_n(c_{j-1})}{c_j - c_{j-1}} \ \ \  \text{for } c_{j-1} \le x &lt; c_j .\]</span></p>
 <hr />
-<p><strong>Example 4.3.4. Actuarial Exam Question.</strong> You are given the following information regarding claim sizes for 100 claims:</p>
+<p><strong>Example 4.3.4. Actuarial Exam Question.</strong></p>
+<p>You are given the following information regarding claim sizes for 100 claims:</p>
 <p><span class="math display">\[
 {\small
 \begin{array}{r|c}
@@ -1300,7 +1532,8 @@ F_n(c_j) = \frac{\text{number of observations } \le c_j}{n}.
 <p>It can be useful to calibrate parametric estimators with nonparametric methods that do not rely on a parametric form of the distribution. The product-limit estimator due to <span class="citation">(Kaplan and Meier <a href="#ref-kaplan1958">1958</a>)</span> is a well-known estimator of the distribution function in the presence of censoring.</p>
 <p><strong>Motivation for the Kaplan-Meier Product Limit Estimator.</strong> To explain why the product-limit works so well with censored observations, let us first return to the “usual” case without censoring. Here, the empirical distribution function <span class="math inline">\(F_n(x)\)</span> is an <em>unbiased</em> estimator of the distribution function <span class="math inline">\(F(x)\)</span>. This is because <span class="math inline">\(F_n(x)\)</span> is the average of indicator variables each of which are unbiased, that is, <span class="math inline">\(\mathrm{E~} I(X_i \le x) = \Pr(X_i \le x) = F(x)\)</span>.</p>
 <p>Now suppose the the random outcome is censored on the right by a limiting amount, say, <span class="math inline">\(C_U\)</span>, so that we record the smaller of the two, <span class="math inline">\(X^* = \min(X, C_U)\)</span>. For values of <span class="math inline">\(x\)</span> that are smaller than <span class="math inline">\(C_U\)</span>, the indicator variable still provides an unbiased estimator of the distribution function before we reach the censoring limit. That is, <span class="math inline">\(\mathrm{E~} I(X^* \le x) = F(x)\)</span> because <span class="math inline">\(I(X^* \le x) = I(X \le x)\)</span> for <span class="math inline">\(x &lt; C_U\)</span>. In the same way, <span class="math inline">\(\mathrm{E~} I(X^* &gt; x) = 1 -F(x) = S(x)\)</span>. But, for <span class="math inline">\(x&gt;C_U\)</span>, <span class="math inline">\(I(X^* \le x)\)</span> is in general not an unbiased estimator of <span class="math inline">\(F(x)\)</span>.</p>
-<p>As an alternative, consider <em>two</em> random variables that have different censoring limits. For illustration, suppose that we observe <span class="math inline">\(X_1^* = \min(X_1, 5)\)</span> and <span class="math inline">\(X_2^* = \min(X_2, 10)\)</span> where <span class="math inline">\(X_1\)</span> and <span class="math inline">\(X_2\)</span> are independent draws from the same distribution. For <span class="math inline">\(x \le 5\)</span>, the empirical distribution function <span class="math inline">\(F_2(x)\)</span> is an unbiased estimator of <span class="math inline">\(F(x)\)</span>. However, for <span class="math inline">\(5 &lt; x \le 10\)</span>, the first observation cannot be used for the distribution function because of the censoring limitation. Instead, the strategy developed by <span class="citation">(Kaplan and Meier <a href="#ref-kaplan1958">1958</a>)</span> is to use <span class="math inline">\(S_2(5)\)</span> as an estimator of <span class="math inline">\(S(5)\)</span> and then to use the second observation to estimate the survival function conditional on survival to time 5, <span class="math inline">\(\Pr(X &gt; x | X &gt;5) = \frac{S(x)}{S(5)}\)</span>. Specifically, for <span class="math inline">\(5 &lt; x \le 10\)</span>, the estimator of the survival function is <span class="math display">\[
+<p>As an alternative, consider <em>two</em> random variables that have different censoring limits. For illustration, suppose that we observe <span class="math inline">\(X_1^* = \min(X_1, 5)\)</span> and <span class="math inline">\(X_2^* = \min(X_2, 10)\)</span> where <span class="math inline">\(X_1\)</span> and <span class="math inline">\(X_2\)</span> are independent draws from the same distribution. For <span class="math inline">\(x \le 5\)</span>, the empirical distribution function <span class="math inline">\(F_2(x)\)</span> is an unbiased estimator of <span class="math inline">\(F(x)\)</span>. However, for <span class="math inline">\(5 &lt; x \le 10\)</span>, the first observation cannot be used for the distribution function because of the censoring limitation. Instead, the strategy developed by <span class="citation">(Kaplan and Meier <a href="#ref-kaplan1958">1958</a>)</span> is to use <span class="math inline">\(S_2(5)\)</span> as an estimator of <span class="math inline">\(S(5)\)</span> and then to use the second observation to estimate the survival function conditional on survival to time 5, <span class="math inline">\(\Pr(X &gt; x | X &gt;5) = \frac{S(x)}{S(5)}\)</span>. Specifically, for <span class="math inline">\(5 &lt; x \le 10\)</span>, the estimator of the survival function is</p>
+<p><span class="math display">\[
 \hat{S}(x) = S_2(5) \times I(X_2^* &gt; x ) .
 \]</span></p>
 <p><strong>Kaplan-Meier Product Limit Estimator.</strong> Extending this idea, for each observation <span class="math inline">\(i\)</span>, let <span class="math inline">\(u_i\)</span> be the upper censoring limit (<span class="math inline">\(=\infty\)</span> if no censoring). Thus, the recorded value is <span class="math inline">\(x_i\)</span> in the case of no censoring and <span class="math inline">\(u_i\)</span> if there is censoring. Let <span class="math inline">\(t_{1} &lt;\cdots&lt; t_{k}\)</span> be <span class="math inline">\(k\)</span> distinct points at which an uncensored loss occurs, and let <span class="math inline">\(s_j\)</span> be the number of uncensored losses <span class="math inline">\(x_i\)</span>’s at <span class="math inline">\(t_{j}\)</span>. The corresponding <strong>risk set</strong> is the number of observations that are active (not censored) at a value <em>less than</em> <span class="math inline">\(t_{j}\)</span>, denoted as <span class="math inline">\(R_j = \sum_{i=1}^n I(x_i \geq t_{j}) + \sum_{i=1}^n I(u_i \geq t_{j})\)</span>.</p>
@@ -1317,9 +1550,11 @@ F_n(c_j) = \frac{\text{number of observations } \le c_j}{n}.
 <p>As usual, the corresponding estimate of the survival function is <span class="math inline">\(\hat{S}(x) = 1 - \hat{F}(x)\)</span>.</p>
 <hr />
 <p><strong>Example 4.3.5. Actuarial Exam Question.</strong> The following is a sample of 10 payments:</p>
-<p><span class="math display">\[\begin{array}{cccccccccc}
+<p><span class="math display">\[
+\begin{array}{cccccccccc}
 4 &amp;4 &amp;5+ &amp;5+ &amp;5+ &amp;8 &amp;10+ &amp;10+ &amp;12 &amp;15 \\
-\end{array}\]</span></p>
+\end{array}
+\]</span></p>
 <p>where <span class="math inline">\(+\)</span> indicates that a loss has exceeded the policy limit.</p>
 <p>Using the Kaplan-Meier product-limit estimator, calculate the probability that the loss on a policy exceeds 11, <span class="math inline">\(\hat{S}(11)\)</span>.</p>
 <h5 style="text-align: center;">
@@ -1327,7 +1562,8 @@ F_n(c_j) = \frac{\text{number of observations } \le c_j}{n}.
 </h5>
 <div id="toggleExampleSelect.3.5" style="display: none">
 <p><strong>Solution.</strong> There are four event times (non-censored observations). For each time <span class="math inline">\(t_j\)</span>, we can calculate the number of events <span class="math inline">\(s_j\)</span> and the risk set <span class="math inline">\(R_j\)</span> as the following:</p>
-<p><span class="math display">\[\begin{array}{cccc}
+<p><span class="math display">\[
+\begin{array}{cccc}
 \hline
 j &amp; t_j &amp; s_j &amp; R_j \\
 \hline
@@ -1336,11 +1572,31 @@ j &amp; t_j &amp; s_j &amp; R_j \\
 3 &amp; 12 &amp; 1 &amp; 2 \\
 4 &amp; 15 &amp; 1 &amp; 1 \\
 \hline
-\end{array}\]</span></p>
-<p>Thus, the Kaplan-Meier estimate of <span class="math inline">\(S(11)\)</span> is <span class="math display">\[\begin{aligned}
+\end{array}
+\]</span></p>
+<p>Thus, the Kaplan-Meier estimate of <span class="math inline">\(S(11)\)</span> is <span class="math display">\[
+\begin{aligned}
 \hat{S}(11) &amp;= \prod_{j:t_j\leq 11} \left( 1- \frac{s_j}{R_j} \right) =  \prod_{j=1}^{2} \left( 1- \frac{s_j}{R_j} \right)\\
 &amp;= \left(1-\frac{2}{10} \right) \left(1-\frac{1}{5} \right) = (0.8)(0.8)= 0.64. \\
-\end{aligned}\]</span></p>
+\end{aligned}
+\]</span></p>
+</div>
+<hr />
+<p><strong>Example. 4.3.6. Bodily Injury Claims.</strong> We consider again the Boston auto bodily injury claims data from <span class="citation">Derrig, Ostaszewski, and Rempala (<a href="#ref-derrig2001applications">2001</a>)</span> that was introduced in Example 4.1.11. In that example, we omitted the 17 claims that were censored by policy limits. Now, we include the full dataset and use the Kaplan-Meier product limit to estimate the survival function. This is given in Figure <a href="C-ModelSelection.html#fig:KMSurvival">4.14</a>.</p>
+<div class="figure" style="text-align: center"><span id="fig:KMSurvival"></span>
+<img src="LossDataAnalytics_files/figure-html/KMSurvival-1.png" alt="Kaplan-Meier Estimate of the Survival Function for Bodily Injury Claims" width="672" />
+<p class="caption">
+Figure 4.14: Kaplan-Meier Estimate of the Survival Function for Bodily Injury Claims
+</p>
+</div>
+<h5 style="text-align: center;">
+<a id="displayTextKaplanMeier.4f" href="javascript:togglecode('toggleKaplanMeier','displayTextKaplanMeier.4f');"><i><strong>Show R Code</strong></i></a>
+</h5>
+<div id="toggleKaplanMeier" style="display: none">
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(survival)                <span class="co"># for Surv(), survfit()</span>
+## KM estimate
+KM0 &lt;-<span class="st"> </span><span class="kw">survfit</span>(<span class="kw">Surv</span>(AmountPaid, UnCensored) <span class="op">~</span><span class="st"> </span><span class="dv">1</span>,  <span class="dt">type=</span><span class="st">&quot;kaplan-meier&quot;</span>, <span class="dt">data=</span>BIData)
+<span class="kw">plot</span>(KM0, <span class="dt">conf.int=</span><span class="ot">FALSE</span>, <span class="dt">xlab=</span><span class="st">&quot;x&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;Kaplan Meier Survival&quot;</span>)</code></pre></div>
 </div>
 <hr />
 </div>
@@ -1364,7 +1620,8 @@ j &amp; t_j &amp; s_j &amp; R_j \\
 \]</span></p>
 <p>Note that the above expression is a result of the Nelson-Äalen estimator of the cumulative hazard function <span class="math display">\[\hat{H}(x)=\sum_{j:t_j\leq x}  \frac{s_j}{R_j} \]</span> and the relationship between the survival function and cumulative hazard function, <span class="math inline">\(\hat{S}_{NA}(x)=e^{-\hat{H}(x)}\)</span>.</p>
 <hr />
-<p><strong>Example 4.3.6. Actuarial Exam Question.</strong> For observation <span class="math inline">\(i\)</span> of a survival study:</p>
+<p><strong>Example 4.3.7. Actuarial Exam Question.</strong></p>
+<p>For observation <span class="math inline">\(i\)</span> of a survival study:</p>
 <ul>
 <li><span class="math inline">\(d_i\)</span> is the left truncation point</li>
 <li><span class="math inline">\(x_i\)</span> is the observed value if not right censored</li>
@@ -1389,20 +1646,22 @@ u_i &amp; - &amp; 1.2 &amp; - &amp; 1.5 &amp; 1.6 &amp; - &amp; 1.7 &amp; - &amp
 </h5>
 <div id="toggleExampleSelect.3.6" style="display: none">
 <p><strong>Solution.</strong> Recall the risk set <span class="math inline">\(R_j = \sum_{i=1}^n \left\{ I(x_i \geq t_{j}) + I(u_i \geq t_{j}) - I(d_i \geq t_{j}) \right\}\)</span>. Then</p>
-<p><span class="math display">\[\begin{array}{ccccc}
+<p><span class="math display">\[
+\begin{array}{ccccc}
 \hline
 j &amp; t_j &amp; s_j &amp; R_j &amp; \hat{S}(t_j) \\
-\hline 
+\hline
 1  &amp; 0.9   &amp; 1   &amp; 10-3 = 7 &amp; 1-\frac{1}{7} = \frac{6}{7} \\
 2  &amp; 1.5   &amp; 1   &amp; 8-2 = 6  &amp; \frac{6}{7}\left( 1 - \frac{1}{6} \right) = \frac{5}{7}\\
 3  &amp; 1.7   &amp; 1   &amp; 5-0 = 5  &amp; \frac{5}{7}\left( 1 - \frac{1}{5} \right) = \frac{4}{7}\\
 4  &amp; 2.1   &amp; 2   &amp; 3        &amp; \frac{4}{7}\left( 1 - \frac{2}{3}\right) = \frac{4}{21}\\
 \hline
-\end{array}\]</span></p>
+\end{array}
+\]</span></p>
 <p>The Kaplan-Meier estimate is therefore <span class="math inline">\(\hat{S}(1.6) = \frac{5}{7}\)</span>.</p>
 </div>
 <hr />
-<p><strong>Example 4.3.7. Actuarial Exam Question. - Continued.</strong></p>
+<p><strong>Example 4.3.8. Actuarial Exam Question. - Continued.</strong></p>
 <ol style="list-style-type: lower-alpha">
 <li>Using the Nelson-Äalen estimator, calculate the probability that the loss on a policy exceeds 11, <span class="math inline">\(\hat{S}_{NA}(11)\)</span>.</li>
 <li>Calculate Greenwood’s approximation to the variance of the product-limit estimate <span class="math inline">\(\hat{S}(11)\)</span>.</li>
@@ -1412,7 +1671,8 @@ j &amp; t_j &amp; s_j &amp; R_j &amp; \hat{S}(t_j) \\
 </h5>
 <div id="toggleExampleSelect.3.7" style="display: none">
 <p><strong>Solution.</strong> As before, there are four event times (non-censored observations). For each time <span class="math inline">\(t_j\)</span>, we can calculate the number of events <span class="math inline">\(s_j\)</span> and the risk set <span class="math inline">\(R_j\)</span> as the following:</p>
-<p><span class="math display">\[\begin{array}{cccc}
+<p><span class="math display">\[
+\begin{array}{cccc}
 \hline
 j &amp; t_j &amp; s_j &amp; R_j \\
 \hline
@@ -1421,15 +1681,20 @@ j &amp; t_j &amp; s_j &amp; R_j \\
 3 &amp; 12 &amp; 1 &amp; 2 \\
 4 &amp; 15 &amp; 1 &amp; 1 \\
 \hline
-\end{array}\]</span></p>
-<p>The Nelson-Äalen estimate of <span class="math inline">\(S(11)\)</span> is <span class="math inline">\(\hat{S}_{NA}(11)=e^{-\hat{H}(11)} = e^{-0.4} = 0.67\)</span>, since <span class="math display">\[\begin{aligned}
+\end{array}
+\]</span></p>
+<p>The Nelson-Äalen estimate of <span class="math inline">\(S(11)\)</span> is <span class="math inline">\(\hat{S}_{NA}(11)=e^{-\hat{H}(11)} = e^{-0.4} = 0.67\)</span>, since <span class="math display">\[
+\begin{aligned}
 \hat{H}(11) &amp;= \sum_{j:t_j\leq 11} \frac{s_j}{R_j}  = \sum_{j=1}^{2} \frac{s_j}{R_j}  \\
 &amp;= \frac{2}{10} + \frac{1}{5}  = 0.2 + 0.2 = 0.4 .\\
-\end{aligned}\]</span></p>
-<p>From earlier work, the Kaplan-Meier estimate of <span class="math inline">\(S(11)\)</span> is <span class="math inline">\(\hat{S}(11) = 0.64\)</span>. Then Greenwood’s estimate of the variance of the product-limit estimate of <span class="math inline">\(S(11)\)</span> is <span class="math display">\[\begin{aligned}
-\widehat{Var}(\hat{S}(11)) &amp;= (\hat{S}(11))^2 \sum_{j:t_j\leq 11} \frac{s_j}{R_j(R_j-s_j)} 
+\end{aligned}
+\]</span></p>
+<p>From earlier work, the Kaplan-Meier estimate of <span class="math inline">\(S(11)\)</span> is <span class="math inline">\(\hat{S}(11) = 0.64\)</span>. Then Greenwood’s estimate of the variance of the product-limit estimate of <span class="math inline">\(S(11)\)</span> is <span class="math display">\[
+\begin{aligned}
+\widehat{Var}(\hat{S}(11)) &amp;= (\hat{S}(11))^2 \sum_{j:t_j\leq 11} \frac{s_j}{R_j(R_j-s_j)}
 &amp;= (0.64)^2 \left(\frac{2}{10(8)} + \frac{1}{5(4)} \right)  = 0.0307. \\
-\end{aligned}\]</span></p>
+\end{aligned}
+\]</span></p>
 </div>
 <hr />
 </div>
@@ -1560,8 +1825,8 @@ I(\hat{\theta} =\theta) &amp; \text{zero-one loss (for discrete probabilities)} 
 </h5>
 <div id="toggleExampleSelect.4.2" style="display: none">
 <p><em>Solution:</em> The posterior density, given an observation of 3 is</p>
-<p><span class="math display">\[\pi(\theta|3) =  \frac{f(3|\theta)\pi(\theta)}{\int_1^\infty f(3|\theta)\pi(\theta)d\theta} = 
-\frac{\frac{2\theta^2}{(3+\theta)^3}\frac{1}{\theta^2}}{\int_1^\infty 2(3+\theta)^{-3} d\theta} = 
+<p><span class="math display">\[\pi(\theta|3) =  \frac{f(3|\theta)\pi(\theta)}{\int_1^\infty f(3|\theta)\pi(\theta)d\theta} =
+\frac{\frac{2\theta^2}{(3+\theta)^3}\frac{1}{\theta^2}}{\int_1^\infty 2(3+\theta)^{-3} d\theta} =
 \frac{2(3+\theta)^{-3}}{\left. -(3+\theta)^{-2}\right|_1^\infty} = 32(3+\theta)^{-3}, \ \ \theta &gt; 1\]</span></p>
 <p>Then</p>
 <p><span class="math display">\[\Pr(\Theta&gt;2|3) = \int_2^\infty 32(3+\theta)^{-3}d\theta = \left. -16(3+\theta)^{-2} \right|_2^\infty = \frac{16}{25} = 0.64\]</span></p>
@@ -1628,7 +1893,8 @@ E(Y|X)
 \]</span></p>
 </div>
 <hr />
-<p><strong>Example 4.4.4. Actuarial Exam Question.</strong> You are given:</p>
+<p><strong>Example 4.4.4. Actuarial Exam Question.</strong></p>
+<p>You are given:</p>
 <ol style="list-style-type: lower-roman">
 <li>Losses on a company’s insurance policies follow a Pareto distribution with probability density function: <span class="math display">\[
 f(x|\theta) = \frac{\theta}{(x+\theta)^2}, \ \ 0 &lt; x &lt; \infty
@@ -1670,7 +1936,8 @@ f(x|\theta) = \frac{\theta}{(x+\theta)^2}, \ \ 0 &lt; x &lt; \infty
 \]</span></p>
 </div>
 <hr />
-<p><strong>Example 4.4.5. Actuarial Exam Question.</strong> You are given:</p>
+<p><strong>Example 4.4.5. Actuarial Exam Question.</strong></p>
+<p>You are given:</p>
 <ol style="list-style-type: lower-roman">
 <li>The probability that an insured will have at least one loss during any year is <span class="math inline">\(p\)</span>.</li>
 <li>The prior distribution for <span class="math inline">\(p\)</span> is uniform on <span class="math inline">\([0, 0.5]\)</span>.</li>
@@ -1681,15 +1948,19 @@ f(x|\theta) = \frac{\theta}{(x+\theta)^2}, \ \ 0 &lt; x &lt; \infty
 <a id="displayTextExampleSelect.4.5" href="javascript:toggleEX('toggleExampleSelect.4.5','displayTextExampleSelect.4.5');"><i><strong>Show Example Solution</strong></i></a>
 </h5>
 <div id="toggleExampleSelect.4.5" style="display: none">
-<p><strong>Solution.</strong> The posterior probability density is <span class="math display">\[\begin{aligned}
+<p><strong>Solution.</strong> The posterior probability density is <span class="math display">\[
+\begin{aligned}
 \pi(p|1,1,1,1,1,1,1,1) &amp;\propto \Pr(1,1,1,1,1,1,1,1|p)\ \pi(p) = p^8(2) \propto p^8 \\ 
 \Rightarrow \pi(p|1,1,1,1,1,1,1,1) &amp;= \frac{p^8}{\int_0^5 p^8 dp} = \frac{p^8}{(0.5^9)/9} = 9(0.5^{-9})p^8
-\end{aligned}\]</span></p>
+\end{aligned}
+\]</span></p>
 <p>Thus, the posterior probability that the insured will have at least one loss during Year 9 is</p>
-<p><span class="math display">\[\begin{aligned}
+<p><span class="math display">\[
+\begin{aligned}
 \Pr(X_9=1|1,1,1,1,1,1,1,1) &amp;= \int_0^5 \Pr(X_9=1|p) \pi(p|1,1,1,1,1,1,1,1) dp \\
 &amp;= \int_0^5 p(9)(0.5^{-9})p^8 dp = 9(0.5^{-9})(0.5^{10})/10 = 0.45
-\end{aligned}\]</span></p>
+\end{aligned}
+\]</span></p>
 </div>
 <hr />
 <p><strong>Example 4.4.6. Actuarial Exam Question.</strong> You are given:</p>
@@ -1702,7 +1973,7 @@ f(x|\theta) = \frac{\theta}{(x+\theta)^2}, \ \ 0 &lt; x &lt; \infty
 \hline
 \text{I} &amp; 0.7 &amp; 0.1 \\
 \text{II} &amp; 0.2 &amp; 0.2 \\
-\text{III} &amp; 0.1 &amp; 0.4 \\ 
+\text{III} &amp; 0.1 &amp; 0.4 \\
 \hline
 \end{array}
 }
@@ -1714,23 +1985,31 @@ f(x|\theta) = \frac{\theta}{(x+\theta)^2}, \ \ 0 &lt; x &lt; \infty
 </h5>
 <div id="toggleExampleSelect.4.6" style="display: none">
 <p><strong>Solution.</strong> The probabilities are from a binomial distribution with 6 trials in which 3 successes were observed.</p>
-<p><span class="math display">\[\begin{aligned} 
+<p><span class="math display">\[
+\begin{aligned} 
 \Pr(3|\text{I}) &amp;= {6 \choose 3} (0.1^3)(0.9^3) = 0.01458 \\
 \Pr(3|\text{II}) &amp;= {6 \choose 3} (0.2^3)(0.8^3) = 0.08192 \\
 \Pr(3|\text{III}) &amp;= {6 \choose 3} (0.4^3)(0.6^3) = 0.27648
-\end{aligned}\]</span></p>
-<p>The probability of observing three successes is <span class="math display">\[\begin{aligned} \Pr(3) &amp;= \Pr(3|\text{I})\Pr(\text{I}) + \Pr(3|\text{II})\Pr(\text{II}) + \Pr(3|\text{III})\Pr(\text{III}) \\
+\end{aligned}
+\]</span></p>
+<p>The probability of observing three successes is <span class="math display">\[
+\begin{aligned} \Pr(3) &amp;= \Pr(3|\text{I})\Pr(\text{I}) + \Pr(3|\text{II})\Pr(\text{II}) + \Pr(3|\text{III})\Pr(\text{III}) \\
 &amp;=  0.7(0.01458) + 0.2(0.08192) + 0.1(0.27648) = 0.054238
-\end{aligned}\]</span></p>
-<p>The three posterior probabilities are <span class="math display">\[\begin{aligned}
+\end{aligned}
+\]</span></p>
+<p>The three posterior probabilities are <span class="math display">\[
+\begin{aligned}
 \Pr(\text{I}|3) &amp;= \frac{\Pr(3|\text{I})\Pr(\text{I})}{\Pr(3)} = \frac{0.7(0.01458)}{0.054238} = 0.18817 \\
 \Pr(\text{II}|3) &amp;= \frac{\Pr(3|\text{II})\Pr(\text{II})}{\Pr(3)} = \frac{0.2(0.08192)}{0.054238} = 0.30208 \\
 \Pr(\text{III}|3) &amp;= \frac{\Pr(3|\text{III})\Pr(\text{III})}{\Pr(3)} = \frac{0.1(0.27648)}{0.054238} = 0.50975 
-\end{aligned}\]</span></p>
-<p>The posterior probability of a claim is then <span class="math display">\[\begin{aligned} 
+\end{aligned}
+\]</span></p>
+<p>The posterior probability of a claim is then <span class="math display">\[
+\begin{aligned} 
 \Pr(\text{claim} | 3) &amp;= \Pr(\text{claim}|\text{I})\Pr(\text{I} | 3) + \Pr(\text{claim} | \text{II})\Pr(\text{II} | 3) + \Pr(\text{claim} | \text{III}) \Pr(\text{III} | 3) \\ 
 &amp;= 0.1(0.18817) + 0.2(0.30208) + 0.4(0.50975) = 0.28313
-\end{aligned}\]</span></p>
+\end{aligned}
+\]</span></p>
 </div>
 <hr />
 </div>
@@ -1739,25 +2018,30 @@ f(x|\theta) = \frac{\theta}{(x+\theta)^2}, \ \ 0 &lt; x &lt; \infty
 <h3><span class="header-section-number">4.4.4</span> Conjugate Distributions</h3>
 <p>In the Bayesian framework, the key to statistical inference is understanding the posterior distribution of the parameters. As described in Section <a href="C-ModelSelection.html#S:IntroBayes">4.4.1</a>, modern data analysis using Bayesian methods utilize computationally intensive techniques such as <a href="#" class="tooltip" style="color:green"><em>MCMC</em><span style="font-size:8pt"> Markov Chain Monte Carlo</span></a> simulation. Another approach for computing posterior distributions are based on <strong>conjugate distributions.</strong> Although this approach is available only for a limited number of distributions, it has the appeal that it provides closed-form expressions for the distributions, allowing for easy interpretations of results.</p>
 <p>To relate the prior and posterior distributions of the parameters, we have the relationship</p>
-<p><span class="math display">\[\begin{array}{ccc}
+<p><span class="math display">\[
+\begin{array}{ccc}
 \pi(\boldsymbol \theta | x) &amp; = &amp; \frac{f(x|\boldsymbol \theta )\pi(\boldsymbol \theta)}{f(x)}  \\
  &amp; \propto  &amp; f(x|\boldsymbol \theta ) \pi(\boldsymbol \theta) \\
 \text{Posterior} &amp; \text{is proportional to} &amp; \text{likelihood} \times \text{prior} .
-\end{array}\]</span></p>
+\end{array}
+\]</span></p>
 <p>For conjugate distributions, the posterior and the prior come from the same family of distributions. The following illustration looks at the Poisson-gamma special case, the most well-known in actuarial applications.</p>
 <p><strong>Special Case – Poisson-Gamma - Continued.</strong> Assume a Poisson(<span class="math inline">\(\lambda\)</span>) model distribution and that <span class="math inline">\(\lambda\)</span> follows a gamma(<span class="math inline">\(\alpha, \theta\)</span>) prior distribution. Then, the posterior distribution of <span class="math inline">\(\lambda\)</span> given the data follows a gamma distribution with new parameters <span class="math inline">\(\alpha_{post} = \sum_i x_i + \alpha\)</span> and <span class="math inline">\(\theta_{post} = 1/(n + 1/\theta)\)</span>.</p>
 <h5 style="text-align: center;">
 <a id="displayTextExampleConj.4f" href="javascript:toggleEX('toggleExampleConj','displayTextExampleConj.4f');"><i><strong>Show Special Case Details</strong></i></a>
 </h5>
 <div id="toggleExampleConj" style="display: none">
-<p><strong>Special Case – Poisson-Gamma - Continued.</strong> The model distribution is <span class="math display">\[f(\mathbf{x} | \lambda) = \prod_{i=1}^n \frac{\lambda^{x_i} e^{-\lambda}}{x_i!} .\]</span> The prior distribution is <span class="math display">\[\pi(\lambda) = \frac{\left(\lambda/\theta\right)^{\alpha} \exp(-\lambda/\theta)}{\lambda \Gamma(\alpha)}.\]</span> Thus, the posterior distribution is proportional to <span class="math display">\[\begin{aligned}
+<p><strong>Special Case – Poisson-Gamma - Continued.</strong> The model distribution is <span class="math display">\[f(\mathbf{x} | \lambda) = \prod_{i=1}^n \frac{\lambda^{x_i} e^{-\lambda}}{x_i!} .\]</span> The prior distribution is <span class="math display">\[\pi(\lambda) = \frac{\left(\lambda/\theta\right)^{\alpha} \exp(-\lambda/\theta)}{\lambda \Gamma(\alpha)}.\]</span> Thus, the posterior distribution is proportional to <span class="math display">\[
+\begin{aligned}
 \pi(\lambda | \mathbf{x}) &amp;\propto f(\mathbf{x}|\theta ) \pi(\lambda) \\
 &amp;= C \lambda^{\sum_i x_i + \alpha -1} \exp(-\lambda(n+1/\theta))
-\end{aligned}\]</span></p>
+\end{aligned}
+\]</span></p>
 <p>where <span class="math inline">\(C\)</span> is a constant. We recognize this to be a gamma distribution with new parameters <span class="math inline">\(\alpha_{post} = \sum_i x_i + \alpha\)</span> and <span class="math inline">\(\theta_{post} = 1/(n + 1/\theta)\)</span>. Thus, the gamma distribution is a conjugate prior for the Poisson model distribution.</p>
 </div>
 <hr />
-<p><strong>Example 4.4.7. Actuarial Exam Question.</strong> You are given:</p>
+<p><strong>Example 4.4.7. Actuarial Exam Question.</strong></p>
+<p>You are given:</p>
 <ol style="list-style-type: lower-roman">
 <li>The conditional distribution of the number of claims per policyholder is Poisson with mean <span class="math inline">\(\lambda\)</span>.</li>
 <li>The variable <span class="math inline">\(\lambda\)</span> has a gamma distribution with parameters <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\theta\)</span>.</li>
@@ -1769,10 +2053,14 @@ f(x|\theta) = \frac{\theta}{(x+\theta)^2}, \ \ 0 &lt; x &lt; \infty
 <a id="displayTextExampleSelect.4.7" href="javascript:toggleEX('toggleExampleSelect.4.7','displayTextExampleSelect.4.7');"><i><strong>Show Example Solution</strong></i></a>
 </h5>
 <div id="toggleExampleSelect.4.7" style="display: none">
-<p><strong>Solution.</strong> Since the conditional distribution of the number of claims per policyholder, <span class="math inline">\(E(X|\lambda)=Var(X|\lambda)=\lambda\)</span>, the Bayes prediction is <span class="math display">\[\begin{aligned}
+<p><strong>Solution.</strong></p>
+<p>Since the conditional distribution of the number of claims per policyholder, <span class="math inline">\(E(X|\lambda)=Var(X|\lambda)=\lambda\)</span>, the Bayes prediction is</p>
+<p><span class="math display">\[
+\begin{aligned}
 \mathrm{E}(X_2|X_1)
 &amp;= \int \mathrm{E}(X_2|\lambda) \pi(\lambda|X_1) d\lambda = \alpha_{new} \theta_{new}
-\end{aligned}\]</span> because the posterior distribution is gamma with parameters <span class="math inline">\(\alpha_{new}\)</span> and <span class="math inline">\(\theta_{new}\)</span>.</p>
+\end{aligned}
+\]</span> because the posterior distribution is gamma with parameters <span class="math inline">\(\alpha_{new}\)</span> and <span class="math inline">\(\theta_{new}\)</span>.</p>
 <p>For year 1, we have <span class="math display">\[
 0.15 = (X_1 + \alpha) \times \frac{1}{n+1/\theta} = (1 + \alpha) \times \frac{1}{1+1/\theta},
 \]</span> so <span class="math inline">\(0.15(1+1/\theta)= 1 + \alpha.\)</span> For year 2, we have <span class="math display">\[
@@ -1787,12 +2075,12 @@ f(x|\theta) = \frac{\theta}{(x+\theta)^2}, \ \ 0 &lt; x &lt; \infty
 <li>The uncertainty of parameters is summarized using a beta distribution and the outcomes have a (conditional on the parameter) binomial distribution.</li>
 <li>The uncertainty of parameters is summarized using a normal distribution and the outcomes are conditionally normally distributed.</li>
 </ul>
-<p>Additional results on conjugate distributions are summarized in the Appendix Chapter <a href="C-AppB.html#C:AppB">16</a>.</p>
+<p>Additional results on conjugate distributions are summarized in the Appendix Section <a href="C-AppB.html#S:AppConjugateDistributions">16.3</a>.</p>
 </div>
 </div>
 <div id="MS:further-reading-and-resources" class="section level2">
 <h2><span class="header-section-number">4.5</span> Further Resources and Contributors</h2>
-<div id="exercises-2" class="section level4 unnumbered">
+<div id="exercises-1" class="section level4 unnumbered">
 <h4>Exercises</h4>
 <p>Here are a set of exercises that guide the viewer through some of the theoretical foundations of <strong>Loss Data Analytics</strong>. Each tutorial is based on one or more questions from the professional actuarial examinations, typically the Society of Actuaries Exam C.</p>
 <p style="text-align: center;">
@@ -1803,220 +2091,28 @@ f(x|\theta) = \frac{\theta}{(x+\theta)^2}, \ \ 0 &lt; x &lt; \infty
 <h4>Contributors</h4>
 <ul>
 <li><strong>Edward W. (Jed) Frees</strong> and <strong>Lisa Gao</strong>, University of Wisconsin-Madison, are the principal authors of the initial version of this chapter. Email: <a href="mailto:jfrees@bus.wisc.edu">jfrees@bus.wisc.edu</a> for chapter comments and suggested improvements.</li>
+<li>Chapter reviewers include: Andrew Kwon-Nakamura, Hirokazu (Iwahiro) Iwasawa, Eren Dodd.</li>
 </ul>
 
-</div>
-</div>
-<div id="technical-supplement-a.-gini-statistic" class="section level2 unnumbered">
-<h2>Technical Supplement A. Gini Statistic</h2>
-<div id="ts-a.1.-the-classic-lorenz-curve" class="section level3 unnumbered">
-<h3>TS A.1. The Classic Lorenz Curve</h3>
-<p>In welfare economics, it is common to compare distributions via the <strong>Lorenz curve</strong>, developed by Max Otto Lorenz <span class="citation">(Lorenz <a href="#ref-lorenz1905methods">1905</a>)</span>. A Lorenz curve is a graph of the proportion of a population on the horizontal axis and a distribution function of interest on the vertical axis. It is typically used to represent income distributions. When the income distribution is perfectly aligned with the population distribution, the Lorenz curve results in a 45 degree line that is known as the <em>line of equality</em>. Because the graph compares two distribution functions, one can also think of a Lorenz curve as a type of <span class="math inline">\(pp\)</span> plot that was introduced in Section <a href="C-ModelSelection.html#S:MS:GraphComparison">4.1.2.1</a>. The area between the Lorenz curve and the line of equality is a measure of the discrepancy between the income and population distributions. Two times this area is known as the <strong>Gini index</strong>, introduced by Corrado Gini in 1912.</p>
-<p><strong>Example – Classic Lorenz Curve.</strong> For an insurance example, Figure <a href="C-ModelSelection.html#fig:ClassicLorenz">4.12</a> shows a distribution of insurance losses. This figure is based on a random sample of 2000 losses. The left-hand panel shows a right-skewed histogram of losses. The right-hand panel provides the corresponding Lorenz curve, showing again a skewed distribution. For example, the arrow marks the point where 60 percent of the policyholders have 30 percent of losses. The 45 degree line is the line of equality; if each policyholder has the same loss, then the loss distribution would be at this line. The Gini index, twice the area between the Lorenz curve and the 45 degree line, is 37.6 percent for this data set.</p>
-<div class="figure" style="text-align: center"><span id="fig:ClassicLorenz"></span>
-<img src="LossDataAnalytics_files/figure-html/ClassicLorenz-1.png" alt="Distribution of insurance losses." width="90%" />
-<p class="caption">
-Figure 4.12: Distribution of insurance losses.
-</p>
-</div>
-</div>
-<div id="ts-a.2.-ordered-lorenz-curve-and-the-gini-index" class="section level3 unnumbered">
-<h3>TS A.2. Ordered Lorenz Curve and the Gini Index</h3>
-<p>We now introduce a modification of the classic Lorenz curve and Gini statistic that is useful in insurance applications. Specifically, we introduce an <em>ordered</em> Lorenz curve which is a graph of the distribution of losses versus premiums, where both losses and premiums are ordered by relativities. Intuitively, the relativities point towards aspects of the comparison where there is a mismatch between losses and premiums. To make the ideas concrete, we first provide some notation. We will consider <span class="math inline">\(i=1, \ldots, n\)</span> policies. For the <span class="math inline">\(i\)</span>th policy, let</p>
-<ul>
-<li><span class="math inline">\(y_i\)</span> denote the insurance loss,</li>
-<li><span class="math inline">\(\mathbf{x}_i\)</span> be the set of policyholder characteristics known to the analyst,</li>
-<li><span class="math inline">\(P_i=P(\mathbf{x}_i)\)</span> be the associated premium that is a function of <span class="math inline">\(\mathbf{x}_i\)</span>,</li>
-<li><span class="math inline">\(S_i = S(\mathbf{x}_i)\)</span> be an insurance score under consideration for rate changes, and</li>
-<li><span class="math inline">\(R_i = R(\mathbf{x}_i)=S(\mathbf{x}_i)/P(\mathbf{x}_i)\)</span> is the relativity, or relative premium.</li>
-</ul>
-<p>Thus, the set of information used to calculate the ordered Lorenz curve for the <span class="math inline">\(i\)</span>th policy is <span class="math inline">\((y_i, P_i, S_i, R_i)\)</span>.</p>
-<div id="ordered-lorenz-curve" class="section level4 unnumbered">
-<h4>Ordered Lorenz Curve</h4>
-We now sort the set of policies based on relativities (from smallest to largest) and compute the premium and loss distributions. Using notation, the premium distribution is
-<span class="math display" id="eq:EmpPremDF">\[\begin{equation}
-\hat{F}_P(s) =  \frac{ \sum_{i=1}^n
-P(\mathbf{x}_i) \mathrm{I}(R_i \leq s) }{\sum_{i=1}^n P(\mathbf{x}_i)} ,\tag{4.7}
-\end{equation}\]</span>
-and the loss distribution is
-<span class="math display" id="eq:EmpLossDF">\[\begin{equation}
-\hat{F}_{L}(s) =  \frac{ \sum_{i=1}^n y_i \mathrm{I}(R_i
-\leq s) }{\sum_{i=1}^n y_i} ,\tag{4.8}
-\end{equation}\]</span>
-<p>where <span class="math inline">\(\mathrm{I}(\cdot)\)</span> is the indicator function, returning a 1 if the event is true and zero otherwise. The graph <span class="math inline">\(\left(\hat{F}_P(s),\hat{F}_{L}(s) \right)\)</span> is an <strong>ordered Lorenz curve</strong>.</p>
-<p>The classic Lorenz curve shows the proportion of policyholders on the horizontal axis and the loss distribution function on the vertical axis. The ordered Lorenz curve extends the classical Lorenz curve in two ways, (1) through the ordering of risks and prices by relativities and (2) by allowing prices to vary by observation. We summarize the ordered Lorenz curve in the same way as the classic Lorenz curve using a Gini index, defined as twice the area between the curve and a 45 degree line. The analyst seeks ordered Lorenz curves that approach passing through the southeast corner (1,0); these have greater separation between the loss and premium distributions and therefore larger Gini indices.</p>
-<p><strong>Example – Loss Distribution.</strong></p>
-<p>Suppose we have <span class="math inline">\(n=5\)</span> policyholders with experience as:</p>
-<table>
-<thead>
-<tr class="header">
-<th align="left">Variable</th>
-<th align="center"><span class="math inline">\(i\)</span></th>
-<th>1</th>
-<th>2</th>
-<th>3</th>
-<th>4</th>
-<th>5</th>
-<th>Sum</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">Loss</td>
-<td align="center"><span class="math inline">\(y_i\)</span></td>
-<td>5</td>
-<td>5</td>
-<td>5</td>
-<td>4</td>
-<td>6</td>
-<td>25</td>
-</tr>
-<tr class="even">
-<td align="left">Premium</td>
-<td align="center"><span class="math inline">\(P(\mathbf{x}_i)\)</span></td>
-<td>4</td>
-<td>2</td>
-<td>6</td>
-<td>5</td>
-<td>8</td>
-<td>25</td>
-</tr>
-<tr class="odd">
-<td align="left">Relativity</td>
-<td align="center"><span class="math inline">\(R(\mathbf{x}_i)\)</span></td>
-<td>5</td>
-<td>4</td>
-<td>3</td>
-<td>2</td>
-<td>1</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<p>Determine the Lorenz curve and the ordered Lorenz curve.</p>
-<h5 style="text-align: center;">
-<a id="displayLorenz.1" href="javascript:toggleEX('toggleLorenz','displayLorenz.1');"><i><strong>Show Example Solution</strong></i></a>
-</h5>
-<div id="toggleLorenz" style="display: none">
-<hr />
-<div class="figure" style="text-align: center"><span id="fig:LorenzVsOrdered"></span>
-<img src="LossDataAnalytics_files/figure-html/LorenzVsOrdered-1.png" alt="Lorenz versus Ordered Lorenz Curve" width="90%" />
-<p class="caption">
-Figure 4.13: Lorenz versus Ordered Lorenz Curve
-</p>
-</div>
-<p>Figure <a href="C-ModelSelection.html#fig:LorenzVsOrdered">4.13</a> compares the Lorenz curve to the ordered version based on this data. The left-hand panel shows the Lorenz curve. The horizontal axis is the cumulative proportion of policyholders (0, 0.2, 0.4, and so forth) and the vertical axis is the cumulative proportion of losses (0, 4/25, 9/25, and so forth). This figure shows little separation between the distributions of losses and policyholders.</p>
-<p>The right-hand panel shows the ordered Lorenz curve. Because observations are sorted by relativities, the first point after the origin (reading from left to right) is (8/25, 6/25). The second point is (13/25, 10/25), with the pattern continuing. For the ordered Lorenz curve, the horizontal axis uses premium weights, the vertical axis uses loss weights, and both axes are ordered by relativities. From the figure, we see that there is greater separation between losses and premiums when viewed through this relativity.</p>
-<hr />
-</div>
-</div>
-<div id="gini-index" class="section level4 unnumbered">
-<h4>Gini Index</h4>
-Specifically, the Gini index can be calculated as follows. Suppose that the empirical ordered Lorenz curve is given by <span class="math inline">\(\{ (a_0=0, b_0=0), (a_1, b_1), \ldots,\)</span> <span class="math inline">\((a_n=1, b_n=1) \}\)</span> for a sample of <span class="math inline">\(n\)</span> observations. Here, we use <span class="math inline">\(a_j = \hat{F}_P(R_j)\)</span> and <span class="math inline">\(b_j = \hat{F}_{L}(R_j)\)</span>. Then, the empirical Gini index is
-<span class="math display" id="eq:GiniDefn">\[\begin{eqnarray}
-\widehat{Gini} &amp;=&amp;  2\sum_{j=0}^{n-1} (a_{j+1} - a_j) \left \{
-\frac{a_{j+1}+a_j}{2} - \frac{b_{j+1}+b_j}{2} \right\} \nonumber \\
-&amp;=&amp; 1 - \sum_{j=0}^{n-1} (a_{j+1} - a_j) (b_{j+1}+b_j) .\tag{4.9}
-\end{eqnarray}\]</span>
-<p><strong>Example – Loss Distribution: Continued.</strong> In the figure, the Gini index for the left-hand panel is 5.6%. In contrast, the Gini index for the right-hand panel is 14.9%. <span class="math inline">\(~~\Box\)</span></p>
-</div>
-</div>
-<div id="ts-a.3.-out-of-sample-validation" class="section level3 unnumbered">
-<h3>TS A.3. Out-of-Sample Validation</h3>
-<p>The Gini statistics based on an ordered Lorenz curve can be used for out-of-sample validation. The procedure follows:</p>
-<ol style="list-style-type: decimal">
-<li>Use an in-sample data set to estimate several competing models.</li>
-<li>Designate an out-of-sample, or validation, data set of the form <span class="math inline">\(\{(y_i, \mathbf{x}_i), i=1,\ldots,n\}\)</span>.</li>
-<li>Establish one of the models as the base model. Use this estimated model and explanatory variables from the validation sample to form premiums of the form <span class="math inline">\(P(\mathbf{x}_i)\)</span>.</li>
-<li>Pick one of the competing models. Use this estimated model and explanatory variables from the validation sample to form scores of the form <span class="math inline">\(S(\mathbf{x}_i)\)</span>.</li>
-<li>From the premiums and scores, develop relativities <span class="math inline">\(R_i =S(\mathbf{x}_i)/P(\mathbf{x}_i)\)</span>.</li>
-<li>Use the validation sample outcomes <span class="math inline">\(y_i\)</span> to compute the Gini statistic.</li>
-</ol>
-<p><strong>Example – Out-of-Sample Validation</strong></p>
-<p>Suppose that we have experience from 25 states and that, for each state, we have available 500 observations that can be used to predict future losses. For simplicity, assume that the analyst knows that these losses were generated by a gamma distribution with a common shape parameter equal to 5. Unknown to the analyst, the scale parameters vary by state, from a low of 20 to 66. To compute base premiums, the analyst assumes a scale parameter that is common to all states that is to be estimated from the data. As an alternative, the analyst allows the scale parameters to vary by state and will again use the data to estimate these parameters.</p>
-<p>An out of sample validation set of 200 from each state is available. Determine the ordered Lorenz curve and the corresponding Gini statistic to compare the two rate procedures.</p>
-<h5 style="text-align: center;">
-<a id="displayLorenzeExample" href="javascript:toggleEX('toggleExampleLor','displayLorenzeExample');"><i><strong>Show Example Solution</strong></i></a>
-</h5>
-<div id="toggleExampleLor" style="display: none">
-<hr />
-<p>Recall for the gamma distribution that the mean equals the shape times the scale or, 5 times the scale parameter, for our example. So, you can check that the maximum likelihood estimates are simple the average experience.</p>
-<p>For our base premium, we assume a common distribution among all states. For these simulated data, the average is <strong>P</strong>=219.96. You can think of this common premium as based on a <em>community rating</em> principle.</p>
-<p>As an alternative, we use averages that are state-specific; these averages form our scores <strong>S</strong>. Because this illustration uses means that vary by states, we anticipate this alternative rating procedure to be preferred to the community rating procedure.</p>
-<p>Out of sample claims were generated from the same gamma distribution, with 200 observations for each state. The following <code>R</code> code shows how to calculate the ordered Lorenz curve.</p>
-<h5 style="text-align: center;">
-<a id="displayGiniCode.4" href="javascript:togglecode('toggleGiniCode.4','displayGiniCode.4');"><i><strong>Show R Code</strong></i></a>
-</h5>
-<div id="toggleGiniCode.4" style="display: none">
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">GiniCalc &lt;-<span class="st"> </span><span class="cf">function</span>(Claims,PIx,Sx){
-   y   &lt;-<span class="st"> </span>Claims<span class="op">/</span><span class="kw">mean</span>(Claims)
-   PIx &lt;-<span class="st"> </span>PIx<span class="op">/</span><span class="kw">mean</span>(PIx)
-   Sx  &lt;-<span class="st"> </span>Sx<span class="op">/</span><span class="kw">mean</span>(Sx)
-   Rx  &lt;-<span class="st"> </span>Sx<span class="op">/</span>PIx       <span class="co">#Relativity</span>
-   n   &lt;-<span class="st"> </span><span class="kw">length</span>(PIx)
-   origorder &lt;-<span class="st"> </span>(<span class="dv">1</span><span class="op">:</span>n)
-   PSRmat &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="kw">cbind</span>(PIx,Sx,Rx,y,origorder))
-   PSRmatOrder &lt;-<span class="st"> </span>PSRmat[<span class="kw">order</span>(Rx),]  <span class="co">#  Sort by relativity</span>
-<span class="co">#  PREMIUM, LOSS DFs</span>
-   DFPrem &lt;-<span class="st"> </span><span class="kw">cumsum</span>(PSRmatOrder<span class="op">$</span>PIx)<span class="op">/</span>n
-   DFLoss &lt;-<span class="st"> </span><span class="kw">cumsum</span>(PSRmatOrder<span class="op">$</span>y)<span class="op">/</span>n
-<span class="co">#  GINI CALC</span>
-   DFPremdiff &lt;-<span class="st"> </span>DFPrem[<span class="dv">2</span><span class="op">:</span>n]<span class="op">-</span>DFPrem[<span class="dv">1</span><span class="op">:</span>(n<span class="op">-</span><span class="dv">1</span>)]
-   DFPremavg  &lt;-<span class="st"> </span>(DFPrem[<span class="dv">2</span><span class="op">:</span>n]<span class="op">+</span>DFPrem[<span class="dv">1</span><span class="op">:</span>(n<span class="op">-</span><span class="dv">1</span>)])<span class="op">/</span><span class="dv">2</span>
-   DFLossavg  &lt;-<span class="st"> </span>(DFLoss[<span class="dv">2</span><span class="op">:</span>n]<span class="op">+</span>DFLoss[<span class="dv">1</span><span class="op">:</span>(n<span class="op">-</span><span class="dv">1</span>)])<span class="op">/</span><span class="dv">2</span>
-   (Gini &lt;-<span class="st"> </span><span class="dv">2</span><span class="op">*</span><span class="kw">crossprod</span>(DFPremdiff,DFPremavg<span class="op">-</span>DFLossavg)) 
-<span class="co">#  STANDARD ERROR CALC</span>
-   h1 &lt;-<span class="st"> </span><span class="fl">0.5</span><span class="op">*</span><span class="st"> </span>(PSRmatOrder<span class="op">$</span>PIx<span class="op">*</span>DFLoss <span class="op">+</span><span class="st"> </span>PSRmatOrder<span class="op">$</span>y<span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>DFPrem) ) <span class="co">#  PROJECTION CALC</span>
-   h1bar   &lt;-<span class="st"> </span><span class="kw">mean</span>(h1) 
-   sigmah  &lt;-<span class="st"> </span><span class="kw">var</span>(h1)
-   sigmahy &lt;-<span class="st"> </span><span class="kw">cov</span>(h1,PSRmatOrder<span class="op">$</span>y)
-   sigmahpi &lt;-<span class="st"> </span><span class="kw">cov</span>(h1,PSRmatOrder<span class="op">$</span>PIx)
-   sigmay  &lt;-<span class="st"> </span><span class="kw">var</span>(y)
-   sigmapi &lt;-<span class="st"> </span><span class="kw">var</span>(PIx)
-   sigmaypi &lt;-<span class="st"> </span><span class="kw">cov</span>(PSRmatOrder<span class="op">$</span>y,PSRmatOrder<span class="op">$</span>PIx)
-   temp1=<span class="st"> </span><span class="dv">4</span><span class="op">*</span>sigmah <span class="op">+</span><span class="st"> </span>h1bar<span class="op">^</span><span class="dv">2</span><span class="op">*</span>sigmay <span class="op">+</span><span class="st"> </span>h1bar<span class="op">^</span><span class="dv">2</span><span class="op">*</span>sigmapi <span class="op">-</span>
-<span class="st">           </span><span class="dv">4</span><span class="op">*</span>h1bar<span class="op">*</span>sigmahy <span class="op">-</span><span class="st"> </span><span class="dv">4</span><span class="op">*</span>h1bar<span class="op">*</span>sigmahpi <span class="op">+</span>
-<span class="st">           </span><span class="dv">2</span><span class="op">*</span>h1bar<span class="op">^</span><span class="dv">2</span><span class="op">*</span>sigmaypi
-   sigmaGini  &lt;-<span class="st"> </span><span class="dv">4</span><span class="op">*</span>temp1
-   stderrGini &lt;-<span class="st"> </span><span class="kw">sqrt</span>(sigmaGini<span class="op">/</span>n) 
-   check &lt;-<span class="st"> </span><span class="kw">var</span>(PIx<span class="op">-</span>Sx)
-   Gini  &lt;-<span class="st"> </span>Gini<span class="op">*</span>(check <span class="op">!=</span><span class="st"> </span><span class="dv">0</span>)
-   stderrGini &lt;-<span class="st"> </span>stderrGini<span class="op">*</span>(check <span class="op">!=</span><span class="st"> </span><span class="dv">0</span>)
-   Retmat &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="kw">cbind</span>(DFPrem,DFLoss)) 
-   RetmatGini&lt;-<span class="kw">list</span>(Retmat,Gini,stderrGini)
-     <span class="kw">return</span>(RetmatGini)
-}
-temp=<span class="kw">GiniCalc</span>(<span class="dt">Claims=</span>Outy,<span class="dt">PIx=</span>Flatpred,<span class="dt">Sx=</span>Predvec)
-Results=temp[[<span class="dv">1</span>]]
-Gini &lt;-<span class="st"> </span>temp[[<span class="dv">2</span>]];<span class="co">#Gini</span>
-stderrorGini &lt;-<span class="st"> </span>temp[[<span class="dv">3</span>]];<span class="co">#Standard Error</span></code></pre></div>
-</div>
-<p><img src="LossDataAnalytics_files/figure-html/unnamed-chunk-6-1.png" width="50%" style="display: block; margin: auto;" /></p>
-<p>For these data, the Gini index is 0.187 with a standard error equal to 0.00381. This suggests that the state-specific alternative procedure is strongly preferred to the base community rating procedure.</p>
-<hr />
-</div>
-<div id="discussion" class="section level4 unnumbered">
-<h4>Discussion</h4>
-<p>In insurance claims modeling, standard out-of-sample validation measures are not the most informative due to the high proportions of zeros (corresponding to no claim) and the skewed fat-tailed distribution of the positive values. In contrast, the Gini index works well with many zeros (see the demonstration in <span class="citation">(Frees, Meyers, and Cummings <a href="#ref-frees2014insurance">2014</a>)</span>). Moreover, the Gini index can be motivated by the economics of insurance. Intuitively, the Gini index measures the negative covariance between a policy’s “profit” (<span class="math inline">\(P-y\)</span>, premium minus loss) and the rank of the relativity (<strong>R</strong>, score divided by premium). That is, the close approximation</p>
-<p><span class="math display">\[\widehat{Gini} \approx - \frac{2}{n} \widehat{Cov} \left\{ (P-y), rank(R) \right\} .\]</span></p>
-<p>This observation leads an insurer to seek a score and resulting relativity that produces to a large Gini index. In this way, the Gini index and associated ordered Lorenz curve are useful for identifying profitable blocks of insurance business.</p>
-<p>Unlike classical measures of association, the Gini index assumes that a premium base <strong>P</strong> is currently in place and seeks to assess vulnerabilities of this structure. This approach is more akin to hypothesis testing (when compared to goodness of fit) where one identifies a “null hypothesis” as the current state of the world and uses decision-making criteria/statistics to compare this with an “alternative hypothesis.”</p>
-<p>Properties of the insurance version of the Gini statistic were developed by <span class="citation">(Frees, Meyers, and Cummings <a href="#ref-frees2011summarizing">2011</a>)</span> and <span class="citation">(Frees, Meyers, and Cummings <a href="#ref-frees2014insurance">2014</a>)</span>. In these articles you can find formulas for the standard errors and other additional background information.</p>
-
-</div>
 </div>
 </div>
 </div>
 <h3>Bibliography</h3>
 <div id="refs" class="references">
+<div id="ref-aalen1978">
+<p>Aalen, Odd. 1978. “Nonparametric Inference for a Family of Counting Processes.” <em>The Annals of Statistics</em> 6 (4). Institute of Mathematical Statistics: 701–26.</p>
+</div>
 <div id="ref-box1980sampling">
 <p>Box, George EP. 1980. “Sampling and Bayes’ Inference in Scientific Modelling and Robustness.” <em>Journal of the Royal Statistical Society. Series A (General)</em>. JSTOR, 383–430.</p>
 </div>
-<div id="ref-snee1977validation">
-<p>Snee, Ronald D. 1977. “Validation of Regression Models: Methods and Examples.” <em>Technometrics</em> 19 (4). Taylor &amp; Francis Group: 415–28.</p>
+<div id="ref-derrig2001applications">
+<p>Derrig, Richard A, Krzysztof M Ostaszewski, and Grzegorz A Rempala. 2001. “Applications of Resampling Methods in Actuarial Practice.” In <em>Proceedings of the Casualty Actuarial Society</em>, 87:322–64. Casualty Actuarial Society.</p>
 </div>
-<div id="ref-picard1990data">
-<p>Picard, Richard R., and Kenneth N. Berk. 1990. “Data Splitting.” <em>The American Statistician</em> 44 (2). Taylor &amp; Francis: 140–47.</p>
+<div id="ref-greenwood1926">
+<p>Greenwood, Major. 1926. “The Errors of Sampling of the Survivorship Tables.” In <em>Reports on Public Health and Statistical Subjects</em>. Vol. 33. London: Her Majesty’s Stationary Office.</p>
+</div>
+<div id="ref-hartman2016">
+<p>Hartman, Brian. 2016. “Bayesian Computational Methods.” <em>Predictive Modeling Applications in Actuarial Science: Volume 2, Case Studies in Insurance</em>. Cambridge University Press.</p>
 </div>
 <div id="ref-james2013introduction">
 <p>James, Gareth, Daniela Witten, Trevor Hastie, and Robert Tibshirani. 2013. <em>An Introduction to Statistical Learning</em>. Vol. 112. Springer.</p>
@@ -2024,23 +2120,11 @@ stderrorGini &lt;-<span class="st"> </span>temp[[<span class="dv">3</span>]];<sp
 <div id="ref-kaplan1958">
 <p>Kaplan, Edward L., and Paul Meier. 1958. “Nonparametric Estimation from Incomplete Observations.” <em>Journal of the American Statistical Association</em> 53 (282). Taylor &amp; Francis: 457–81.</p>
 </div>
-<div id="ref-greenwood1926">
-<p>Greenwood, Major. 1926. “The Errors of Sampling of the Survivorship Tables.” In <em>Reports on Public Health and Statistical Subjects</em>. Vol. 33. London: Her Majesty’s Stationary Office.</p>
+<div id="ref-picard1990data">
+<p>Picard, Richard R., and Kenneth N. Berk. 1990. “Data Splitting.” <em>The American Statistician</em> 44 (2). Taylor &amp; Francis: 140–47.</p>
 </div>
-<div id="ref-aalen1978">
-<p>Aalen, Odd. 1978. “Nonparametric Inference for a Family of Counting Processes.” <em>The Annals of Statistics</em> 6 (4). Institute of Mathematical Statistics: 701–26.</p>
-</div>
-<div id="ref-hartman2016">
-<p>Hartman, Brian. 2016. “Bayesian Computational Methods.” <em>Predictive Modeling Applications in Actuarial Science: Volume 2, Case Studies in Insurance</em>. Cambridge University Press.</p>
-</div>
-<div id="ref-lorenz1905methods">
-<p>Lorenz, Max O. 1905. “Methods of Measuring the Concentration of Wealth.” <em>Publications of the American Statistical Association</em> 9 (70). Taylor &amp; Francis: 209–19.</p>
-</div>
-<div id="ref-frees2014insurance">
-<p>Frees, Edward W., Glenn Meyers, and A. David Cummings. 2011. “Summarizing Insurance Scores Using a Gini Index.” <em>Journal of the American Statistical Association</em> 106 (495). Taylor &amp; Francis: 1085–98.</p> 2014. “Insurance Ratemaking and a Gini Index.” <em>Journal of Risk and Insurance</em> 81 (2). Wiley Online Library: 335–66.</p>
-</div>
-<div id="ref-frees2011summarizing">
-<p>Frees, Edward W., Glenn Meyers, and A. David Cummings. 2011. “Summarizing Insurance Scores Using a Gini Index.” <em>Journal of the American Statistical Association</em> 106 (495). Taylor &amp; Francis: 1085–98.</p>
+<div id="ref-snee1977validation">
+<p>Snee, Ronald D. 1977. “Validation of Regression Models: Methods and Examples.” <em>Technometrics</em> 19 (4). Taylor &amp; Francis Group: 415–28.</p>
 </div>
 </div>
             </section>
@@ -2069,7 +2153,7 @@ gitbook.start({
 "google": false,
 "linkedin": false,
 "weibo": false,
-"instapper": false,
+"instapaper": false,
 "vk": false,
 "all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
 },
@@ -2079,6 +2163,10 @@ gitbook.start({
 "size": 2
 },
 "edit": {
+"link": null,
+"text": null
+},
+"history": {
 "link": null,
 "text": null
 },
@@ -2096,7 +2184,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "";
-    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:" && /^https?:/.test(src))
       src = src.replace(/^https?:/, '');
     script.src = src;
