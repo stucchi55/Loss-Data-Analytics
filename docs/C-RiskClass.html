@@ -1,40 +1,40 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html >
+
 <head>
 
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 8 Risk Classification | Loss Data Analytics</title>
-  <meta name="description" content="Chapter 8 Risk Classification | Loss Data Analytics is an interactive, online, freely available text. - The online version will contain many interactive objects (quizzes, computer demonstrations, interactive graphs, video, and the like) to promote deeper learning. - A subset of the book will be available in pdf format for low-cost printing. - The online text will be available in multiple languages to promote access to a worldwide audience." />
-  <meta name="generator" content="bookdown 0.10 and GitBook 2.6.7" />
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Loss Data Analytics</title>
+  <meta name="description" content="Loss Data Analytics is an interactive, online, freely available text. - The online version will contain many interactive objects (quizzes, computer demonstrations, interactive graphs, video, and the like) to promote deeper learning. - A subset of the book will be available in pdf format for low-cost printing. - The online text will be available in multiple languages to promote access to a worldwide audience.">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
 
-  <meta property="og:title" content="Chapter 8 Risk Classification | Loss Data Analytics" />
+  <meta property="og:title" content="Loss Data Analytics" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="Chapter 8 Risk Classification | Loss Data Analytics is an interactive, online, freely available text. - The online version will contain many interactive objects (quizzes, computer demonstrations, interactive graphs, video, and the like) to promote deeper learning. - A subset of the book will be available in pdf format for low-cost printing. - The online text will be available in multiple languages to promote access to a worldwide audience." />
-  <meta name="github-repo" content="https://github.com/openacttexts/Loss-Data-Analytics" />
+  <meta property="og:description" content="Loss Data Analytics is an interactive, online, freely available text. - The online version will contain many interactive objects (quizzes, computer demonstrations, interactive graphs, video, and the like) to promote deeper learning. - A subset of the book will be available in pdf format for low-cost printing. - The online text will be available in multiple languages to promote access to a worldwide audience." />
+  <meta name="github-repo" content="<a href="https://github.com/openacttexts/Loss-Data-Analytics" class="uri">https://github.com/openacttexts/Loss-Data-Analytics</a>" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 8 Risk Classification | Loss Data Analytics" />
+  <meta name="twitter:title" content="Loss Data Analytics" />
   
-  <meta name="twitter:description" content="Chapter 8 Risk Classification | Loss Data Analytics is an interactive, online, freely available text. - The online version will contain many interactive objects (quizzes, computer demonstrations, interactive graphs, video, and the like) to promote deeper learning. - A subset of the book will be available in pdf format for low-cost printing. - The online text will be available in multiple languages to promote access to a worldwide audience." />
+  <meta name="twitter:description" content="Loss Data Analytics is an interactive, online, freely available text. - The online version will contain many interactive objects (quizzes, computer demonstrations, interactive graphs, video, and the like) to promote deeper learning. - A subset of the book will be available in pdf format for low-cost printing. - The online text will be available in multiple languages to promote access to a worldwide audience." />
   
 
-<meta name="author" content="An open text authored by the Actuarial Community" />
+<meta name="author" content="An open text authored by the Actuarial Community">
 
 
 
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
 <link rel="prev" href="C-PremiumFoundations.html">
 <link rel="next" href="C-Credibility.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
@@ -95,6 +95,31 @@ const jsonHeader = {
     startSurveyText: "Start Quiz" //,
 //    title: "Does This Make Sense?"
 }
+// One and Two question quizzes
+function jsonSummary1EWF(json) {  
+let jsonEnd1 = { 
+completedHtml: 
+json["pages"][1]["questions"][0]["name"]+ "<br>"+
+"<i>Question: </i>"+json["pages"][1]["questions"][0]["title"]+"<br>"+
+"<i>Answer: </i>"+json["pages"][1]["questions"][0]["correctAnswer"]
+};  
+return jsonEnd1;
+};
+
+
+function jsonSummary2EWF(json) {  
+let jsonEnd2 = { 
+completedHtml: 
+json["pages"][1]["questions"][0]["name"]+ "<br>"+
+"<i>Question: </i>"+json["pages"][1]["questions"][0]["title"]+"<br>"+
+"<i>Answer: </i>"+json["pages"][1]["questions"][0]["correctAnswer"]
++"<br>"+
+json["pages"][2]["questions"][0]["name"]+ "<br>"+
+"<i>Question: </i>"+json["pages"][2]["questions"][0]["title"]+"<br>"+
+"<i>Answer: </i>"+json["pages"][2]["questions"][0]["correctAnswer"]
+};  
+return jsonEnd2;
+};
 
 // Three, four, and five question quizzes
 function jsonSummary3EWF(json) {  
@@ -136,6 +161,77 @@ json["pages"][5]["questions"][0]["name"]+ "<br>"+
 ;  
 return jsonEnd5;
 };
+
+function jsonSummary6EWF(json) {  
+jsonEnd6 = jsonSummary5EWF(json);
+jsonEnd6.completedHtml = jsonEnd6.completedHtml +  
+"<br>"+
+json["pages"][6]["questions"][0]["name"]+ "<br>"+
+"<i>Question: </i>"+json["pages"][6]["questions"][0]["title"]+"<br>"+
+"<i>Answer: </i>"+json["pages"][6]["questions"][0]["correctAnswer"]
+;  
+return jsonEnd6;
+};
+
+function jsonSummary7EWF(json) {  
+jsonEnd7 = jsonSummary6EWF(json);
+jsonEnd7.completedHtml = jsonEnd7.completedHtml +  
+"<br>"+
+json["pages"][7]["questions"][0]["name"]+ "<br>"+
+"<i>Question: </i>"+json["pages"][7]["questions"][0]["title"]+"<br>"+
+"<i>Answer: </i>"+json["pages"][7]["questions"][0]["correctAnswer"]
+;  
+return jsonEnd7;
+};
+
+function jsonSummary8EWF(json) {  
+jsonEnd8 = jsonSummary7EWF(json);
+jsonEnd8.completedHtml = jsonEnd8.completedHtml +  
+"<br>"+
+json["pages"][8]["questions"][0]["name"]+ "<br>"+
+"<i>Question: </i>"+json["pages"][8]["questions"][0]["title"]+"<br>"+
+"<i>Answer: </i>"+json["pages"][8]["questions"][0]["correctAnswer"]
+;  
+return jsonEnd8;
+};
+
+function jsonSummary9EWF(json) {  
+jsonEnd9 = jsonSummary8EWF(json);
+jsonEnd9.completedHtml = jsonEnd9.completedHtml +  
+"<br>"+
+json["pages"][9]["questions"][0]["name"]+ "<br>"+
+"<i>Question: </i>"+json["pages"][9]["questions"][0]["title"]+"<br>"+
+"<i>Answer: </i>"+json["pages"][9]["questions"][0]["correctAnswer"]
+;  
+return jsonEnd9;
+};
+
+
+function jsonSummary10EWF(json) {  
+jsonEnd10 = jsonSummary9EWF(json);
+jsonEnd10.completedHtml = jsonEnd10.completedHtml +  
+"<br>"+
+json["pages"][10]["questions"][0]["name"]+ "<br>"+
+"<i>Question: </i>"+json["pages"][10]["questions"][0]["title"]+"<br>"+
+"<i>Answer: </i>"+json["pages"][10]["questions"][0]["correctAnswer"]
+;  
+return jsonEnd10;
+};
+
+
+function jsonSummary11EWF(json) {  
+jsonEnd11 = jsonSummary10EWF(json);
+jsonEnd11.completedHtml = jsonEnd11.completedHtml +  
+"<br>"+
+json["pages"][11]["questions"][0]["name"]+ "<br>"+
+"<i>Question: </i>"+json["pages"][11]["questions"][0]["title"]+"<br>"+
+"<i>Answer: </i>"+json["pages"][11]["questions"][0]["correctAnswer"]
+;  
+return jsonEnd11;
+};
+
+
+
 </script>  
 <!-- This completes the code for the quizzes -->
 
@@ -264,11 +360,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li><a href="./">Loss Data Analytics</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#acknowledgements"><i class="fa fa-check"></i>Acknowledgements</a></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#contributors"><i class="fa fa-check"></i>Contributors</a></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#reviewers"><i class="fa fa-check"></i>Reviewers</a></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#for-our-readers"><i class="fa fa-check"></i>For our Readers</a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>Preface</a><ul>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#acknowledgements"><i class="fa fa-check"></i>Acknowledgements</a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#contributors"><i class="fa fa-check"></i>Contributors</a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#reviewers"><i class="fa fa-check"></i>Reviewers</a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#for-our-readers"><i class="fa fa-check"></i>For our Readers</a></li>
 </ul></li>
 <li class="chapter" data-level="1" data-path="C-Intro.html"><a href="C-Intro.html"><i class="fa fa-check"></i><b>1</b> Introduction to Loss Data Analytics</a><ul>
 <li class="chapter" data-level="1.1" data-path="C-Intro.html"><a href="C-Intro.html#S:Intro"><i class="fa fa-check"></i><b>1.1</b> Relevance of Analytics to Insurance Activities</a><ul>
@@ -407,7 +503,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="6.2.4" data-path="C-Simulation.html"><a href="C-Simulation.html#S:ParametricBootStrap"><i class="fa fa-check"></i><b>6.2.4</b> Parametric Bootstrap</a></li>
 </ul></li>
 <li class="chapter" data-level="6.3" data-path="C-Simulation.html"><a href="C-Simulation.html#S:CrossValidation"><i class="fa fa-check"></i><b>6.3</b> Cross-Validation</a><ul>
-<li class="chapter" data-level="6.3.1" data-path="C-Simulation.html"><a href="C-Simulation.html#k-fold-cross-validation"><i class="fa fa-check"></i><b>6.3.1</b> <span class="math inline">\(k\)</span>-Fold Cross-Validation</a></li>
+<li class="chapter" data-level="6.3.1" data-path="C-Simulation.html"><a href="C-Simulation.html#k-fold-cross-validation"><i class="fa fa-check"></i><b>6.3.1</b> k-Fold Cross-Validation</a></li>
 <li class="chapter" data-level="6.3.2" data-path="C-Simulation.html"><a href="C-Simulation.html#leave-one-out-cross-validation"><i class="fa fa-check"></i><b>6.3.2</b> Leave-One-Out Cross-Validation</a></li>
 <li class="chapter" data-level="6.3.3" data-path="C-Simulation.html"><a href="C-Simulation.html#cross-validation-and-bootstrap"><i class="fa fa-check"></i><b>6.3.3</b> Cross-Validation and Bootstrap</a></li>
 </ul></li>
@@ -440,11 +536,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="7.6.2" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#concentration-curve-and-a-gini-statistic"><i class="fa fa-check"></i><b>7.6.2</b> Concentration Curve and a Gini Statistic</a></li>
 <li class="chapter" data-level="7.6.3" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#out-of-sample-validation"><i class="fa fa-check"></i><b>7.6.3</b> Out-of-Sample Validation</a></li>
 </ul></li>
-<li class="chapter" data-level="7.7" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#S:Other"><i class="fa fa-check"></i><b>7.7</b> Other Topics?</a></li>
-<li class="chapter" data-level="7.8" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#further-resources-and-contributors"><i class="fa fa-check"></i><b>7.8</b> Further Resources and Contributors</a><ul>
-<li class="chapter" data-level="7.8.1" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#S:RateRegulation"><i class="fa fa-check"></i><b>7.8.1</b> TS 7.A. Rate Regulation</a></li>
-<li class="chapter" data-level="7.8.2" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#S:SelectingRateFactors"><i class="fa fa-check"></i><b>7.8.2</b> TS 7.B. Selecting Rating Factors</a></li>
-<li class="chapter" data-level="7.8.3" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#S:AdverseSelection"><i class="fa fa-check"></i><b>7.8.3</b> TS 7.C. Adverse Selection</a></li>
+<li class="chapter" data-level="7.7" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#further-resources-and-contributors"><i class="fa fa-check"></i><b>7.7</b> Further Resources and Contributors</a><ul>
+<li class="chapter" data-level="" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#ts-7.a.-rate-regulation"><i class="fa fa-check"></i>TS 7.A. Rate Regulation</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="C-RiskClass.html"><a href="C-RiskClass.html"><i class="fa fa-check"></i><b>8</b> Risk Classification</a><ul>
@@ -463,6 +556,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="8.4" data-path="C-RiskClass.html"><a href="C-RiskClass.html#RC:further-reading-and-resources"><i class="fa fa-check"></i><b>8.4</b> Further Resources and Contributors</a><ul>
 <li class="chapter" data-level="" data-path="C-RiskClass.html"><a href="C-RiskClass.html#ts-8.a-estimating-poisson-regression-models"><i class="fa fa-check"></i>TS 8.A – Estimating Poisson Regression Models</a></li>
+<li class="chapter" data-level="" data-path="C-RiskClass.html"><a href="C-RiskClass.html#ts-8.b.-selecting-rating-factors"><i class="fa fa-check"></i>TS 8.B. Selecting Rating Factors</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="C-Credibility.html"><a href="C-Credibility.html"><i class="fa fa-check"></i><b>9</b> Experience Rating Using Credibility Theory</a><ul>
@@ -509,7 +603,30 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="10.5" data-path="C-PortMgt.html"><a href="C-PortMgt.html#further-resources-and-contributors-1"><i class="fa fa-check"></i><b>10.5</b> Further Resources and Contributors</a></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="C-LossReserves.html"><a href="C-LossReserves.html"><i class="fa fa-check"></i><b>11</b> Loss Reserving</a></li>
-<li class="chapter" data-level="12" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html"><i class="fa fa-check"></i><b>12</b> Experience Rating using Bonus-Malus</a></li>
+<li class="chapter" data-level="12" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html"><i class="fa fa-check"></i><b>12</b> Experience Rating using Bonus-Malus</a><ul>
+<li class="chapter" data-level="12.1" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#S:ERBM:Intro"><i class="fa fa-check"></i><b>12.1</b> Introduction</a></li>
+<li class="chapter" data-level="12.2" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#S:ERBM:NCD"><i class="fa fa-check"></i><b>12.2</b> NCD System in Several Countries</a><ul>
+<li class="chapter" data-level="12.2.1" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#ncd-system-in-malaysia"><i class="fa fa-check"></i><b>12.2.1</b> NCD System in Malaysia</a></li>
+<li class="chapter" data-level="12.2.2" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#ncd-system-in-other-countries"><i class="fa fa-check"></i><b>12.2.2</b> NCD System in Other Countries</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#S:ERBM:BMS"><i class="fa fa-check"></i><b>12.3</b> BMS and Markov Chain Model</a><ul>
+<li class="chapter" data-level="12.3.1" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#transition-probability"><i class="fa fa-check"></i><b>12.3.1</b> Transition Probability</a></li>
+</ul></li>
+<li class="chapter" data-level="12.4" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#S:ERBM:StatDist"><i class="fa fa-check"></i><b>12.4</b> BMS and Stationary Distribution</a><ul>
+<li class="chapter" data-level="12.4.1" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#stationary-distribution"><i class="fa fa-check"></i><b>12.4.1</b> Stationary Distribution</a></li>
+<li class="chapter" data-level="12.4.2" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#r-program-for-stationary-distribution"><i class="fa fa-check"></i><b>12.4.2</b> R Program for Stationary Distribution</a></li>
+<li class="chapter" data-level="12.4.3" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#premium-evolution"><i class="fa fa-check"></i><b>12.4.3</b> Premium Evolution</a></li>
+<li class="chapter" data-level="12.4.4" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#r-program-for-premium-evolution"><i class="fa fa-check"></i><b>12.4.4</b> R Program for Premium Evolution</a></li>
+<li class="chapter" data-level="12.4.5" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#convergence-rate"><i class="fa fa-check"></i><b>12.4.5</b> Convergence Rate</a></li>
+<li class="chapter" data-level="12.4.6" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#r-program-for-convergence-rate"><i class="fa fa-check"></i><b>12.4.6</b> R Program for Convergence Rate</a></li>
+</ul></li>
+<li class="chapter" data-level="12.5" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#S:PremRtg"><i class="fa fa-check"></i><b>12.5</b> BMS and Premium Rating</a><ul>
+<li class="chapter" data-level="12.5.1" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#premium-rating"><i class="fa fa-check"></i><b>12.5.1</b> Premium Rating</a></li>
+<li class="chapter" data-level="12.5.2" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#frequency-model-poisson-and-negative-binomial-regressions"><i class="fa fa-check"></i><b>12.5.2</b> Frequency Model – Poisson and Negative Binomial Regressions</a></li>
+<li class="chapter" data-level="12.5.3" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#premium-rating-with-bonus-malus-data"><i class="fa fa-check"></i><b>12.5.3</b> Premium Rating with Bonus-Malus Data</a></li>
+<li class="chapter" data-level="12.5.4" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#premium-rating-without-bonus-malus-data"><i class="fa fa-check"></i><b>12.5.4</b> Premium Rating without Bonus-Malus Data</a></li>
+</ul></li>
+</ul></li>
 <li class="chapter" data-level="13" data-path="C-DataSystems.html"><a href="C-DataSystems.html"><i class="fa fa-check"></i><b>13</b> Data and Systems</a><ul>
 <li class="chapter" data-level="13.1" data-path="C-DataSystems.html"><a href="C-DataSystems.html#data"><i class="fa fa-check"></i><b>13.1</b> Data</a><ul>
 <li class="chapter" data-level="13.1.1" data-path="C-DataSystems.html"><a href="C-DataSystems.html#data-types-and-sources"><i class="fa fa-check"></i><b>13.1.1</b> Data Types and Sources</a></li>
@@ -546,6 +663,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="14.2.1" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#association-measures-for-quantitative-variables"><i class="fa fa-check"></i><b>14.2.1</b> Association Measures for Quantitative Variables</a></li>
 <li class="chapter" data-level="14.2.2" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#rank-based-measures"><i class="fa fa-check"></i><b>14.2.2</b> Rank Based Measures</a></li>
 <li class="chapter" data-level="14.2.3" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#nominal-variables"><i class="fa fa-check"></i><b>14.2.3</b> Nominal Variables</a></li>
+<li class="chapter" data-level="14.2.4" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#ordinal-variables"><i class="fa fa-check"></i><b>14.2.4</b> Ordinal Variables</a></li>
+<li class="chapter" data-level="14.2.5" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#interval-variables"><i class="fa fa-check"></i><b>14.2.5</b> Interval Variables</a></li>
+<li class="chapter" data-level="14.2.6" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#discrete-and-continuous-variables"><i class="fa fa-check"></i><b>14.2.6</b> Discrete and Continuous Variables</a></li>
 </ul></li>
 <li class="chapter" data-level="14.3" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#S:Copula"><i class="fa fa-check"></i><b>14.3</b> Introduction to Copulas</a></li>
 <li class="chapter" data-level="14.4" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#S:CopAppl"><i class="fa fa-check"></i><b>14.4</b> Application Using Copulas</a><ul>
@@ -675,10 +795,27 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>If all policyholders in the insurance pool have identical risk profiles, the insurer simply charges the same premium for all policyholders because they have the same expected loss. In reality, however, the policyholders are hardly homogeneous. For example, mortality risk in life insurance depends on the characteristics of the policyholder, such as, age, sex and life style. In auto insurance, those characteristics may include age, occupation, the type or use of the car, and the area where the driver resides. The knowledge of these characteristics or variables can enhance the ability of calculating fair premiums for individual policyholders, as they can be used to estimate or predict the expected losses more accurately.</p>
 <p><strong>Adverse Selection.</strong> Indeed, if the insurer does not differentiate the risk characteristics of individual policyholders and simply charges the same premium to all insureds based on the average loss in the portfolio, the insurer would face <em>adverse selection</em>, a situation where individuals with a higher chance of loss are attracted in the portfolio and low-risk individuals are repelled. For example, consider a health insurance industry where smoking status is an important risk factor for mortality and morbidity. Most health insurers in the market require different premiums depending on smoking status, so smokers pay higher premiums than non-smokers, with other characteristics being identical. Now suppose that there is an insurer, we will call EquitabAll, that offers the same premium to all insureds regardless of smoking status, unlike other competitors. The net premium of EquitabAll is naturally an average mortality loss accounting for both smokers and non-smokers. That is, the net premium is a weighted average of the losses with the weights being the proportion of smokers and non-smokers, respectively. Thus it is easy to see that that a smoker would have a good incentive to purchase insurance from EquitabAll than from other insurers as the offered premium by EquitabAll is relatively lower. At the same time non-smokers would prefer buying insurance from somewhere else where lower premiums, computed from the non-smoker group only, are offered. As a result, there will be more smokers and less non-smokers in the EquitabAll’s portfolio, which leads to larger-than-expected losses and hence a higher premium for insureds in the next period to cover the higher costs. With the raised new premium in the next period, non-smokers in EquitabAll will have even greater incentives to switch the insurer. As this cycle continues over time, EquitabAll would gradually retain more smokers and less non-smokers in its portfolio with the premium continually raised, eventually leading to a collapsing of business. In the literature, this phenomenon is known as the <em>adverse selection spiral</em> or death spiral. Therefore, incorporating and differentiating important risk characteristics of individuals in the insurance pricing process are a pertinent component for both the determination of fair premium for individual policyholders and the long term sustainability of insurers.</p>
 <p><strong>Rating Factors</strong>. In order to incorporate relevant risk characteristics of policyholders in the pricing process, insurers maintain some classification system that assigns each policyholder to one of the risk classes based on a relatively small number of risk characteristics that are deemed most relevant. These characteristics used in the classification system are called the <em>rating factors</em>, which are <em>a priori</em> variables in the sense that they are known before the contract begins (e.g., sex, health status, vehicle type, etc, are known during the underwriting). All policyholders sharing identical risk factors thus are assigned to the same risk class, and are considered homogeneous from the pricing viewpoint; the insurer consequently charge them the same premium or rate.</p>
-<p>Regarding the risk factors and premiums, the <em>Actuarial Standard of Practice</em> (ASOP No. 12) of the <span class="citation">Actuarial Standards Board (<a href="#ref-ASBStandards">2018</a>)</span> states that the actuary should select risk characteristics that are related to expected outcomes, and that rates within a risk classification system would be considered equitable if differences in rates reflect material differences in expected cost for risk characteristics. In the process of choosing risk factors, ASOP also requires the actuary to consider the following: relationship of risk characteristics and expected outcomes, causality, objectivity, practicality, applicable law, industry practices, and business practices.</p>
+<p>Regarding the risk factors and premiums, the <em>Actuarial Standard of Practice</em> (ASOP No. 12) of the <span class="citation">Actuarial Standards Board (<a href="#ref-ASBStandards">2018</a>)</span> states that the actuary should select risk characteristics that are related to expected outcomes, and that rates within a risk classification system would be considered equitable if differences in rates reflect material differences in expected cost for risk characteristics. In the process of choosing risk factors, ASOP also requires the actuary to consider the following: relationship of risk characteristics and expected outcomes, causality, objectivity, practicality, applicable law, industry practices, and business practices. Technical Supplement <strong>TS 8.B</strong> provides additional discussion of selection of rating factors.</p>
 <p>On the quantitative side, an important task for the actuary in building any risk classification is to construct a statistical model that can determine the expected loss given various rating factors of a policyholder. The standard approach is to adopt a regression model which produces the expected loss as the output when the relevant risk factors are given as the inputs. In this chapter we learn the Poisson regression, which can be used when the loss is a count variable, as a prominent example of an insurance pricing tool.</p>
 <!-- %\subsection{Fundamental concept of insurance pricing} -->
 <!-- %================================ -->
+<div id="surveyElement81">
+
+</div>
+<div id="surveyResult81">
+
+</div>
+<h5 style="text-align: center;">
+<a id="display.Quiz81.1" href="javascript:toggleQuiz
+('display.Quiz81.2','display.Quiz81.1');"><i><strong>Show Quiz Solution</strong></i></a>
+</h5>
+<div id="display.Quiz81.2" style="display: none">
+<p id="Quiz81Soln">
+</p>
+<hr />
+</div>
+<script type="text/javascript" src="./Quizzes/QuizJavascript/Quiz81.js">
+</script>
 </div>
 <div id="S:RC:PoissonRegression" class="section level2">
 <h2><span class="header-section-number">8.2</span> Poisson Regression Model</h2>
@@ -871,6 +1008,23 @@ As exposures affect the Poisson mean, constructing Poisson regressions requires 
 \tag{8.17}
 \end{equation}\]</span>
 <p>Adding <span class="math inline">\(\log m_i\)</span> in <a href="C-RiskClass.html#eq:mean-ft-Pois-7">(8.17)</a> does not pose a problem in fitting as we can always specify this as an extra explanatory variable, as it is a known constant, and fix its coefficient to 1. In the literature the log of exposure, <span class="math inline">\(\log m_i\)</span>, is commonly called the <strong>offset</strong>.</p>
+<div id="surveyElement82">
+
+</div>
+<div id="surveyResult82">
+
+</div>
+<h5 style="text-align: center;">
+<a id="display.Quiz82.1" href="javascript:toggleQuiz
+('display.Quiz82.2','display.Quiz82.1');"><i><strong>Show Quiz Solution</strong></i></a>
+</h5>
+<div id="display.Quiz82.2" style="display: none">
+<p id="Quiz82Soln">
+</p>
+<hr />
+</div>
+<script type="text/javascript" src="./Quizzes/QuizJavascript/Quiz82.js">
+</script>
 </div>
 <div id="exercises-3" class="section level3">
 <h3><span class="header-section-number">8.2.4</span> Exercises</h3>
@@ -1036,31 +1190,31 @@ Under this specification, let us consider <span class="math inline">\(n\)</span>
 \end{equation}\]</span>
 <p>from the relation given in <a href="C-RiskClass.html#eq:relativity-1">(8.22)</a>. The <code>R</code> script and the output are as follows.</p>
 <h5 style="text-align: center;">
-<a id="displayCodeRiskClass.1" href="javascript:togglecode('toggleCodeRiskClass.1','displayCodeRiskClass.1');"><i><strong>Show R Code</strong></i></a>
+<a id="displayCode.RiskClass.1" href="javascript:togglecode('toggleCode.RiskClass.1','displayCode.RiskClass.1');"><i><strong>Show R Code</strong></i></a>
 </h5>
-<div id="toggleCodeRiskClass.1" style="display: none">
-<div class="sourceCode"><pre class="sourceCode latex"><code class="sourceCode latex">&gt; mydat1&lt;- read.csv(&quot;eg1_v1a.csv&quot;)
-&gt; mydat1
+<div id="toggleCode.RiskClass.1" style="display: none">
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span>mydat1&lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;eg1_v1a.csv&quot;</span>)
+<span class="op">&gt;</span><span class="st"> </span>mydat1
   Vtype Agebnd Expsr Claims
-1     1      1  89.1      9
-2     1      2 208.5      8
-3     1      3 155.2      6
-4     2      1  19.3      1
-5     2      2 360.4     13
-6     2      3 276.7      6
-&gt; VtypeF &lt;- relevel(factor(Vtype), ref=&quot;1&quot;) # treat Vtype as factors with 1 as base.
-&gt; AgebndF &lt;- relevel(factor(Agebnd), ref=&quot;1&quot;) # treat Age band as factors.
-&gt; Pois_reg1 = glm(Claims ~ VtypeF + AgebndF,
-                    data = mydat1, family = poisson(link = log), offset = log(Expsr) )
-&gt; Pois_reg1
+<span class="dv">1</span>     <span class="dv">1</span>      <span class="dv">1</span>  <span class="fl">89.1</span>      <span class="dv">9</span>
+<span class="dv">2</span>     <span class="dv">1</span>      <span class="dv">2</span> <span class="fl">208.5</span>      <span class="dv">8</span>
+<span class="dv">3</span>     <span class="dv">1</span>      <span class="dv">3</span> <span class="fl">155.2</span>      <span class="dv">6</span>
+<span class="dv">4</span>     <span class="dv">2</span>      <span class="dv">1</span>  <span class="fl">19.3</span>      <span class="dv">1</span>
+<span class="dv">5</span>     <span class="dv">2</span>      <span class="dv">2</span> <span class="fl">360.4</span>     <span class="dv">13</span>
+<span class="dv">6</span>     <span class="dv">2</span>      <span class="dv">3</span> <span class="fl">276.7</span>      <span class="dv">6</span>
+<span class="op">&gt;</span><span class="st"> </span>VtypeF &lt;-<span class="st"> </span><span class="kw">relevel</span>(<span class="kw">factor</span>(Vtype), <span class="dt">ref=</span><span class="st">&quot;1&quot;</span>) <span class="co"># treat Vtype as factors with 1 as base.</span>
+<span class="op">&gt;</span><span class="st"> </span>AgebndF &lt;-<span class="st"> </span><span class="kw">relevel</span>(<span class="kw">factor</span>(Agebnd), <span class="dt">ref=</span><span class="st">&quot;1&quot;</span>) <span class="co"># treat Age band as factors.</span>
+<span class="op">&gt;</span><span class="st"> </span>Pois_reg1 =<span class="st"> </span><span class="kw">glm</span>(Claims <span class="op">~</span><span class="st"> </span>VtypeF <span class="op">+</span><span class="st"> </span>AgebndF,
+                    <span class="dt">data =</span> mydat1, <span class="dt">family =</span> <span class="kw">poisson</span>(<span class="dt">link =</span> log), <span class="dt">offset =</span> <span class="kw">log</span>(Expsr) )
+<span class="op">&gt;</span><span class="st"> </span>Pois_reg1
 
-Coefficients:
+Coefficients<span class="op">:</span>
 (Intercept)      VtypeF2     AgebndF2     AgebndF3  
-    -2.3359      -0.3004      -0.7837      -1.0655  
+    <span class="op">-</span><span class="fl">2.3359</span>      <span class="op">-</span><span class="fl">0.3004</span>      <span class="op">-</span><span class="fl">0.7837</span>      <span class="op">-</span><span class="fl">1.0655</span>  
 
-Degrees of Freedom: 5 Total (i.e. Null);  2 Residual
-Null Deviance:      8.774 
-Residual Deviance: 0.6514   AIC: 30.37</code></pre></div>
+Degrees of Freedom<span class="op">:</span><span class="st"> </span><span class="dv">5</span> <span class="kw">Total</span> (i.e. Null);  <span class="dv">2</span> Residual
+Null Deviance<span class="op">:</span><span class="st">      </span><span class="fl">8.774</span> 
+Residual Deviance<span class="op">:</span><span class="st"> </span><span class="fl">0.6514</span>   AIC<span class="op">:</span><span class="st"> </span><span class="fl">30.37</span></code></pre></div>
 </div>
 <hr />
 <p><strong>Example 8.2. Poisson regression for Singapore insurance claims data</strong></p>
@@ -1117,48 +1271,65 @@ Residual Deviance: 0.6514   AIC: 30.37</code></pre></div>
 \end{equation}\]</span>
 <p>Note that for this policy the age band variable is not used as the vehicle type is not A. The <code>R</code> script is given as follows.</p>
 <h5 style="text-align: center;">
-<a id="displayCodeRiskClass.2" href="javascript:togglecode('toggleCodeRiskClass.2','displayCodeRiskClass.2');"><i><strong>Show R Code</strong></i></a>
+<a id="displayCode.RiskClass.2" href="javascript:togglecode('toggleCode.RiskClass.2','displayCode.RiskClass.2');"><i><strong>Show R Code</strong></i></a>
 </h5>
-<div id="toggleCodeRiskClass.2" style="display: none">
-<div class="sourceCode"><pre class="sourceCode latex"><code class="sourceCode latex">mydat &lt;- read.csv(&quot;SingaporeAuto.csv&quot;,  quote = &quot;&quot;, header = TRUE)
-attach(mydat)
+<div id="toggleCode.RiskClass.2" style="display: none">
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mydat &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;SingaporeAuto.csv&quot;</span>,  <span class="dt">quote =</span> <span class="st">&quot;&quot;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>)
+<span class="kw">attach</span>(mydat)
 
-# create vehicle type as factor
-TypeA = 1 * (VehicleType == &quot;A&quot;)
-table(VehicleType)
-VtypeF &lt;- as.character(VehicleType)
-VtypeF[VtypeF != &quot;A&quot;] &lt;- &quot;O&quot;
-VtypeF = relevel(factor(VtypeF), ref=&quot;A&quot;)
+<span class="co"># create vehicle type as factor</span>
+TypeA =<span class="st"> </span><span class="dv">1</span> <span class="op">*</span><span class="st"> </span>(VehicleType <span class="op">==</span><span class="st"> &quot;A&quot;</span>)
+<span class="kw">table</span>(VehicleType)
+VtypeF &lt;-<span class="st"> </span><span class="kw">as.character</span>(VehicleType)
+VtypeF[VtypeF <span class="op">!=</span><span class="st"> &quot;A&quot;</span>] &lt;-<span class="st"> &quot;O&quot;</span>
+VtypeF =<span class="st"> </span><span class="kw">relevel</span>(<span class="kw">factor</span>(VtypeF), <span class="dt">ref=</span><span class="st">&quot;A&quot;</span>)
 
-# create gender as factor
-Female = 1 * (SexInsured == &quot;F&quot; )
-Sex = as.character(SexInsured)
-Sex[Sex != &quot;F&quot;] &lt;- &quot;M&quot;
-SexF = relevel(factor(Sex), ref = &quot;F&quot;)
+<span class="co"># create gender as factor</span>
+Female =<span class="st"> </span><span class="dv">1</span> <span class="op">*</span><span class="st"> </span>(SexInsured <span class="op">==</span><span class="st"> &quot;F&quot;</span> )
+Sex =<span class="st"> </span><span class="kw">as.character</span>(SexInsured)
+Sex[Sex <span class="op">!=</span><span class="st"> &quot;F&quot;</span>] &lt;-<span class="st"> &quot;M&quot;</span>
+SexF =<span class="st"> </span><span class="kw">relevel</span>(<span class="kw">factor</span>(Sex), <span class="dt">ref =</span> <span class="st">&quot;F&quot;</span>)
 
-# create driver age as factor
-AgeCat = pmax(AgeCat - 1, 0)
-AgeCatF = relevel(factor(AgeCat), ref = &quot;0&quot;)
-table(AgeCatF) # No policy in the first age band
+<span class="co"># create driver age as factor</span>
+AgeCat =<span class="st"> </span><span class="kw">pmax</span>(AgeCat <span class="op">-</span><span class="st"> </span><span class="dv">1</span>, <span class="dv">0</span>)
+AgeCatF =<span class="st"> </span><span class="kw">relevel</span>(<span class="kw">factor</span>(AgeCat), <span class="dt">ref =</span> <span class="st">&quot;0&quot;</span>)
+<span class="kw">table</span>(AgeCatF) <span class="co"># No policy in the first age band</span>
 
-# create vehicle age as factor
-VAgeCatF = relevel( factor(VAgeCat), ref = &quot;0&quot; )
-VAgecat1 = factor(VAgecat1, labels = 
-                    c(&quot;Vage0-2&quot;, &quot;Vage3-5&quot;, &quot;Vage6-10&quot;, &quot;Vage11-15&quot;, &quot;Vage15+&quot;) )
-VAgecat1F = relevel( factor(VAgecat1), ref = &quot;Vage0-2&quot; )
+<span class="co"># create vehicle age as factor</span>
+VAgeCatF =<span class="st"> </span><span class="kw">relevel</span>( <span class="kw">factor</span>(VAgeCat), <span class="dt">ref =</span> <span class="st">&quot;0&quot;</span> )
+VAgecat1 =<span class="st"> </span><span class="kw">factor</span>(VAgecat1, <span class="dt">labels =</span> 
+                    <span class="kw">c</span>(<span class="st">&quot;Vage0-2&quot;</span>, <span class="st">&quot;Vage3-5&quot;</span>, <span class="st">&quot;Vage6-10&quot;</span>, <span class="st">&quot;Vage11-15&quot;</span>, <span class="st">&quot;Vage15+&quot;</span>) )
+VAgecat1F =<span class="st"> </span><span class="kw">relevel</span>( <span class="kw">factor</span>(VAgecat1), <span class="dt">ref =</span> <span class="st">&quot;Vage0-2&quot;</span> )
 
-# Poisson reg model
-Pois_reg2 = glm(Clm_Count ~ SexF + TypeA:AgeCatF + VAgecat1F, 
-                   offset = LNWEIGHT, poisson(link = log) )
-summary(Pois_reg2) 
+<span class="co"># Poisson reg model</span>
+Pois_reg2 =<span class="st"> </span><span class="kw">glm</span>(Clm_Count <span class="op">~</span><span class="st"> </span>SexF <span class="op">+</span><span class="st"> </span>TypeA<span class="op">:</span>AgeCatF <span class="op">+</span><span class="st"> </span>VAgecat1F, 
+                   <span class="dt">offset =</span> LNWEIGHT, <span class="kw">poisson</span>(<span class="dt">link =</span> log) )
+<span class="kw">summary</span>(Pois_reg2) 
 
-# compute relativities
-exp(Pois_reg2<span class="ss">$coefficients)</span>
+<span class="co"># compute relativities</span>
+<span class="kw">exp</span>(Pois_reg2<span class="op">$</span>coefficients)
 
-<span class="ss">detach(mydat)</span></code></pre></div>
+<span class="kw">detach</span>(mydat)</code></pre></div>
 </div>
 <hr />
 <p>As a concluding remark, we comment that the Poisson regression is not the only possible count regression model. Actually, the Poisson distribution can be restrictive in the sense that it has a single parameter and its mean and the variance are always equal. There are other count regression models that allow more flexible distributional structure, such as negative binomial regressions and zero-inflated (ZI) regressions; details of these alternative regressions can be found in other texts listed in the next section.</p>
+<div id="surveyElement83">
+
+</div>
+<div id="surveyResult83">
+
+</div>
+<h5 style="text-align: center;">
+<a id="display.Quiz83.1" href="javascript:toggleQuiz
+('display.Quiz83.2','display.Quiz83.1');"><i><strong>Show Quiz Solution</strong></i></a>
+</h5>
+<div id="display.Quiz83.2" style="display: none">
+<p id="Quiz83Soln">
+</p>
+<hr />
+</div>
+<script type="text/javascript" src="./Quizzes/QuizJavascript/Quiz83.js">
+</script>
 </div>
 </div>
 <div id="RC:further-reading-and-resources" class="section level2">
@@ -1224,7 +1395,50 @@ Section <a href="C-AppC.html#S:AppC:LF">17.1</a> defines information matrices. T
 <span class="math display">\[\begin{equation}
 \mathbf{ I}(\beta)=\sum^K_{k=1} \Big{\{}\sum_{i \in C_k}m_i \exp(\mathbf{ x}^{\prime}_i \mathbf{ \beta})\mathbf{ x}_i \mathbf{ x}_i^{\prime} \Big{\}}=\sum^K_{k=1} m_{(k)} \exp(\mathbf{ x}^{\prime}_{(k)} \mathbf{ \beta})\mathbf{ x}_{(k)} \mathbf{ x}_{(k)}^{\prime}.
 \end{equation}\]</span>
+</div>
+<div id="ts-8.b.-selecting-rating-factors" class="section level3 unnumbered">
+<h3>TS 8.B. Selecting Rating Factors</h3>
+<!-- ###  Rate Factor Selection {#S:LossRatio} -->
+<p>A complete discussion of rating factor selection is beyond the scope of this book. In addition to technical analyses, you have to think carefully about the type of business (personal, commercial) as well as the regulatory landscape. Nonetheless, a broad overview of some key concerns may serve to ground the reader as one thinks about the pricing of insurance contracts.</p>
+<div id="statistical-criteria" class="section level4">
+<h4><span class="header-section-number">8.4.0.1</span> Statistical Criteria</h4>
+<p>From an analyst’s perspective, the discussion starts with the statistical significance of a rating factor. If the factor is not statistically significant, then the variable is not even worthy of consideration for inclusion in a rating plan. The statistical significance is judged not only on an in-sample basis but also on how well it fares on an out-of-sample basis, as per our discussion in <strong>Section 4.2.</strong></p>
+<p>It is common in insurance applications to have many rating factors. Handling multivariate aspects can be difficult with traditional univariate methods. Analysts employ techniques such as <em>generalized linear models</em> as described in <em>Section 8.3</em>.</p>
+<p>Rating factors are introduced are use to create cells that contain similar risks. A rating group should be large enough to measure costs with sufficient accuracy. There is an inherent trade-off between theoretical accuracy and homogeneity</p>
+<p>As an example, most insurers charge the same automobile insurance premiums for drivers between the ages of 30 and 50, not varying the premium by age. Presumably costs do not vary much by age, or cost variances are due to other identifiable factors.</p>
+</div>
+<div id="operational-criteria" class="section level4">
+<h4><span class="header-section-number">8.4.0.2</span> Operational Criteria</h4>
+<p>From a business perspective, statistical criteria only provide a starting point for discussions of potential inclusion of rating factors. Inclusion of a rating factor must also induce economically meaningful results. From an insured’s perspective, if differentiation by a factor produces little change in a rate then it is not worth including. From an insurer’s perspective, the inclusion of a factor should help segment the marketplace in a way that helps attract the business that they seek. For example, we introduce the <a href="#" class="tooltip" style="color:green"><em>Gini index</em><span style="font-size:8pt">The Gini index is twice the area between a Lorenz curve and a 45 degree line.</span></a> in Section <a href="C-PremiumFoundations.html#S:GiniStatistic">7.6</a> as one metric that insurers use to describe the financial impact of a rating variable.</p>
+<p>Rating factors should also be objective, inexpensive to administer, and verifiable. For example, automobile insurance underwriters often talk of “maturity” and “responsibility” as important criteria for youthful drivers. Yet, these are difficult to define objectively and to apply consistently. As another example, in automobile it has long been known that amount of miles (or kilometers) driven is an excellent rating factor. However, insurers have been reluctant to adopt this factor because it is subject to abuse. Historically, driving mileage has not been used because of the difficulty in verifying this variable (it is far too easy to alter the car’s odometer to change reported mileage). Going forward, modern day drivers and cars are equipped with global positioning devices and other equipment that allow insurers to use distance driven as a rating factor because it can be verified.</p>
+</div>
+<div id="rating-factors-from-the-perspective-of-a-consumer" class="section level4">
+<h4><span class="header-section-number">8.4.0.3</span> Rating Factors from the Perspective of a Consumer</h4>
+<p>Insurance companies sell insurance products to a variety of consumers; consequently, companies are affected by public perception. On the one hand, free market competition dictates rating factors that insurers use, as is common in commercial insurance. On the other hand, insurance may be required by law. This is common in personal insurance such as third party automobile liability and homeowners. In these instances, the mandatory and de facto mandatory purchase of insurance may mean that free market competition is insufficient to protect policyholders. Here, the following items affect the social acceptability of using a particular risk characteristic as a rating variable:</p>
+<ul>
+<li>Affordability - introduction of some variables may be mitigated by resulting high costs of insurance.</li>
+<li>Causality - other things being equal, a rating variable is easier to justify if there is a “causal” relationship with losses. A good example is the effects of smoking in life insurance. For many years, this factor was viewed with suspicion by the industry. However, over time, scientific evidence provided overwhelming evidence as this an important predictor of mortality.</li>
+<li>Controllability - A controllable variable is one that is under the control of the insured, e.g., installing burglar alarms. The use of controllable rating variables encourages accident prevention.</li>
+<li>Privacy concerns - people are reluctant to disclose personal information. In today’s world with increasing emphasis on social media and the availability of personal information, consumer advocates are concerned that the benefits of big data skew heavily in insurers’ favor. They reason that insureds do not have equivalent new tools to compare quality of coverage/policies and performance of insurance companies.</li>
+</ul>
+<p><strong>Example: Youthful Drivers.</strong> In some cases, a particular risk characteristic may identify a small group of insureds whose risk level is extremely high, and if used as a rating variable, the resulting premium may be unaffordable for that high-risk class. To the extent that this occurs, companies may wish to or be required by regulators to combine classes and introduce subsidies. For example, 16-year-old drivers are generally higher risk than 17-year-old drivers. Some companies have chosen to use the same rates for 16- and 17-year-old drivers to minimize the affordability issues that arise when a family adds a 16-year-old to the auto policy.</p>
+</div>
+<div id="societal-effects-of-rating-factors" class="section level4">
+<h4><span class="header-section-number">8.4.0.4</span> Societal Effects of Rating Factors</h4>
+<p>With public discussions of rating factors, it is also important to think about the societal effects of classification.</p>
+<p>For example, does a rating variable encourage “good” behavior? As an example, we return to the use of distance driven as a rating factor. Many people advocate for including this variable as a factor. The motivation is that if insurance, like fuel, is priced based on distance driven, this will induce consumers to reduce the amount driven, thereby benefitting society.</p>
+<p>One can consider other aspects of societal effects of classification, see, for example, <span class="citation">Niehaus and Harrington (<a href="#ref-niehaus2003risk">2003</a>)</span>:</p>
+<ul>
+<li>Re-distributive Effects - provide a cross-subsidy from e.g., high risks to low risks</li>
+<li>Classification Costs - Money spent by society, insurers, to classify people appropriately.</li>
+</ul>
+</div>
+<div id="legal-criteria" class="section level4">
+<h4><span class="header-section-number">8.4.0.5</span> Legal Criteria</h4>
+<p>For example, some states have statutes prohibiting the use of gender in rating insurance while others permit it as a rating variable. As a result, an insurer writing in multiple states may include gender as a rating variable in those states where it is permitted, but not include it in a state that prohibits its use for rating.</p>
+<p>If allowed by law, the company may continue to charge the average rate but utilize the characteristic to identify, attract, and select the lower-risk insureds that exist in the insured population; this is called <em>skimming the cream.</em></p>
 
+</div>
 </div>
 </div>
 </div>
@@ -1233,14 +1447,17 @@ Section <a href="C-AppC.html#S:AppC:LF">17.1</a> defines information matrices. T
 <div id="ref-ASBStandards">
 <p>Actuarial Standards Board. 2018. “Actuarial Standards of Practice.” In. American Academy of Actuaries. <a href="http://www.actuarialstandardsboard.org/standards-of-practice/" class="uri">http://www.actuarialstandardsboard.org/standards-of-practice/</a>.</p>
 </div>
-<div id="ref-agresti1996introduction">
-<p>Agresti, Alan. 1996. <em>An Introduction to Categorical Data Analysis</em>. Vol. 135. Wiley New York.</p>
+<div id="ref-frees2008hierarchical">
+<p>Frees, Edward W., and Emiliano A. Valdez. 1998. “Understanding Relationships Using Copulas.” <em>North American Actuarial Journal</em> 2 (01): 1–25.</p> 2008. “Hierarchical Insurance Claims Modeling.” <em>Journal of the American Statistical Association</em> 103 (484). Taylor &amp; Francis: 1457–69.</p>
 </div>
-<div id="ref-de2008generalized">
-<p>De Jong, Piet, and Gillian Z. Heller. 2008. <em>Generalized Linear Models for Insurance Data</em>. Cambridge University Press Cambridge.</p>
+<div id="ref-mccullagh1989generalized">
+<p>McCullagh, Peter, and John A. Nelder. 1989. <em>Generalized Linear Models</em>. Vol. 37. CRC press.</p>
 </div>
 <div id="ref-dobson2008introduction">
 <p>Dobson, Annette J, and Adrian Barnett. 2008. <em>An Introduction to Generalized Linear Models</em>. CRC press.</p>
+</div>
+<div id="ref-agresti1996introduction">
+<p>Agresti, Alan. 1996. <em>An Introduction to Categorical Data Analysis</em>. Vol. 135. Wiley New York.</p>
 </div>
 <div id="ref-faraway2016extending">
 <p>Faraway, Julian J. 2016. <em>Extending the Linear Model with R: Generalized Linear, Mixed Effects and Nonparametric Regression Models</em>. Vol. 124. CRC press.</p>
@@ -1248,14 +1465,14 @@ Section <a href="C-AppC.html#S:AppC:LF">17.1</a> defines information matrices. T
 <div id="ref-frees2009regression">
 <p>Frees, Edward W. 2009a. <em>Regression Modeling with Actuarial and Financial Applications</em>. Cambridge University Press.</p>
 </div>
-<div id="ref-frees2008hierarchical">
-<p>Frees, Edward W., and Emiliano A. Valdez. 1998. “Understanding Relationships Using Copulas.” <em>North American Actuarial Journal</em> 2 (01): 1–25.</p> 2008. “Hierarchical Insurance Claims Modeling.” <em>Journal of the American Statistical Association</em> 103 (484). Taylor &amp; Francis: 1457–69.</p>
-</div>
-<div id="ref-mccullagh1989generalized">
-<p>McCullagh, Peter, and John A. Nelder. 1989. <em>Generalized Linear Models</em>. Vol. 37. CRC press.</p>
+<div id="ref-de2008generalized">
+<p>De Jong, Piet, and Gillian Z. Heller. 2008. <em>Generalized Linear Models for Insurance Data</em>. Cambridge University Press Cambridge.</p>
 </div>
 <div id="ref-ohlsson2010non">
 <p>Ohlsson, Esbjörn, and Björn Johansson. 2010. <em>Non-Life Insurance Pricing with Generalized Linear Models</em>. Vol. 21. Springer.</p>
+</div>
+<div id="ref-niehaus2003risk">
+<p>Niehaus, Gregory, and Scott Harrington. 2003. <em>Risk Management and Insurance</em>. New York: McGraw Hill.</p>
 </div>
 </div>
 <div class="footnotes">
@@ -1293,7 +1510,7 @@ gitbook.start({
 "google": false,
 "linkedin": false,
 "weibo": false,
-"instapaper": false,
+"instapper": false,
 "vk": false,
 "all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
 },
@@ -1303,10 +1520,6 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": null,
-"text": null
-},
-"history": {
 "link": null,
 "text": null
 },
@@ -1324,7 +1537,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:" && /^https?:/.test(src))
       src = src.replace(/^https?:/, '');
     script.src = src;

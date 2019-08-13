@@ -1,40 +1,40 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html >
+
 <head>
 
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 3 Modeling Loss Severity | Loss Data Analytics</title>
-  <meta name="description" content="Chapter 3 Modeling Loss Severity | Loss Data Analytics is an interactive, online, freely available text. - The online version will contain many interactive objects (quizzes, computer demonstrations, interactive graphs, video, and the like) to promote deeper learning. - A subset of the book will be available in pdf format for low-cost printing. - The online text will be available in multiple languages to promote access to a worldwide audience." />
-  <meta name="generator" content="bookdown 0.10 and GitBook 2.6.7" />
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Loss Data Analytics</title>
+  <meta name="description" content="Loss Data Analytics is an interactive, online, freely available text. - The online version will contain many interactive objects (quizzes, computer demonstrations, interactive graphs, video, and the like) to promote deeper learning. - A subset of the book will be available in pdf format for low-cost printing. - The online text will be available in multiple languages to promote access to a worldwide audience.">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
 
-  <meta property="og:title" content="Chapter 3 Modeling Loss Severity | Loss Data Analytics" />
+  <meta property="og:title" content="Loss Data Analytics" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="Chapter 3 Modeling Loss Severity | Loss Data Analytics is an interactive, online, freely available text. - The online version will contain many interactive objects (quizzes, computer demonstrations, interactive graphs, video, and the like) to promote deeper learning. - A subset of the book will be available in pdf format for low-cost printing. - The online text will be available in multiple languages to promote access to a worldwide audience." />
-  <meta name="github-repo" content="https://github.com/openacttexts/Loss-Data-Analytics" />
+  <meta property="og:description" content="Loss Data Analytics is an interactive, online, freely available text. - The online version will contain many interactive objects (quizzes, computer demonstrations, interactive graphs, video, and the like) to promote deeper learning. - A subset of the book will be available in pdf format for low-cost printing. - The online text will be available in multiple languages to promote access to a worldwide audience." />
+  <meta name="github-repo" content="<a href="https://github.com/openacttexts/Loss-Data-Analytics" class="uri">https://github.com/openacttexts/Loss-Data-Analytics</a>" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 3 Modeling Loss Severity | Loss Data Analytics" />
+  <meta name="twitter:title" content="Loss Data Analytics" />
   
-  <meta name="twitter:description" content="Chapter 3 Modeling Loss Severity | Loss Data Analytics is an interactive, online, freely available text. - The online version will contain many interactive objects (quizzes, computer demonstrations, interactive graphs, video, and the like) to promote deeper learning. - A subset of the book will be available in pdf format for low-cost printing. - The online text will be available in multiple languages to promote access to a worldwide audience." />
+  <meta name="twitter:description" content="Loss Data Analytics is an interactive, online, freely available text. - The online version will contain many interactive objects (quizzes, computer demonstrations, interactive graphs, video, and the like) to promote deeper learning. - A subset of the book will be available in pdf format for low-cost printing. - The online text will be available in multiple languages to promote access to a worldwide audience." />
   
 
-<meta name="author" content="An open text authored by the Actuarial Community" />
+<meta name="author" content="An open text authored by the Actuarial Community">
 
 
 
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
 <link rel="prev" href="C-Frequency-Modeling.html">
 <link rel="next" href="C-ModelSelection.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
@@ -95,6 +95,31 @@ const jsonHeader = {
     startSurveyText: "Start Quiz" //,
 //    title: "Does This Make Sense?"
 }
+// One and Two question quizzes
+function jsonSummary1EWF(json) {  
+let jsonEnd1 = { 
+completedHtml: 
+json["pages"][1]["questions"][0]["name"]+ "<br>"+
+"<i>Question: </i>"+json["pages"][1]["questions"][0]["title"]+"<br>"+
+"<i>Answer: </i>"+json["pages"][1]["questions"][0]["correctAnswer"]
+};  
+return jsonEnd1;
+};
+
+
+function jsonSummary2EWF(json) {  
+let jsonEnd2 = { 
+completedHtml: 
+json["pages"][1]["questions"][0]["name"]+ "<br>"+
+"<i>Question: </i>"+json["pages"][1]["questions"][0]["title"]+"<br>"+
+"<i>Answer: </i>"+json["pages"][1]["questions"][0]["correctAnswer"]
++"<br>"+
+json["pages"][2]["questions"][0]["name"]+ "<br>"+
+"<i>Question: </i>"+json["pages"][2]["questions"][0]["title"]+"<br>"+
+"<i>Answer: </i>"+json["pages"][2]["questions"][0]["correctAnswer"]
+};  
+return jsonEnd2;
+};
 
 // Three, four, and five question quizzes
 function jsonSummary3EWF(json) {  
@@ -136,6 +161,77 @@ json["pages"][5]["questions"][0]["name"]+ "<br>"+
 ;  
 return jsonEnd5;
 };
+
+function jsonSummary6EWF(json) {  
+jsonEnd6 = jsonSummary5EWF(json);
+jsonEnd6.completedHtml = jsonEnd6.completedHtml +  
+"<br>"+
+json["pages"][6]["questions"][0]["name"]+ "<br>"+
+"<i>Question: </i>"+json["pages"][6]["questions"][0]["title"]+"<br>"+
+"<i>Answer: </i>"+json["pages"][6]["questions"][0]["correctAnswer"]
+;  
+return jsonEnd6;
+};
+
+function jsonSummary7EWF(json) {  
+jsonEnd7 = jsonSummary6EWF(json);
+jsonEnd7.completedHtml = jsonEnd7.completedHtml +  
+"<br>"+
+json["pages"][7]["questions"][0]["name"]+ "<br>"+
+"<i>Question: </i>"+json["pages"][7]["questions"][0]["title"]+"<br>"+
+"<i>Answer: </i>"+json["pages"][7]["questions"][0]["correctAnswer"]
+;  
+return jsonEnd7;
+};
+
+function jsonSummary8EWF(json) {  
+jsonEnd8 = jsonSummary7EWF(json);
+jsonEnd8.completedHtml = jsonEnd8.completedHtml +  
+"<br>"+
+json["pages"][8]["questions"][0]["name"]+ "<br>"+
+"<i>Question: </i>"+json["pages"][8]["questions"][0]["title"]+"<br>"+
+"<i>Answer: </i>"+json["pages"][8]["questions"][0]["correctAnswer"]
+;  
+return jsonEnd8;
+};
+
+function jsonSummary9EWF(json) {  
+jsonEnd9 = jsonSummary8EWF(json);
+jsonEnd9.completedHtml = jsonEnd9.completedHtml +  
+"<br>"+
+json["pages"][9]["questions"][0]["name"]+ "<br>"+
+"<i>Question: </i>"+json["pages"][9]["questions"][0]["title"]+"<br>"+
+"<i>Answer: </i>"+json["pages"][9]["questions"][0]["correctAnswer"]
+;  
+return jsonEnd9;
+};
+
+
+function jsonSummary10EWF(json) {  
+jsonEnd10 = jsonSummary9EWF(json);
+jsonEnd10.completedHtml = jsonEnd10.completedHtml +  
+"<br>"+
+json["pages"][10]["questions"][0]["name"]+ "<br>"+
+"<i>Question: </i>"+json["pages"][10]["questions"][0]["title"]+"<br>"+
+"<i>Answer: </i>"+json["pages"][10]["questions"][0]["correctAnswer"]
+;  
+return jsonEnd10;
+};
+
+
+function jsonSummary11EWF(json) {  
+jsonEnd11 = jsonSummary10EWF(json);
+jsonEnd11.completedHtml = jsonEnd11.completedHtml +  
+"<br>"+
+json["pages"][11]["questions"][0]["name"]+ "<br>"+
+"<i>Question: </i>"+json["pages"][11]["questions"][0]["title"]+"<br>"+
+"<i>Answer: </i>"+json["pages"][11]["questions"][0]["correctAnswer"]
+;  
+return jsonEnd11;
+};
+
+
+
 </script>  
 <!-- This completes the code for the quizzes -->
 
@@ -264,11 +360,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li><a href="./">Loss Data Analytics</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#acknowledgements"><i class="fa fa-check"></i>Acknowledgements</a></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#contributors"><i class="fa fa-check"></i>Contributors</a></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#reviewers"><i class="fa fa-check"></i>Reviewers</a></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#for-our-readers"><i class="fa fa-check"></i>For our Readers</a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>Preface</a><ul>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#acknowledgements"><i class="fa fa-check"></i>Acknowledgements</a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#contributors"><i class="fa fa-check"></i>Contributors</a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#reviewers"><i class="fa fa-check"></i>Reviewers</a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#for-our-readers"><i class="fa fa-check"></i>For our Readers</a></li>
 </ul></li>
 <li class="chapter" data-level="1" data-path="C-Intro.html"><a href="C-Intro.html"><i class="fa fa-check"></i><b>1</b> Introduction to Loss Data Analytics</a><ul>
 <li class="chapter" data-level="1.1" data-path="C-Intro.html"><a href="C-Intro.html#S:Intro"><i class="fa fa-check"></i><b>1.1</b> Relevance of Analytics to Insurance Activities</a><ul>
@@ -407,7 +503,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="6.2.4" data-path="C-Simulation.html"><a href="C-Simulation.html#S:ParametricBootStrap"><i class="fa fa-check"></i><b>6.2.4</b> Parametric Bootstrap</a></li>
 </ul></li>
 <li class="chapter" data-level="6.3" data-path="C-Simulation.html"><a href="C-Simulation.html#S:CrossValidation"><i class="fa fa-check"></i><b>6.3</b> Cross-Validation</a><ul>
-<li class="chapter" data-level="6.3.1" data-path="C-Simulation.html"><a href="C-Simulation.html#k-fold-cross-validation"><i class="fa fa-check"></i><b>6.3.1</b> <span class="math inline">\(k\)</span>-Fold Cross-Validation</a></li>
+<li class="chapter" data-level="6.3.1" data-path="C-Simulation.html"><a href="C-Simulation.html#k-fold-cross-validation"><i class="fa fa-check"></i><b>6.3.1</b> k-Fold Cross-Validation</a></li>
 <li class="chapter" data-level="6.3.2" data-path="C-Simulation.html"><a href="C-Simulation.html#leave-one-out-cross-validation"><i class="fa fa-check"></i><b>6.3.2</b> Leave-One-Out Cross-Validation</a></li>
 <li class="chapter" data-level="6.3.3" data-path="C-Simulation.html"><a href="C-Simulation.html#cross-validation-and-bootstrap"><i class="fa fa-check"></i><b>6.3.3</b> Cross-Validation and Bootstrap</a></li>
 </ul></li>
@@ -440,11 +536,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="7.6.2" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#concentration-curve-and-a-gini-statistic"><i class="fa fa-check"></i><b>7.6.2</b> Concentration Curve and a Gini Statistic</a></li>
 <li class="chapter" data-level="7.6.3" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#out-of-sample-validation"><i class="fa fa-check"></i><b>7.6.3</b> Out-of-Sample Validation</a></li>
 </ul></li>
-<li class="chapter" data-level="7.7" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#S:Other"><i class="fa fa-check"></i><b>7.7</b> Other Topics?</a></li>
-<li class="chapter" data-level="7.8" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#further-resources-and-contributors"><i class="fa fa-check"></i><b>7.8</b> Further Resources and Contributors</a><ul>
-<li class="chapter" data-level="7.8.1" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#S:RateRegulation"><i class="fa fa-check"></i><b>7.8.1</b> TS 7.A. Rate Regulation</a></li>
-<li class="chapter" data-level="7.8.2" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#S:SelectingRateFactors"><i class="fa fa-check"></i><b>7.8.2</b> TS 7.B. Selecting Rating Factors</a></li>
-<li class="chapter" data-level="7.8.3" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#S:AdverseSelection"><i class="fa fa-check"></i><b>7.8.3</b> TS 7.C. Adverse Selection</a></li>
+<li class="chapter" data-level="7.7" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#further-resources-and-contributors"><i class="fa fa-check"></i><b>7.7</b> Further Resources and Contributors</a><ul>
+<li class="chapter" data-level="" data-path="C-PremiumFoundations.html"><a href="C-PremiumFoundations.html#ts-7.a.-rate-regulation"><i class="fa fa-check"></i>TS 7.A. Rate Regulation</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="C-RiskClass.html"><a href="C-RiskClass.html"><i class="fa fa-check"></i><b>8</b> Risk Classification</a><ul>
@@ -463,6 +556,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="8.4" data-path="C-RiskClass.html"><a href="C-RiskClass.html#RC:further-reading-and-resources"><i class="fa fa-check"></i><b>8.4</b> Further Resources and Contributors</a><ul>
 <li class="chapter" data-level="" data-path="C-RiskClass.html"><a href="C-RiskClass.html#ts-8.a-estimating-poisson-regression-models"><i class="fa fa-check"></i>TS 8.A – Estimating Poisson Regression Models</a></li>
+<li class="chapter" data-level="" data-path="C-RiskClass.html"><a href="C-RiskClass.html#ts-8.b.-selecting-rating-factors"><i class="fa fa-check"></i>TS 8.B. Selecting Rating Factors</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="C-Credibility.html"><a href="C-Credibility.html"><i class="fa fa-check"></i><b>9</b> Experience Rating Using Credibility Theory</a><ul>
@@ -509,7 +603,30 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="10.5" data-path="C-PortMgt.html"><a href="C-PortMgt.html#further-resources-and-contributors-1"><i class="fa fa-check"></i><b>10.5</b> Further Resources and Contributors</a></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="C-LossReserves.html"><a href="C-LossReserves.html"><i class="fa fa-check"></i><b>11</b> Loss Reserving</a></li>
-<li class="chapter" data-level="12" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html"><i class="fa fa-check"></i><b>12</b> Experience Rating using Bonus-Malus</a></li>
+<li class="chapter" data-level="12" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html"><i class="fa fa-check"></i><b>12</b> Experience Rating using Bonus-Malus</a><ul>
+<li class="chapter" data-level="12.1" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#S:ERBM:Intro"><i class="fa fa-check"></i><b>12.1</b> Introduction</a></li>
+<li class="chapter" data-level="12.2" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#S:ERBM:NCD"><i class="fa fa-check"></i><b>12.2</b> NCD System in Several Countries</a><ul>
+<li class="chapter" data-level="12.2.1" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#ncd-system-in-malaysia"><i class="fa fa-check"></i><b>12.2.1</b> NCD System in Malaysia</a></li>
+<li class="chapter" data-level="12.2.2" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#ncd-system-in-other-countries"><i class="fa fa-check"></i><b>12.2.2</b> NCD System in Other Countries</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#S:ERBM:BMS"><i class="fa fa-check"></i><b>12.3</b> BMS and Markov Chain Model</a><ul>
+<li class="chapter" data-level="12.3.1" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#transition-probability"><i class="fa fa-check"></i><b>12.3.1</b> Transition Probability</a></li>
+</ul></li>
+<li class="chapter" data-level="12.4" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#S:ERBM:StatDist"><i class="fa fa-check"></i><b>12.4</b> BMS and Stationary Distribution</a><ul>
+<li class="chapter" data-level="12.4.1" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#stationary-distribution"><i class="fa fa-check"></i><b>12.4.1</b> Stationary Distribution</a></li>
+<li class="chapter" data-level="12.4.2" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#r-program-for-stationary-distribution"><i class="fa fa-check"></i><b>12.4.2</b> R Program for Stationary Distribution</a></li>
+<li class="chapter" data-level="12.4.3" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#premium-evolution"><i class="fa fa-check"></i><b>12.4.3</b> Premium Evolution</a></li>
+<li class="chapter" data-level="12.4.4" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#r-program-for-premium-evolution"><i class="fa fa-check"></i><b>12.4.4</b> R Program for Premium Evolution</a></li>
+<li class="chapter" data-level="12.4.5" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#convergence-rate"><i class="fa fa-check"></i><b>12.4.5</b> Convergence Rate</a></li>
+<li class="chapter" data-level="12.4.6" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#r-program-for-convergence-rate"><i class="fa fa-check"></i><b>12.4.6</b> R Program for Convergence Rate</a></li>
+</ul></li>
+<li class="chapter" data-level="12.5" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#S:PremRtg"><i class="fa fa-check"></i><b>12.5</b> BMS and Premium Rating</a><ul>
+<li class="chapter" data-level="12.5.1" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#premium-rating"><i class="fa fa-check"></i><b>12.5.1</b> Premium Rating</a></li>
+<li class="chapter" data-level="12.5.2" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#frequency-model-poisson-and-negative-binomial-regressions"><i class="fa fa-check"></i><b>12.5.2</b> Frequency Model – Poisson and Negative Binomial Regressions</a></li>
+<li class="chapter" data-level="12.5.3" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#premium-rating-with-bonus-malus-data"><i class="fa fa-check"></i><b>12.5.3</b> Premium Rating with Bonus-Malus Data</a></li>
+<li class="chapter" data-level="12.5.4" data-path="C-BonusMalus.html"><a href="C-BonusMalus.html#premium-rating-without-bonus-malus-data"><i class="fa fa-check"></i><b>12.5.4</b> Premium Rating without Bonus-Malus Data</a></li>
+</ul></li>
+</ul></li>
 <li class="chapter" data-level="13" data-path="C-DataSystems.html"><a href="C-DataSystems.html"><i class="fa fa-check"></i><b>13</b> Data and Systems</a><ul>
 <li class="chapter" data-level="13.1" data-path="C-DataSystems.html"><a href="C-DataSystems.html#data"><i class="fa fa-check"></i><b>13.1</b> Data</a><ul>
 <li class="chapter" data-level="13.1.1" data-path="C-DataSystems.html"><a href="C-DataSystems.html#data-types-and-sources"><i class="fa fa-check"></i><b>13.1.1</b> Data Types and Sources</a></li>
@@ -546,6 +663,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="14.2.1" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#association-measures-for-quantitative-variables"><i class="fa fa-check"></i><b>14.2.1</b> Association Measures for Quantitative Variables</a></li>
 <li class="chapter" data-level="14.2.2" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#rank-based-measures"><i class="fa fa-check"></i><b>14.2.2</b> Rank Based Measures</a></li>
 <li class="chapter" data-level="14.2.3" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#nominal-variables"><i class="fa fa-check"></i><b>14.2.3</b> Nominal Variables</a></li>
+<li class="chapter" data-level="14.2.4" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#ordinal-variables"><i class="fa fa-check"></i><b>14.2.4</b> Ordinal Variables</a></li>
+<li class="chapter" data-level="14.2.5" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#interval-variables"><i class="fa fa-check"></i><b>14.2.5</b> Interval Variables</a></li>
+<li class="chapter" data-level="14.2.6" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#discrete-and-continuous-variables"><i class="fa fa-check"></i><b>14.2.6</b> Discrete and Continuous Variables</a></li>
 </ul></li>
 <li class="chapter" data-level="14.3" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#S:Copula"><i class="fa fa-check"></i><b>14.3</b> Introduction to Copulas</a></li>
 <li class="chapter" data-level="14.4" data-path="C-DependenceModel.html"><a href="C-DependenceModel.html#S:CopAppl"><i class="fa fa-check"></i><b>14.4</b> Application Using Copulas</a><ul>
@@ -674,7 +794,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 \]</span> that is based on the survival function, denoted as <span class="math inline">\(S_X(x) = 1-F_{X}(x)\)</span>. This formula is particularly useful when <span class="math inline">\(k=1\)</span>.</p>
 <p>The <em>k</em>-th <a href="#" class="tooltip" style="color:green"><em>central moment</em><span style="font-size:8pt">the kth central moment of a random variable X is the expected value of (X-its mean)^k</span></a> of <span class="math inline">\(X\)</span>, denoted by <span class="math inline">\(\mu_{k}\)</span>, is the expected value of the <em>k</em>-th power of the deviation of <span class="math inline">\(X\)</span> from its mean <span class="math inline">\(\mu\)</span>. The formula for <span class="math inline">\(\mu_{k}\)</span> is given as <span class="math display">\[
 \mu_{k} = \mathrm{E}\left\lbrack {(X - \mu)}^{k} \right\rbrack = \int_{0}^{\infty}{\left( x - \mu \right)^{k}f_{X}\left( x \right) dx }.
-\]</span> The second central moment <span class="math inline">\(\mu_{2}\)</span> defines the <a href="#" class="tooltip" style="color:green"><em>variance</em><span style="font-size:8pt">The second central moment of a distribution</span></a> of <span class="math inline">\(X\)</span>, denoted by <span class="math inline">\(\sigma^{2}\)</span>. The square root of the variance is the <a href="#" class="tooltip" style="color:green"><em>standard deviation</em><span style="font-size:8pt">the square-root of variance</span></a> <span class="math inline">\(\sigma\)</span>.</p>
+\]</span> The second central moment <span class="math inline">\(\mu_{2}\)</span> defines the <a href="#" class="tooltip" style="color:green"><em>variance</em><span style="font-size:8pt">second central moment of a random variable X, measuring the expected squared deviation of between the variable and its mean</span></a> of <span class="math inline">\(X\)</span>, denoted by <span class="math inline">\(\sigma^{2}\)</span>. The square root of the variance is the <a href="#" class="tooltip" style="color:green"><em>standard deviation</em><span style="font-size:8pt">the square-root of variance</span></a> <span class="math inline">\(\sigma\)</span>.</p>
 <p>From a classical perspective, further characterization of the shape of the distribution includes its degree of symmetry as well as its flatness compared to the normal distribution. The ratio of the third central moment to the cube of the standard deviation <span class="math inline">\(\left( \mu_{3} / \sigma^{3} \right)\)</span> defines the coefficient of <a href="#" class="tooltip" style="color:green"><em>skewness</em><span style="font-size:8pt">measure of the symmetry of a distribution, 3rd central moment/standard deviation^3</span></a> which is a measure of symmetry. A positive coefficient of skewness indicates that the distribution is skewed to the right (positively skewed). The ratio of the fourth central moment to the fourth power of the standard deviation <span class="math inline">\(\left(\mu_{4} / \sigma^{4} \right)\)</span> defines the coefficient of <a href="#" class="tooltip" style="color:green"><em>kurtosis</em><span style="font-size:8pt">measure of the peaked-ness of a distribution, 4th central moment/standard deviation^4</span></a>. The normal distribution has a coefficient of kurtosis of 3. Distributions with a coefficient of kurtosis greater than 3 have heavier tails and higher peak than the normal, whereas distributions with a coefficient of kurtosis less than 3 have lighter tails and are flatter. Section <a href="C-PortMgt.html#S:Tails">10.2</a> describes the tails of distributions from an insurance and actuarial perspective.</p>
 <p><strong>Example 3.1.1. Actuarial Exam Question.</strong> Assume that the <em>rv</em> <span class="math inline">\(X\)</span> has a gamma distribution with mean 8 and skewness 1. Find the variance of <span class="math inline">\(X\)</span>. (<em>Hint</em>: The gamma distribution is reviewed in Section <a href="C-Severity.html#S:Loss:Gamma">3.2.1</a>.)</p>
 <h5 style="text-align: center;">
@@ -758,6 +878,23 @@ M_{S}(t) = \prod_{i = 1}^{n}\left( 1 - \theta t \right)^{- \alpha_{i}} = \left( 
 P_{X}(z) = \mathrm{E}\left( z^{X} \right) = M_{X}\left( \ln z \right) . 
 \]</span></p>
 <p>As introduced in Section <a href="C-Frequency-Modeling.html#S:generating-functions">2.2.2</a>, the probability generating function is more useful for discrete <em>rv</em>s.</p>
+<div id="surveyElement31">
+
+</div>
+<div id="surveyResult31">
+
+</div>
+<h5 style="text-align: center;">
+<a id="display.Quiz31.1" href="javascript:toggleQuiz
+('display.Quiz31.2','display.Quiz31.1');"><i><strong>Show Quiz Solution</strong></i></a>
+</h5>
+<div id="display.Quiz31.2" style="display: none">
+<p id="Quiz31Soln">
+</p>
+<hr />
+</div>
+<script type="text/javascript" src="./Quizzes/QuizJavascript/Quiz31.js">
+</script>
 </div>
 </div>
 <div id="S:ContinuousDistn" class="section level2">
@@ -789,28 +926,28 @@ Figure 3.1: Gamma Densities. The left-hand panel is with shape=2 and Varying Sca
 <a id="displayCode.gamma.1" href="javascript:togglecode('toggleCode.gamma.1','displayCode.gamma.1');"><i><strong>R Code for Gamma Density Plots</strong></i></a>
 </h5>
 <div id="toggleCode.gamma.1" style="display: none">
-<pre><code>par(mfrow=c(1, 2), mar = c(4, 4, .1, .1))
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="dt">mar =</span> <span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">4</span>, .<span class="dv">1</span>, .<span class="dv">1</span>))
 
-# Varying Scale Gamma Densities
-scaleparam &lt;- seq(100, 250, by = 50)
-shapeparam &lt;- 2:5
-x &lt;- seq(0, 1000, by = 1)
-fgamma &lt;- dgamma(x, shape = 2, scale = scaleparam[1])
-plot(x, fgamma, type = &quot;l&quot;, ylab = &quot;Gamma Density&quot;)
-for(k in 2:length(scaleparam)){
-  fgamma &lt;- dgamma(x,shape = 2, scale = scaleparam[k])
-  lines(x,fgamma, col = k)
+<span class="co"># Varying Scale Gamma Densities</span>
+scaleparam &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">100</span>, <span class="dv">250</span>, <span class="dt">by =</span> <span class="dv">50</span>)
+shapeparam &lt;-<span class="st"> </span><span class="dv">2</span><span class="op">:</span><span class="dv">5</span>
+x &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">1000</span>, <span class="dt">by =</span> <span class="dv">1</span>)
+fgamma &lt;-<span class="st"> </span><span class="kw">dgamma</span>(x, <span class="dt">shape =</span> <span class="dv">2</span>, <span class="dt">scale =</span> scaleparam[<span class="dv">1</span>])
+<span class="kw">plot</span>(x, fgamma, <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Gamma Density&quot;</span>)
+<span class="cf">for</span>(k <span class="cf">in</span> <span class="dv">2</span><span class="op">:</span><span class="kw">length</span>(scaleparam)){
+  fgamma &lt;-<span class="st"> </span><span class="kw">dgamma</span>(x,<span class="dt">shape =</span> <span class="dv">2</span>, <span class="dt">scale =</span> scaleparam[k])
+  <span class="kw">lines</span>(x,fgamma, <span class="dt">col =</span> k)
 }
-legend(&quot;topright&quot;, c(&quot;scale=100&quot;, &quot;scale=150&quot;, &quot;scale=200&quot;, &quot;scale=250&quot;), lty=1, col = 1:4)
+<span class="kw">legend</span>(<span class="st">&quot;topright&quot;</span>, <span class="kw">c</span>(<span class="st">&quot;scale=100&quot;</span>, <span class="st">&quot;scale=150&quot;</span>, <span class="st">&quot;scale=200&quot;</span>, <span class="st">&quot;scale=250&quot;</span>), <span class="dt">lty=</span><span class="dv">1</span>, <span class="dt">col =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">4</span>)
 
-# Varying Shape Gamma Densities
-fgamma &lt;- dgamma(x, shape = shapeparam[1], scale = 100)
-plot(x, fgamma, type = &quot;l&quot;, ylab = &quot;Gamma Density&quot;)
-for(k in 2:length(shapeparam)){
-  fgamma &lt;- dgamma(x,shape = shapeparam[k], scale = 100)
-  lines(x,fgamma, col = k)
+<span class="co"># Varying Shape Gamma Densities</span>
+fgamma &lt;-<span class="st"> </span><span class="kw">dgamma</span>(x, <span class="dt">shape =</span> shapeparam[<span class="dv">1</span>], <span class="dt">scale =</span> <span class="dv">100</span>)
+<span class="kw">plot</span>(x, fgamma, <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Gamma Density&quot;</span>)
+<span class="cf">for</span>(k <span class="cf">in</span> <span class="dv">2</span><span class="op">:</span><span class="kw">length</span>(shapeparam)){
+  fgamma &lt;-<span class="st"> </span><span class="kw">dgamma</span>(x,<span class="dt">shape =</span> shapeparam[k], <span class="dt">scale =</span> <span class="dv">100</span>)
+  <span class="kw">lines</span>(x,fgamma, <span class="dt">col =</span> k)
 }
-legend(&quot;topright&quot;, c(&quot;shape=2&quot;, &quot;shape=3&quot;, &quot;shape=4&quot;, &quot;shape=5&quot;), lty=1, col = 1:4)</code></pre>
+<span class="kw">legend</span>(<span class="st">&quot;topright&quot;</span>, <span class="kw">c</span>(<span class="st">&quot;shape=2&quot;</span>, <span class="st">&quot;shape=3&quot;</span>, <span class="st">&quot;shape=4&quot;</span>, <span class="st">&quot;shape=5&quot;</span>), <span class="dt">lty=</span><span class="dv">1</span>, <span class="dt">col =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">4</span>)</code></pre></div>
 </div>
 <p>When <span class="math inline">\(\alpha = 1\)</span> the gamma reduces to an <a href="#" class="tooltip" style="color:green"><em>exponential distribution</em><span style="font-size:8pt">a single parameter continous probability distribution that is defined by its rate parameter</span></a> and when <span class="math inline">\(\alpha = \frac{n}{2}\)</span> and <span class="math inline">\(\theta = 2\)</span> the gamma reduces to a <a href="#" class="tooltip" style="color:green"><em>chi-square distribution</em><span style="font-size:8pt">the chi-squared distribution with k degrees of freedom is the distribution of a sum of the squares of k independent standard normal random variables</span></a> with <span class="math inline">\(n\)</span> degrees of freedom. As we will see in Section <a href="C-AppA.html#S:AppA:HT">15.4</a>, the chi-square distribution is used extensively in statistical hypothesis testing.</p>
 <p>The distribution function of the gamma model is the incomplete gamma function, denoted by <span class="math inline">\(\Gamma\left(\alpha; \frac{x}{\theta} \right)\)</span>, and defined as <span class="math display">\[
@@ -837,29 +974,28 @@ Figure 3.2: Pareto Densities. The left-hand panel is with scale=2000 and Varying
 <a id="displayCode.Pareto.1" href="javascript:togglecode('toggleCode.Pareto.1','displayCode.Pareto.1');"><i><strong>R Code for Pareto Density Plots</strong></i></a>
 </h5>
 <div id="toggleCode.Pareto.1" style="display: none">
-<pre><code>library(VGAM)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(VGAM)
 
-par(mfrow=c(1, 2), mar = c(4, 4, .1, .1))
+<span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="dt">mar =</span> <span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">4</span>, .<span class="dv">1</span>, .<span class="dv">1</span>))
 
-# Varying Shape Pareto Densities
-x &lt;- seq(1, 3000, by = 1)
-scaleparam &lt;- seq(2000, 3500, 500)
-shapeparam &lt;- 1:4
+<span class="co"># Varying Shape Pareto Densities</span>
+x &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">1</span>, <span class="dv">3000</span>, <span class="dt">by =</span> <span class="dv">1</span>)
+scaleparam &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">2000</span>, <span class="dv">3500</span>, <span class="dv">500</span>)
+shapeparam &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">4</span>
 
-# varying the shape parameter
-plot(x, dparetoII(x, loc=0, shape = shapeparam[1], scale = 2000), ylim=c(0,0.002),type = &quot;l&quot;, ylab = &quot;Pareto density&quot;)
-for(k in 2:length(shapeparam)){
-  lines(x, dparetoII(x, loc=0, shape = shapeparam[k], scale = 2000), col = k)
+<span class="co"># varying the shape parameter</span>
+<span class="kw">plot</span>(x, <span class="kw">dparetoII</span>(x, <span class="dt">loc=</span><span class="dv">0</span>, <span class="dt">shape =</span> shapeparam[<span class="dv">1</span>], <span class="dt">scale =</span> <span class="dv">2000</span>), <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="fl">0.002</span>),<span class="dt">type =</span> <span class="st">&quot;l&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Pareto density&quot;</span>)
+<span class="cf">for</span>(k <span class="cf">in</span> <span class="dv">2</span><span class="op">:</span><span class="kw">length</span>(shapeparam)){
+  <span class="kw">lines</span>(x, <span class="kw">dparetoII</span>(x, <span class="dt">loc=</span><span class="dv">0</span>, <span class="dt">shape =</span> shapeparam[k], <span class="dt">scale =</span> <span class="dv">2000</span>), <span class="dt">col =</span> k)
 }
-legend(&quot;topright&quot;, c(expression(alpha~&#39;=1&#39;), expression(alpha~&#39;=2&#39;), expression(alpha~&#39;=3&#39;), expression(alpha~&#39;=4&#39;)), lty=1, col = 1:4)
+<span class="kw">legend</span>(<span class="st">&quot;topright&quot;</span>, <span class="kw">c</span>(<span class="kw">expression</span>(alpha<span class="op">~</span><span class="st">&#39;=1&#39;</span>), <span class="kw">expression</span>(alpha<span class="op">~</span><span class="st">&#39;=2&#39;</span>), <span class="kw">expression</span>(alpha<span class="op">~</span><span class="st">&#39;=3&#39;</span>), <span class="kw">expression</span>(alpha<span class="op">~</span><span class="st">&#39;=4&#39;</span>)), <span class="dt">lty=</span><span class="dv">1</span>, <span class="dt">col =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">4</span>)
 
-# Varying Scale Pareto Densities
-plot(x, dparetoII(x, loc=0, shape = 3, scale = scaleparam[1]), type = &quot;l&quot;, ylab = &quot;Pareto density&quot;)
-for(k in 2:length(scaleparam)){
-  lines(x, dparetoII(x, loc=0, shape = 3, scale = scaleparam[k]), col = k)
+<span class="co"># Varying Scale Pareto Densities</span>
+<span class="kw">plot</span>(x, <span class="kw">dparetoII</span>(x, <span class="dt">loc=</span><span class="dv">0</span>, <span class="dt">shape =</span> <span class="dv">3</span>, <span class="dt">scale =</span> scaleparam[<span class="dv">1</span>]), <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Pareto density&quot;</span>)
+<span class="cf">for</span>(k <span class="cf">in</span> <span class="dv">2</span><span class="op">:</span><span class="kw">length</span>(scaleparam)){
+  <span class="kw">lines</span>(x, <span class="kw">dparetoII</span>(x, <span class="dt">loc=</span><span class="dv">0</span>, <span class="dt">shape =</span> <span class="dv">3</span>, <span class="dt">scale =</span> scaleparam[k]), <span class="dt">col =</span> k)
 }
-legend(&quot;topright&quot;, c(expression(theta~&#39;=2000&#39;), expression(theta~&#39;=2500&#39;), expression(theta~&#39;=3000&#39;), expression(theta~&#39;=3500&#39;)), lty=1, col = 1:4)
-</code></pre>
+<span class="kw">legend</span>(<span class="st">&quot;topright&quot;</span>, <span class="kw">c</span>(<span class="kw">expression</span>(theta<span class="op">~</span><span class="st">&#39;=2000&#39;</span>), <span class="kw">expression</span>(theta<span class="op">~</span><span class="st">&#39;=2500&#39;</span>), <span class="kw">expression</span>(theta<span class="op">~</span><span class="st">&#39;=3000&#39;</span>), <span class="kw">expression</span>(theta<span class="op">~</span><span class="st">&#39;=3500&#39;</span>)), <span class="dt">lty=</span><span class="dv">1</span>, <span class="dt">col =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">4</span>)</code></pre></div>
 </div>
 <p>The distribution function of the Pareto distribution is given by <span class="math display">\[
 F_{X}\left( x \right) = 1 - \left( \frac{\theta}{x + \theta} \right)^{\alpha}  \ \ \ x &gt; 0,\ \alpha &gt; 0,\ \theta &gt; 0.
@@ -904,22 +1040,22 @@ Figure 3.3: Weibull Densities. The left-hand panel is with shape=3 and Varying S
 <a id="displayCode.Weibull.1" href="javascript:togglecode('toggleCode.Weibull.1','displayCode.Weibull.1');"><i><strong>R Code for Weibull Density Plots</strong></i></a>
 </h5>
 <div id="toggleCode.Weibull.1" style="display: none">
-<pre><code>par(mfrow=c(1, 2), mar = c(4, 4, .1, .1))
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="dt">mar =</span> <span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">4</span>, .<span class="dv">1</span>, .<span class="dv">1</span>))
 
-# Varying Scale Weibull Densities
-z&lt;- seq(0,400,by=1)
-scaleparam &lt;- seq(50,200,50)
-shapeparam &lt;- seq(1.5,3,0.5)
-plot(z, dweibull(z, shape = 3, scale = scaleparam[1]), type = &quot;l&quot;, ylab = &quot;Weibull density&quot;)
-for(k in 2:length(scaleparam)){
-  lines(z,dweibull(z,shape = 3, scale = scaleparam[k]), col = k)}
-legend(&quot;topright&quot;, c(&quot;scale=50&quot;, &quot;scale=100&quot;, &quot;scale=150&quot;, &quot;scale=200&quot;), lty=1, col = 1:4)
+<span class="co"># Varying Scale Weibull Densities</span>
+z&lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">400</span>,<span class="dt">by=</span><span class="dv">1</span>)
+scaleparam &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">50</span>,<span class="dv">200</span>,<span class="dv">50</span>)
+shapeparam &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="fl">1.5</span>,<span class="dv">3</span>,<span class="fl">0.5</span>)
+<span class="kw">plot</span>(z, <span class="kw">dweibull</span>(z, <span class="dt">shape =</span> <span class="dv">3</span>, <span class="dt">scale =</span> scaleparam[<span class="dv">1</span>]), <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Weibull density&quot;</span>)
+<span class="cf">for</span>(k <span class="cf">in</span> <span class="dv">2</span><span class="op">:</span><span class="kw">length</span>(scaleparam)){
+  <span class="kw">lines</span>(z,<span class="kw">dweibull</span>(z,<span class="dt">shape =</span> <span class="dv">3</span>, <span class="dt">scale =</span> scaleparam[k]), <span class="dt">col =</span> k)}
+<span class="kw">legend</span>(<span class="st">&quot;topright&quot;</span>, <span class="kw">c</span>(<span class="st">&quot;scale=50&quot;</span>, <span class="st">&quot;scale=100&quot;</span>, <span class="st">&quot;scale=150&quot;</span>, <span class="st">&quot;scale=200&quot;</span>), <span class="dt">lty=</span><span class="dv">1</span>, <span class="dt">col =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">4</span>)
 
-# Varying Shape Weibull Densities
-plot(z, dweibull(z, shape = shapeparam[1], scale = 100), ylim=c(0,0.012), type = &quot;l&quot;, ylab = &quot;Weibull density&quot;)
-for(k in 2:length(shapeparam)){
-  lines(z,dweibull(z,shape = shapeparam[k], scale = 100), col = k)}
-legend(&quot;topright&quot;, c(&quot;shape=1.5&quot;, &quot;shape=2&quot;, &quot;shape=2.5&quot;, &quot;shape=3&quot;), lty=1, col = 1:4)</code></pre>
+<span class="co"># Varying Shape Weibull Densities</span>
+<span class="kw">plot</span>(z, <span class="kw">dweibull</span>(z, <span class="dt">shape =</span> shapeparam[<span class="dv">1</span>], <span class="dt">scale =</span> <span class="dv">100</span>), <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="fl">0.012</span>), <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Weibull density&quot;</span>)
+<span class="cf">for</span>(k <span class="cf">in</span> <span class="dv">2</span><span class="op">:</span><span class="kw">length</span>(shapeparam)){
+  <span class="kw">lines</span>(z,<span class="kw">dweibull</span>(z,<span class="dt">shape =</span> shapeparam[k], <span class="dt">scale =</span> <span class="dv">100</span>), <span class="dt">col =</span> k)}
+<span class="kw">legend</span>(<span class="st">&quot;topright&quot;</span>, <span class="kw">c</span>(<span class="st">&quot;shape=1.5&quot;</span>, <span class="st">&quot;shape=2&quot;</span>, <span class="st">&quot;shape=2.5&quot;</span>, <span class="st">&quot;shape=3&quot;</span>), <span class="dt">lty=</span><span class="dv">1</span>, <span class="dt">col =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">4</span>)</code></pre></div>
 </div>
 <p>The distribution function of the Weibull distribution is given by <span class="math display">\[
 F_{X}\left( x \right) = 1 - e^{- \left( x / \theta \right)^{\alpha}}  \ \ \ x &gt;  0,\ \alpha &gt;  0,\ \theta &gt; 0.
@@ -977,6 +1113,23 @@ f_{X}\left( x \right) = \frac{(x/\theta)^{\alpha_2/\sigma}}{x \sigma~\mathrm{B}\
 \mathrm{E}\left( X^{k} \right) = \frac{\theta^{k}~\mathrm{B}\left( \alpha_1 +k \sigma,\alpha_2 - k \sigma \right)}{\mathrm{B}\left( \alpha_1,\alpha_2 \right)}, \ \ \ k &gt; 0.
 \]</span></p>
 <p>Earlier applications of the <em>GB2</em> were on income data and more recently have been used to model long-tailed claims data (Section <a href="C-PortMgt.html#S:Tails">10.2</a> describes different interpretations of the descriptor “long-tail”). <em>GB2</em> was used to model different types of automobile insurance claims, severity of fire losses as well as medical insurance claim data.</p>
+<div id="surveyElement32">
+
+</div>
+<div id="surveyResult32">
+
+</div>
+<h5 style="text-align: center;">
+<a id="display.Quiz32.1" href="javascript:toggleQuiz
+('display.Quiz32.2','display.Quiz32.1');"><i><strong>Show Quiz Solution</strong></i></a>
+</h5>
+<div id="display.Quiz32.2" style="display: none">
+<p id="Quiz32Soln">
+</p>
+<hr />
+</div>
+<script type="text/javascript" src="./Quizzes/QuizJavascript/Quiz32.js">
+</script>
 </div>
 </div>
 <div id="MethodsCreation" class="section level2">
@@ -1199,6 +1352,23 @@ f_{X}\left( x \right) = \left\{ \begin{matrix}
 \]</span></p>
 </div>
 <hr />
+<div id="surveyElement33">
+
+</div>
+<div id="surveyResult33">
+
+</div>
+<h5 style="text-align: center;">
+<a id="display.Quiz33.1" href="javascript:toggleQuiz
+('display.Quiz33.2','display.Quiz33.1');"><i><strong>Show Quiz Solution</strong></i></a>
+</h5>
+<div id="display.Quiz33.2" style="display: none">
+<p id="Quiz33Soln">
+</p>
+<hr />
+</div>
+<script type="text/javascript" src="./Quizzes/QuizJavascript/Quiz33.js">
+</script>
 </div>
 </div>
 <div id="S:CoverageModifications" class="section level2">
@@ -1415,7 +1585,7 @@ X - 100 &amp; 100 &lt;  X \leq 600, \\
 </div>
 <div id="S:Chap3Reinsurance" class="section level3">
 <h3><span class="header-section-number">3.4.4</span> Reinsurance</h3>
-<p>In Section <a href="C-Severity.html#S:PolicyDeduct">3.4.1</a> we introduced the policy deductible, which is a contractual arrangement under which an insured transfers part of the risk by securing coverage from an insurer in return for an insurance premium. Under that policy, the insured must pay all losses up to the deductible, and the insurer only pays the amount (if any) above the deductible. We now introduce <a href="#" class="tooltip" style="color:green"><em>reinsurance</em><span style="font-size:8pt">insurance purchased by an insurer</span></a>, a mechanism of insurance for insurance companies. Reinsurance is a contractual arrangement under which an insurer transfers part of the underlying insured risk by securing coverage from another insurer (referred to as a reinsurer) in return for a reinsurance premium. Although reinsurance involves a relationship between three parties: the original insured, the insurer (often referred to as <a href="#" class="tooltip" style="color:green"><em>cedent</em><span style="font-size:8pt">party that is transferring the risk to a reinsurer</span></a> or cedant) and the reinsurer, the parties of the reinsurance agreement are only the primary insurer and the reinsurer. There is no contractual agreement between the original insured and the reinsurer. Though many different types of reinsurance contracts exist, a common form is <a href="#" class="tooltip" style="color:green"><em>excess of loss coverage</em><span style="font-size:8pt">contract where an insurer pays all claims up to a specified amount and then the reinsurer pays claims in excess of stated reinsurance deductible</span></a>. In such contracts, the primary insurer must make all required payments to the insured until the primary insurer’s total payments reach a fixed reinsurance deducible. The reinsurer is then only responsible for paying losses above the reinsurance deductible. The maximum amount retained by the primary insurer in the reinsurance agreement (the reinsurance deductible) is called <a href="#" class="tooltip" style="color:green"><em>retention</em><span style="font-size:8pt">maximum amount payable by the primary insurer in a reinsurance arrangement </span></a>.</p>
+<p>In Section <a href="C-Severity.html#S:PolicyDeduct">3.4.1</a> we introduced the policy deductible, which is a contractual arrangement under which an insured transfers part of the risk by securing coverage from an insurer in return for an insurance premium. Under that policy, the insured must pay all losses up to the deductible, and the insurer only pays the amount (if any) above the deductible. We now introduce <a href="#" class="tooltip" style="color:green"><em>reinsurance</em><span style="font-size:8pt">a transaction where the primary insurer buys insurance from a re-insurer who will cover part of the losses and/or loss adjustment expenses of the primary insurer</span></a>, a mechanism of insurance for insurance companies. Reinsurance is a contractual arrangement under which an insurer transfers part of the underlying insured risk by securing coverage from another insurer (referred to as a reinsurer) in return for a reinsurance premium. Although reinsurance involves a relationship between three parties: the original insured, the insurer (often referred to as <a href="#" class="tooltip" style="color:green"><em>cedent</em><span style="font-size:8pt">party that is transferring the risk to a reinsurer</span></a> or cedant) and the reinsurer, the parties of the reinsurance agreement are only the primary insurer and the reinsurer. There is no contractual agreement between the original insured and the reinsurer. Though many different types of reinsurance contracts exist, a common form is <a href="#" class="tooltip" style="color:green"><em>excess of loss coverage</em><span style="font-size:8pt">contract where an insurer pays all claims up to a specified amount and then the reinsurer pays claims in excess of stated reinsurance deductible</span></a>. In such contracts, the primary insurer must make all required payments to the insured until the primary insurer’s total payments reach a fixed reinsurance deducible. The reinsurer is then only responsible for paying losses above the reinsurance deductible. The maximum amount retained by the primary insurer in the reinsurance agreement (the reinsurance deductible) is called <a href="#" class="tooltip" style="color:green"><em>retention</em><span style="font-size:8pt">maximum amount payable by the primary insurer in a reinsurance arrangement </span></a>.</p>
 <p>Reinsurance arrangements allow insurers with limited financial resources to increase the capacity to write insurance and meet client requests for larger insurance coverage while reducing the impact of potential losses and protecting the insurance company against catastrophic losses. Reinsurance also allows the primary insurer to benefit from underwriting skills, expertise and proficient complex claim file handling of the larger reinsurance companies.</p>
 <p><strong>Example 3.4.6. Actuarial Exam Question.</strong> Losses arising in a certain portfolio have a two-parameter Pareto distribution with <span class="math inline">\(\alpha=5\)</span> and <span class="math inline">\(\theta=3,600\)</span>. A reinsurance arrangement has been made, under which (a) the reinsurer accepts 15% of losses up to <span class="math inline">\(u=5,000\)</span> and all amounts in excess of 5,000 and (b) the insurer pays for the remaining losses.</p>
 <ol style="list-style-type: lower-alpha">
@@ -1469,6 +1639,23 @@ Y_{insurer}
 </div>
 <hr />
 <p>Further discussions of reinsurance will be provided in Section <a href="C-PortMgt.html#S:Reinsurance">10.4</a>.</p>
+<div id="surveyElement34">
+
+</div>
+<div id="surveyResult34">
+
+</div>
+<h5 style="text-align: center;">
+<a id="display.Quiz34.1" href="javascript:toggleQuiz
+('display.Quiz34.2','display.Quiz34.1');"><i><strong>Show Quiz Solution</strong></i></a>
+</h5>
+<div id="display.Quiz34.2" style="display: none">
+<p id="Quiz34Soln">
+</p>
+<hr />
+</div>
+<script type="text/javascript" src="./Quizzes/QuizJavascript/Quiz34.js">
+</script>
 </div>
 </div>
 <div id="S:MaxLikeEstimation" class="section level2">
@@ -1859,6 +2046,23 @@ L\left( \alpha \right) = \frac{\alpha^{8}}{\prod_{i = 1}^{8}x_{i}^{\alpha + 1}}\
 \]</span> The mean of the Pareto only exists for <span class="math inline">\(\alpha &gt; 1\)</span>. Since <span class="math inline">\(\hat{\alpha} = 0.785 &lt; 1\)</span>. Then, the mean does not exist.</p>
 </div>
 <hr />
+<div id="surveyElement35">
+
+</div>
+<div id="surveyResult35">
+
+</div>
+<h5 style="text-align: center;">
+<a id="display.Quiz35.1" href="javascript:toggleQuiz
+('display.Quiz35.2','display.Quiz35.1');"><i><strong>Show Quiz Solution</strong></i></a>
+</h5>
+<div id="display.Quiz35.2" style="display: none">
+<p id="Quiz35Soln">
+</p>
+<hr />
+</div>
+<script type="text/javascript" src="./Quizzes/QuizJavascript/Quiz35.js">
+</script>
 </div>
 </div>
 </div>
@@ -1888,6 +2092,12 @@ L\left( \alpha \right) = \frac{\alpha^{8}}{\prod_{i = 1}^{8}x_{i}^{\alpha + 1}}\
 </div>
 <h3>Bibliography</h3>
 <div id="refs" class="references">
+<div id="ref-venter1983transformed">
+<p>Venter, Gary. 1983. “Transformed Beta and Gamma Distributions and Aggregate Losses.” In <em>Proceedings of the Casualty Actuarial Society</em>, 70:289–308. 133 &amp; 134.</p>
+</div>
+<div id="ref-mcdonald1984some">
+<p>McDonald, James B. 1984. “Some Generalized Functions for the Size Distribution of Income.” <em>Econometrica: Journal of the Econometric Society</em>. JSTOR, 647–63.</p>
+</div>
 <div id="ref-cummins1991managing">
 <p>Cummins, J. David, and Richard A. Derrig. 2012. <em>Managing the Insolvency Risk of Insurance Companies: Proceedings of the Second International Conference on Insurance Solvency</em>. Vol. 12. Springer Science &amp; Business Media.</p>
 </div>
@@ -1900,17 +2110,11 @@ L\left( \alpha \right) = \frac{\alpha^{8}}{\prod_{i = 1}^{8}x_{i}^{\alpha + 1}}\
 <div id="ref-kreer2015goodness">
 <p>Kreer, Markus, Ayşe Kizilersü, Anthony W Thomas, and Alfredo D Egídio dos Reis. 2015. “Goodness-of-Fit Tests and Applications for Left-Truncated Weibull Distributions to Non-Life Insurance.” <em>European Actuarial Journal</em> 5 (1). Springer: 139–63.</p>
 </div>
-<div id="ref-mcdonald1984some">
-<p>McDonald, James B. 1984. “Some Generalized Functions for the Size Distribution of Income.” <em>Econometrica: Journal of the Econometric Society</em>. JSTOR, 647–63.</p>
-</div>
 <div id="ref-mcdonald1995generalization">
 <p>McDonald, James B, and Yexiao J Xu. 1995. “A Generalization of the Beta Distribution with Applications.” <em>Journal of Econometrics</em> 66 (1-2). Elsevier: 133–52.</p>
 </div>
 <div id="ref-tevet2016applying">
 <p>Tevet, Dan. 2016. “Applying Generalized Linear Models to Insurance Data.” <em>Predictive Modeling Applications in Actuarial Science: Volume 2, Case Studies in Insurance</em>. Cambridge University Press, 39.</p>
-</div>
-<div id="ref-venter1983transformed">
-<p>Venter, Gary. 1983. “Transformed Beta and Gamma Distributions and Aggregate Losses.” In <em>Proceedings of the Casualty Actuarial Society</em>, 70:289–308. 133 &amp; 134.</p>
 </div>
 </div>
             </section>
@@ -1939,7 +2143,7 @@ gitbook.start({
 "google": false,
 "linkedin": false,
 "weibo": false,
-"instapaper": false,
+"instapper": false,
 "vk": false,
 "all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
 },
@@ -1949,10 +2153,6 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": null,
-"text": null
-},
-"history": {
 "link": null,
 "text": null
 },
@@ -1970,7 +2170,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:" && /^https?:/.test(src))
       src = src.replace(/^https?:/, '');
     script.src = src;
